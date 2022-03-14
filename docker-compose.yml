@@ -2,19 +2,44 @@ version: "3"
 
 volumes:
   oracle:
+
 networks:
   backend-network:
     driver: bridge
 
 services:
-
-  backend:
+  backend: #개발용
     platform: linux/x86_64 #m1 mac 전용 설정
-    container_name: backend
-    build: ./backend
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/app
+      - ./.m2:/root/.m2
+    working_dir: /app
+    command: sh run.sh
     ports:
       - "8080:8080"
-    depends_on:
-      - oracle
+      - "35729:35729"
+      - "5005:5005"
+
+
+  oracle:
+    image: jaspeen/oracle-xe-11g
+    container_name: oracle
+    volumes:
+      - oracle:/u01/app/oracle jaspeen/oracle-xe-11g
+    hostname: oracle
     networks:
       - backend-network
+    stdin_open: true
+    environment:
+      ORACLE_ROOT_PASSWORD: root
+    restart: always
+    ports:
+      - '1521:1521'
+
+  #grafana
+  #prometheus
+  #cadvisor
+  #nodexporter
