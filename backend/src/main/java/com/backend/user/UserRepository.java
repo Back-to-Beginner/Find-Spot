@@ -1,7 +1,6 @@
-package com.backend;
+package com.backend.user;
 
 import org.springframework.data.repository.CrudRepository;
-import com.backend.User;
 
 // This will be AUTO IMPLEMENTED by Spring into a Bean called userRepository
 // CRUD refers Create, Read, Update, Delete
