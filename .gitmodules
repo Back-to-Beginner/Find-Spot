@@ -4,3 +4,6 @@
 [submodule "oracle-server"]
 	path = oracle-server
 	url = https://github.com/Back-to-Beginner/oracle-server.git
+[submodule "frontend"]
+	path = frontend
+	url = https://github.com/Back-to-Beginner/frontend.git
