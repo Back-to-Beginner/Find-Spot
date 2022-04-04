@@ -1,0 +1,7 @@
+spring:
+  profiles:
+    include:
+      - database
+      - cache
+      - aws
+      - credentials
