@@ -1,4 +1,4 @@
-package repository;
+package com.backend.repository;
 
 import com.backend.entity.Image;
 

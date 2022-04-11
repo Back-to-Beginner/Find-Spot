@@ -2,8 +2,8 @@ package com.backend.service;
 
 import com.backend.component.S3Uploader;
 import com.backend.entity.Image;
-import repository.ImageRepository;
-import repository.JpaImageRepository;
+import com.backend.repository.ImageRepository;
+import com.backend.repository.JpaImageRepository;
 
 import javax.transaction.Transactional;
 

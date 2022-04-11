@@ -8,8 +8,8 @@ import org.springframework.context.annotation.Configuration;
 import javax.persistence.EntityManager;
 import javax.sql.DataSource;
 
-import repository.JpaUserRepository;
-import repository.UserRepository;
+import com.backend.repository.JpaUserRepository;
+import com.backend.repository.UserRepository;
 
 @Configuration
 public class SpringConfig {

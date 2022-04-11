@@ -7,8 +7,8 @@ import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
-import repository.JpaUserRepository;
-import repository.UserRepository;
+import com.backend.repository.JpaUserRepository;
+import com.backend.repository.UserRepository;
 
 @Transactional
 public class UserService {
