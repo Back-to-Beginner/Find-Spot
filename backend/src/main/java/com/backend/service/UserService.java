@@ -1,21 +1,29 @@
 package com.backend.service;
 
-import com.backend.user.JpaUserRepository;
-import com.backend.user.User;
-import com.backend.user.UserRepository;
-import org.springframework.stereotype.Service;
+import com.backend.entity.User;
 
 import javax.transaction.Transactional;
+
 import java.util.List;
 import java.util.Optional;
+
+import repository.JpaUserRepository;
+import repository.UserRepository;
 
 @Transactional
 public class UserService {
     private final UserRepository userRepository;
 
-  public UserService(JpaUserRepository jpaUserRepository) {
-    this.userRepository = jpaUserRepository;
-  }
+    public UserService(JpaUserRepository jpaUserRepository) {
+        this.userRepository = jpaUserRepository;
+    }
+
+    //로그인
+    public boolean login() {
+
+        return false;
+    }
+
     // 회원 가입
     public Long join(User user) {
         validateDuplicateMember(user);
@@ -38,5 +46,4 @@ public class UserService {
     public Optional<User> findOne(Long memberId) {
         return userRepository.findById(memberId);
     }
-
 }
