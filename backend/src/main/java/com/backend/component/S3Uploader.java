@@ -68,7 +68,7 @@ public class S3Uploader implements ImageUploader {
     @Override
     public Optional<File> localUpload(MultipartFile file) throws IOException {
 //        System.out.println(System.getProperty("user.dir"));
-        File convertFile = new File(System.getProperty("user.dir") + "/" + changeFileName(file));
+        File convertFile = new File(System.getProperty("user.dir") + "/images/" + changeFileName(file));
         if (convertFile.createNewFile()) { // 바로 위에서 지정한 경로에 File이 생성됨 (경로가 잘못되었다면 생성 불가능)
             try (FileOutputStream fos =
                          new FileOutputStream(convertFile)) { // FileOutputStream 데이터를 파일에 바이트 스트림으로 저장하기 위함

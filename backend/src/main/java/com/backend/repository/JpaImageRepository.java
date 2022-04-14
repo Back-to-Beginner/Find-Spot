@@ -1,11 +1,13 @@
 package com.backend.repository;
 
 import com.backend.entity.Image;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public class JpaImageRepository implements ImageRepository {
 
     private final EntityManager em;

@@ -1,11 +1,6 @@
 package com.backend.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -24,10 +19,21 @@ public class Image extends BaseTimeEntity {
 	@JoinColumn(name = "location_id")
 	private Location location;
 
+	@Column(length = 300)
 	private String path;
 
 	private String name;
 
 	private java.sql.Timestamp timestamp;
 
+	@Override
+	public String toString() {
+		return "Image{" +
+				"id=" + id +
+				", location=" + location +
+				", path='" + path + '\'' +
+				", name='" + name + '\'' +
+				", timestamp=" + timestamp +
+				'}';
+	}
 }

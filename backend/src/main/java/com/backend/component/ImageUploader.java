@@ -12,6 +12,5 @@ public interface ImageUploader {
 
     String changeFileName(MultipartFile uploadFile);
 
-    // 로컬에 파일 업로드 하기
     Optional<File> localUpload(MultipartFile file) throws IOException;
 }
