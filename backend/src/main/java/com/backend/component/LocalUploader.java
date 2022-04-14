@@ -1,29 +1,21 @@
 package com.backend.component;
 
-import com.amazonaws.services.s3.AmazonS3Client;
-import com.amazonaws.services.s3.model.CannedAccessControlList;
-import com.amazonaws.services.s3.model.PutObjectRequest;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
-import org.springframework.web.multipart.MultipartFile;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Optional;
 import java.util.UUID;
 
+import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
 @Slf4j
 @RequiredArgsConstructor
 @Component
-public class S3Uploader implements ImageUploader {
-
-    private final AmazonS3Client amazonS3Client;
-
-    @Value("${cloud.aws.s3.bucket}")
-    public String bucket; // S3 버킷 이름
+public class LocalUploader implements ImageUploader {
 
     @Override
     public String upload(MultipartFile multipartFile) throws IOException {
@@ -32,36 +24,12 @@ public class S3Uploader implements ImageUploader {
                         .orElseThrow(
                                 () -> new IllegalArgumentException("error: MultipartFile -> File convert fail"));
 
-        return upload(uploadFile);
+        return uploadFile.getName();
     }
 
     @Override
     public String changeFileName(MultipartFile uploadFile) {
         return UUID.randomUUID() + uploadFile.getOriginalFilename(); // 저장될 파일 이름 변환
-    }
-
-    // S3로 파일 업로드하기
-    private String upload(File uploadFile) {
-        String uploadImageUrl = putS3(uploadFile, "static/" + uploadFile.getName()); // s3로 업로드
-        removeNewFile(uploadFile);
-        return uploadImageUrl;
-    }
-
-    // S3로 업로드
-    private String putS3(File uploadFile, String fileName) {
-        amazonS3Client.putObject(
-                new PutObjectRequest(bucket, fileName, uploadFile)
-                        .withCannedAcl(CannedAccessControlList.PublicRead));
-        return amazonS3Client.getUrl(bucket, fileName).toString();
-    }
-
-    // 로컬에 저장된 이미지 지우기
-    private void removeNewFile(File targetFile) {
-        if (targetFile.delete()) {
-            log.info("File delete success");
-            return;
-        }
-        log.info("File delete fail");
     }
 
     // 로컬에 파일 업로드 하기
@@ -79,4 +47,5 @@ public class S3Uploader implements ImageUploader {
 
         return Optional.empty();
     }
+
 }

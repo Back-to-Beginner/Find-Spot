@@ -1,26 +1,25 @@
-package com.backend.user;
+package com.backend.entity;
 
 import lombok.*;
-import org.hibernate.Hibernate;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.util.Objects;
 
 @Getter
 @Setter
 @RequiredArgsConstructor
 @Entity // This tells Hibernate to make a table out of this class
-public class User {
+public class User extends BaseTimeEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer userId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    private String userName;
+    private String name;
 
-    private String userEmail;
+    private String email;
 
-    private String userPw;
+    private String pw;
+
 }

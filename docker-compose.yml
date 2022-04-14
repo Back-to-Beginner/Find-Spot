@@ -1,43 +1,55 @@
 version: "3"
 
-volumes:
-  oracle:
-
-networks:
-  backend-network:
-    driver: bridge
-
 services:
-  backend: #개발용
-    platform: linux/x86_64 #m1 mac 전용 설정
-    build:
-      context: ./
-      dockerfile: Dockerfile
-    volumes:
-      - ./:/app
-      - ./.m2:/root/.m2
+  react-btb:
+    image: node:16-alpine
+    command: sh -c "npm install && npm start"
+    ports:
+      - "3000:3000"
     working_dir: /app
-    command: sh run.sh
+    volumes:
+      - ./frontend:/app
+    container_name: react-btb
+
+  spring-boot-btb:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    image: spring-backend
     ports:
       - "8080:8080"
-      - "35729:35729"
       - "5005:5005"
+    container_name: spring-boot-btb
+#     restart: always
+    depends_on:
+      - mysql-btb
+      - redis-btb
 
-
-  oracle:
-    image: jaspeen/oracle-xe-11g
-    container_name: oracle
-    volumes:
-      - oracle:/u01/app/oracle jaspeen/oracle-xe-11g
-    hostname: oracle
-    networks:
-      - backend-network
-    stdin_open: true
-    environment:
-      ORACLE_ROOT_PASSWORD: root
-    restart: always
+  mysql-btb:
+    platform: linux/x86_64
+    container_name: mysql-btb
+    image: mysql:5.7
+    restart: unless-stopped #컨테이너 스탑하기전까지 항상 재시작
     ports:
-      - '1521:1521'
+      - "3308:3306"
+    environment: # -e 옵션
+      - MYSQL_DATABASE=btb
+      - MYSQL_ROOT_PASSWORD=1234 # MYSQL root 패스워드 설정 옵션
+      - TZ=Asia/Seoul
+    volumes:
+      - mysqlBtb:/data/db
+
+  redis-btb:
+    container_name: redis-btb
+    image: arm64v8/redis:6.2-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redisBtb
+
+volumes:
+  mysqlBtb:
+  redisBtb:
 
   #grafana
   #prometheus
