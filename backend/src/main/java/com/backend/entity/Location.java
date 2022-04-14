@@ -36,4 +36,17 @@ public class Location extends BaseTimeEntity{
 	private double latitude;
 	private double longitude;
 
+	@Override
+	public String toString() {
+		return "Location{" +
+				"id=" + id +
+				", trip=" + trip +
+				", region=" + region +
+				", name='" + name + '\'' +
+				", activity='" + activity + '\'' +
+				", cost=" + cost +
+				", latitude=" + latitude +
+				", longitude=" + longitude +
+				'}';
+	}
 }
