@@ -31,7 +31,6 @@ public class ImageUploadController {
     @PostMapping("/uploads")
     public Long uploads(@RequestParam("images") MultipartFile multipartFile) throws IOException {
         Image image = new Image();
-        image.setName("test");
         image.setPath(imageUploader.upload(multipartFile));
 //        image.setLocation();
         return imageService.save(image);

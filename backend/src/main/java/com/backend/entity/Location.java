@@ -29,7 +29,7 @@ public class Location extends BaseTimeEntity{
 
 	private String name;
 
-	private String activity;
+	private String review;
 
 	private int cost;
 
@@ -43,7 +43,6 @@ public class Location extends BaseTimeEntity{
 				", trip=" + trip +
 				", region=" + region +
 				", name='" + name + '\'' +
-				", activity='" + activity + '\'' +
 				", cost=" + cost +
 				", latitude=" + latitude +
 				", longitude=" + longitude +

@@ -22,18 +22,12 @@ public class Image extends BaseTimeEntity {
 	@Column(length = 300)
 	private String path;
 
-	private String name;
-
-	private java.sql.Timestamp timestamp;
-
 	@Override
 	public String toString() {
 		return "Image{" +
 				"id=" + id +
 				", location=" + location +
 				", path='" + path + '\'' +
-				", name='" + name + '\'' +
-				", timestamp=" + timestamp +
 				'}';
 	}
 }

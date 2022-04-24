@@ -44,7 +44,6 @@ public class TripController {
         Image image = new Image();
         image.setLocation(location);
         image.setPath(imageService.upload(multipartFile));
-        image.setName("test name");
         imageService.save(image);
         return trip.toString();
     }
