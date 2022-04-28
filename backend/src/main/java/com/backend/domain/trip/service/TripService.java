@@ -1,23 +1,27 @@
 package com.backend.domain.trip.service;
 
 import com.backend.domain.trip.domain.entity.Trip;
+import com.backend.domain.trip.domain.repository.JpaTripRepository;
+import com.backend.domain.trip.exception.TripNotFoundException;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
-@Service
+@RequiredArgsConstructor
 @Transactional
+@Service
 public class TripService {
-    private final TripRepository tripRepository;
+    private final JpaTripRepository tripRepository;
 
-    public TripService(JpaTripRpository tripRepository) {
-        this.tripRepository = tripRepository;
+    public Trip save(Trip trip) {
+        return tripRepository.save(trip);
     }
 
-    public Long save(Trip trip) {
-        tripRepository.save(trip);
-        return trip.getId();
+    public Trip findOneById(Long id) {
+        return tripRepository.findById(id).orElseThrow(TripNotFoundException::new);
     }
 
     public List<Trip> findAllTrip() {
