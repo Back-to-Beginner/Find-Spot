@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface JpaLocationRepository extends JpaRepository<Location, Long> {
-    List<Location> findByTripId(Long tripId);
+    List<Location> findAllByTripId(Long tripId);
 }

@@ -9,12 +9,12 @@ import javax.persistence.ManyToOne;
 
 import com.backend.domain.trip.domain.entity.Trip;
 import com.backend.global.BaseTimeEntity;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 
 @Getter
-@Setter
+@Builder
 @RequiredArgsConstructor
 @Entity // This tells Hibernate to make a table out of this class
 public class Location extends BaseTimeEntity {
@@ -27,27 +27,20 @@ public class Location extends BaseTimeEntity {
 	@JoinColumn(name = "trip_id")
 	private Trip trip;
 
-	private Region region;
+	private String region;
 
 	private String name;
 
 	private String review;
 
-	private int cost;
+	private int cost = 0;
 
 	private double latitude;
 	private double longitude;
 
-	@Override
-	public String toString() {
-		return "Location{" +
-				"id=" + id +
-				", trip=" + trip +
-				", region=" + region +
-				", name='" + name + '\'' +
-				", cost=" + cost +
-				", latitude=" + latitude +
-				", longitude=" + longitude +
-				'}';
+	private boolean is_deleted = false;
+
+	public void deleteLocation() {
+		this.is_deleted = true;
 	}
 }
