@@ -40,6 +40,6 @@ public class ImageService {
     }
 
     public void deleteImageById(Long id) {
-        imageRepository.findById(id).orElseThrow(ImageNotFoundException::new).deleteImage();
+        findImageById(id).deleteImage();
     }
 }

@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -43,8 +42,7 @@ public class ImageUploadController {
         );
     }
 
-    //TODO 로케이션 컨트롤러로 이동
-    @GetMapping("/location/{id}/images")
+    @GetMapping("/locations/{id}")
     public ResponseEntity<List<ImageResponse>> findAllImageByLocationId(@PathVariable Long id) {
         return ResponseEntity.ok(imageService
                 .findAllImageByLocationId(id)
