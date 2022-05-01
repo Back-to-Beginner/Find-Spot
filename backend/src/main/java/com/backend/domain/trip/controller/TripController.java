@@ -1,11 +1,11 @@
 package com.backend.domain.trip.controller;
 
-import com.backend.domain.image.service.ImageService;
-import com.backend.domain.location.service.LocationService;
 import com.backend.domain.trip.dto.TripRequest;
 import com.backend.domain.trip.dto.TripResponse;
 import com.backend.domain.trip.service.TripService;
+import com.backend.domain.user.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -18,13 +18,17 @@ import java.util.stream.Collectors;
 @RestController
 public class TripController {
     private final TripService tripService;
-    private final LocationService locationService;
-    private final ImageService imageService;
+    private final UserService userService;
 
     @PostMapping
     public ResponseEntity<TripResponse> createTrip(@Validated @RequestBody TripRequest tripRequest) {
-
-        return ResponseEntity.ok(TripResponse.of(tripRequest.toEntity()));
+        return ResponseEntity.ok(TripResponse
+                .of(tripService
+                        .save(tripRequest
+                                .toEntity(userService)
+                        )
+                )
+        );
     }
 
     @GetMapping
@@ -37,5 +41,19 @@ public class TripController {
         );
     }
 
-    //TODO 나머지 api 만들어야 함
+    @GetMapping("/{id}")
+    public ResponseEntity<TripResponse> findOneTripById(@PathVariable Long id) {
+        return ResponseEntity.ok(TripResponse.of(tripService.findOneById(id)));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<HttpStatus> deleteTripById(@PathVariable Long id) {
+        tripService.deleteOneById(id);
+        return ResponseEntity.ok(HttpStatus.ACCEPTED);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<TripResponse> updateTripById(@PathVariable Long id, @Validated @RequestBody TripRequest tripRequest) {
+        return ResponseEntity.ok(TripResponse.of(tripService.updateOneById(id, tripRequest)));
+    }
 }

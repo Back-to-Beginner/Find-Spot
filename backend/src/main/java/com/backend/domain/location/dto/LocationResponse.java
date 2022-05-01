@@ -1,14 +1,19 @@
 package com.backend.domain.location.dto;
 
 import com.backend.domain.location.domain.entity.Location;
+import com.backend.domain.trip.domain.entity.Trip;
 import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Builder
 public class LocationResponse {
 
     private Long id;
 
-    private Long trip_id;
+    private Trip trip;
 
     private String region;
 
@@ -25,7 +30,7 @@ public class LocationResponse {
     public static LocationResponse of(Location location) {
         return LocationResponse.builder()
                 .id(location.getId())
-                .trip_id(location.getTrip().getId())
+                .trip(location.getTrip())
                 .region(location.getRegion())
                 .name(location.getName())
                 .review(location.getReview())

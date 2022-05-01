@@ -2,7 +2,11 @@ package com.backend.domain.image.dto;
 
 import com.backend.domain.image.domain.entity.Image;
 import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Builder
 public class ImageResponse {
 

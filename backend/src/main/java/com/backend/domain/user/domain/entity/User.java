@@ -9,9 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Getter
-@Setter
 @RequiredArgsConstructor
-@Entity // This tells Hibernate to make a table out of this class
+@AllArgsConstructor
+@Entity
 public class User extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,5 +22,13 @@ public class User extends BaseTimeEntity {
     private String email;
 
     private String pw;
+
+    @Builder
+    public User(String name, String email, String pw){
+        this.name = name;
+        this.email = email;
+        this.pw = pw;
+    }
+
 
 }

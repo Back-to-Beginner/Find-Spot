@@ -2,6 +2,7 @@ package com.backend.domain.trip.service;
 
 import com.backend.domain.trip.domain.entity.Trip;
 import com.backend.domain.trip.domain.repository.JpaTripRepository;
+import com.backend.domain.trip.dto.TripRequest;
 import com.backend.domain.trip.exception.TripNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -26,5 +27,13 @@ public class TripService {
 
     public List<Trip> findAllTrip() {
         return tripRepository.findAll();
+    }
+
+    public void deleteOneById(Long id) {
+        tripRepository.delete(findOneById(id));
+    }
+
+    public Trip updateOneById(Long id, TripRequest tripRequest) {
+        return tripRepository.save(findOneById(id).updateTrip(tripRequest));
     }
 }

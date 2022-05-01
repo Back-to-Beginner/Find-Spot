@@ -9,7 +9,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
-@Builder
+//@Builder
 @Getter
 @RequiredArgsConstructor
 @Entity // This tells Hibernate to make a table out of this class
@@ -29,5 +29,11 @@ public class Image extends BaseTimeEntity {
 
     public void deleteImage() {
         this.is_deleted = true;
+    }
+
+    @Builder
+    public Image(Location location, String path) {
+        this.location = location;
+        this.path = path;
     }
 }

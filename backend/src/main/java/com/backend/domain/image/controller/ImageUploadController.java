@@ -1,12 +1,10 @@
 package com.backend.domain.image.controller;
 
 import com.backend.domain.image.dto.ImageResponse;
-import com.backend.domain.image.dto.ImageUploadRequest;
 import com.backend.domain.image.service.ImageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -22,12 +20,10 @@ public class ImageUploadController {
     private final ImageService imageService;
 
     @PostMapping
-    public ResponseEntity<ImageResponse> createImage(@RequestParam("images") MultipartFile multipartFile, @Validated @RequestBody ImageUploadRequest imageUploadRequest) throws IOException {
+    public ResponseEntity<ImageResponse> createImage(@RequestParam("locationId") Long id, @RequestParam("images") MultipartFile multipartFile) throws IOException {
         return ResponseEntity.ok(ImageResponse
                 .of(imageService
-                        .saveImage(imageUploadRequest
-                                .toEntity(multipartFile)
-                        )
+                        .saveImage(id, multipartFile)
                 )
         );
     }

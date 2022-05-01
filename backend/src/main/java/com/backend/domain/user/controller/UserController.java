@@ -1,24 +1,47 @@
 package com.backend.domain.user.controller;
 
+import com.backend.domain.user.dto.UserRequest;
+import com.backend.domain.user.dto.UserResponse;
 import com.backend.domain.user.service.UserService;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.stream.Collectors;
 
-@Controller // This means that this class is a Controller
-@RequestMapping(path = "/users") // This means URL's start with /demo (after Application path)
+@RequiredArgsConstructor
+@RestController // This means that this class is a Controller
+@RequestMapping(path = "/api/v1/users") // This means URL's start with /demo (after Application path)
 public class UserController {
     private final UserService userService;
 
-    public UserController(UserService userService) {
-        this.userService = userService;
+    @GetMapping
+    public ResponseEntity<List<UserResponse>> findAllUser() {
+        return ResponseEntity.ok(userService
+                .findAllUser()
+                .stream()
+                .map(UserResponse::of)
+                .collect(Collectors.toList())
+        );
     }
 
-    @GetMapping("/search-all")
-    public void search() {
-
+    @PostMapping
+    public ResponseEntity<UserResponse> createUser(@Validated @RequestBody UserRequest userRequest) {
+        return ResponseEntity.ok(UserResponse
+                .of(userService
+                        .createUser(userRequest.toEntity())
+                )
+        );
     }
 
-
+    @GetMapping("/{id}")
+    public ResponseEntity<UserResponse> findOneUserById(@PathVariable Long id) {
+        return ResponseEntity.ok(UserResponse
+                .of(userService
+                        .findUserById(id)
+                )
+        );
+    }
 }

@@ -3,6 +3,7 @@ package com.backend.domain.location.controller;
 import com.backend.domain.location.dto.LocationRequest;
 import com.backend.domain.location.dto.LocationResponse;
 import com.backend.domain.location.service.LocationService;
+import com.backend.domain.trip.service.TripService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,10 +19,17 @@ import java.util.stream.Collectors;
 public class LocationController {
 
     private final LocationService locationService;
+    private final TripService tripService;
 
     @PostMapping
     public ResponseEntity<LocationResponse> createLocation(@Validated @RequestBody LocationRequest locationRequest) {
-        return ResponseEntity.ok(LocationResponse.of(locationService.createLocation(locationRequest.toEntity())));
+        return ResponseEntity.ok(LocationResponse
+                .of(locationService
+                        .createLocation(locationRequest
+                                .toEntity(tripService)
+                        )
+                )
+        );
     }
 
     @GetMapping
