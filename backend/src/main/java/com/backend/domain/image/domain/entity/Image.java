@@ -3,10 +3,8 @@ package com.backend.domain.image.domain.entity;
 import javax.persistence.*;
 
 import com.backend.domain.review.domain.entity.Review;
-import com.backend.domain.trip.domain.entity.Trip;
 import com.backend.domain.user.domain.entity.User;
-import com.backend.global.domain.entity.BaseTimeEntity;
-import com.backend.domain.location.domain.entity.Location;
+import com.backend.global.domain.basetime.domain.entity.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

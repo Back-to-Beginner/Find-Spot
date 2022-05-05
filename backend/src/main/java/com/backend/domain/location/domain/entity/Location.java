@@ -2,8 +2,7 @@ package com.backend.domain.location.domain.entity;
 
 import javax.persistence.*;
 
-import com.backend.domain.trip.domain.entity.Trip;
-import com.backend.global.domain.entity.BaseTimeEntity;
+import com.backend.global.domain.basetime.domain.entity.BaseTimeEntity;
 import lombok.*;
 
 @Getter

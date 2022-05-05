@@ -1,4 +1,4 @@
-package com.backend.global.domain.entity;
+package com.backend.global.domain.basetime.domain.entity;
 
 import java.time.LocalDateTime;
 

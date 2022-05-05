@@ -2,11 +2,10 @@ package com.backend.domain.trip.domain.entity;
 
 import javax.persistence.*;
 
-import com.backend.domain.location.domain.entity.Location;
 import com.backend.domain.tag.domain.entity.Tag;
 import com.backend.domain.trip.dto.TripRequest;
 import com.backend.domain.user.domain.entity.User;
-import com.backend.global.domain.entity.BaseTimeEntity;
+import com.backend.global.domain.basetime.domain.entity.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
