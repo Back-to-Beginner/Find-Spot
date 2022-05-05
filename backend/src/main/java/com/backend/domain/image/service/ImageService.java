@@ -1,9 +1,10 @@
 package com.backend.domain.image.service;
 
 import com.backend.domain.image.domain.repository.JpaImageRepository;
-import com.backend.domain.image.exception.ImageNotFoundException;
 import com.backend.domain.image.domain.entity.Image;
 import com.backend.domain.location.service.LocationService;
+import com.backend.global.error.ErrorCode;
+import com.backend.global.error.NotFoundException;
 import com.backend.infra.aws.service.S3ImageUploader;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -23,14 +24,9 @@ public class ImageService {
 
     public Image saveImage(Long id, MultipartFile multipartFile) throws IOException {
         return imageRepository.save(Image.builder()
-                .location(locationService.findLocationById(id))
                 .path(imageUploader.upload(multipartFile))
                 .build()
         );
-    }
-
-    public List<Image> findAllImageByLocationId(Long location_id) {
-        return imageRepository.findAllByLocationId(location_id);
     }
 
     public List<Image> findAllImage() {
@@ -38,7 +34,9 @@ public class ImageService {
     }
 
     public Image findImageById(Long id) {
-        return imageRepository.findById(id).orElseThrow(ImageNotFoundException::new);
+        return imageRepository.findById(id).orElseThrow(
+                ()-> new NotFoundException(ErrorCode.NOT_FOUND, "사진을 찾을 수 없습니다.")
+        );
     }
 
     public void deleteImageById(Long id) {

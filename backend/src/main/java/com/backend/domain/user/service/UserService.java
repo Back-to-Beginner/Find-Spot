@@ -2,7 +2,8 @@ package com.backend.domain.user.service;
 
 import com.backend.domain.user.domain.entity.User;
 import com.backend.domain.user.domain.repository.JpaUserRepository;
-import com.backend.domain.user.exception.UserNotFoundException;
+import com.backend.global.error.NotFoundException;
+import com.backend.global.error.ErrorCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +24,9 @@ public class UserService {
     }
 
     public User findUserById(Long id) {
-        return userRepository.findById(id).orElseThrow(UserNotFoundException::new);
+        return userRepository.findById(id).orElseThrow(
+                () -> new NotFoundException(ErrorCode.NOT_FOUND, "User Not Found")
+        );
     }
 
 }

@@ -30,11 +30,8 @@ public class LocationResponse {
     public static LocationResponse of(Location location) {
         return LocationResponse.builder()
                 .id(location.getId())
-                .trip(location.getTrip())
                 .region(location.getRegion())
                 .name(location.getName())
-                .review(location.getReview())
-                .cost(location.getCost())
                 .latitude(location.getLatitude())
                 .longitude(location.getLongitude())
                 .build();

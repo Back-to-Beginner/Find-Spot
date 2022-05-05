@@ -2,7 +2,8 @@ package com.backend.domain.location.service;
 
 import com.backend.domain.location.domain.entity.Location;
 import com.backend.domain.location.domain.repository.JpaLocationRepository;
-import com.backend.domain.location.exception.LocationNotFoundException;
+import com.backend.global.error.ErrorCode;
+import com.backend.global.error.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -24,13 +25,10 @@ public class LocationService {
     }
 
     public Location findLocationById(Long id) {
-        return locationRepository.findById(id).orElseThrow(LocationNotFoundException::new);
+        return locationRepository.findById(id).orElseThrow(
+                () -> new NotFoundException(ErrorCode.NOT_FOUND, "장소를 찾을 수 없습니다.")
+        );
     }
-
-    public List<Location> findLocationByTripId(Long trip_id) {
-        return locationRepository.findAllByTripId(trip_id);
-    }
-
     public void deleteLocationById(Long id) {
         findLocationById(id).deleteLocation();
     }

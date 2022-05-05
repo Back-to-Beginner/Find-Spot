@@ -30,7 +30,6 @@ public class TripResponse {
                 .id(trip.getId())
                 .user(trip.getUser())
                 .title(trip.getTitle())
-                .review(trip.getReview())
                 .begin_date(trip.getBegin_date())
                 .end_date(trip.getEnd_date())
                 .fullCost(trip.getFullCost())

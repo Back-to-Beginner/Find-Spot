@@ -1,11 +1,9 @@
 package com.backend.domain.trip.dto;
 
 import com.backend.domain.trip.domain.entity.Trip;
-import com.backend.domain.trip.service.TripService;
 import com.backend.domain.user.service.UserService;
 import lombok.*;
 
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import java.sql.Date;
@@ -24,11 +22,11 @@ public class TripRequest {
     @NotNull
     private String review;
 
-    //    @Past
+    @Past
     @NotNull
     private Date beginDate;
 
-    //    @Past
+    @Past
     @NotNull
     private Date endDate;
 
@@ -40,7 +38,6 @@ public class TripRequest {
         return Trip.builder()
                 .user(userService.findUserById(this.userId))
                 .title(this.title)
-                .review(this.review)
                 .begin_date(this.beginDate)
                 .end_date(this.endDate)
                 .fullCost(this.fullCost)

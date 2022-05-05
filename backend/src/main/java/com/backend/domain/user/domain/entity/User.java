@@ -1,6 +1,6 @@
 package com.backend.domain.user.domain.entity;
 
-import com.backend.global.BaseTimeEntity;
+import com.backend.global.domain.entity.BaseTimeEntity;
 import lombok.*;
 
 import javax.persistence.Entity;
