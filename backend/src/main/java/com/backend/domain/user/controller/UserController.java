@@ -3,13 +3,14 @@ package com.backend.domain.user.controller;
 import com.backend.domain.user.dto.UserRequest;
 import com.backend.domain.user.dto.UserResponse;
 import com.backend.domain.user.service.UserService;
+import com.backend.global.dto.ApiResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.stream.Collectors;
+
+import static org.springframework.http.HttpStatus.*;
 
 @RequiredArgsConstructor
 @RestController // This means that this class is a Controller
@@ -18,8 +19,9 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping
-    public ResponseEntity<List<UserResponse>> findAllUser() {
-        return ResponseEntity.ok(userService
+    @ResponseStatus(OK)
+    public ApiResponse findAllUser() {
+        return ApiResponse.success(userService
                 .findAllUser()
                 .stream()
                 .map(UserResponse::of)
@@ -28,20 +30,25 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<UserResponse> createUser(@Validated @RequestBody UserRequest userRequest) {
-        return ResponseEntity.ok(UserResponse
-                .of(userService
-                        .createUser(userRequest.toEntity())
+    @ResponseStatus(CREATED)
+    public ApiResponse createUser(@Validated @RequestBody UserRequest userRequest) {
+        return ApiResponse.created(
+                UserResponse.of(
+                        userService.createUser(
+                                userRequest.toEntity()
+                        )
                 )
         );
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UserResponse> findOneUserById(@PathVariable Long id) {
-        return ResponseEntity.ok(UserResponse
-                .of(userService
-                        .findUserById(id)
+    @ResponseStatus(OK)
+    public ApiResponse findOneUserById(@PathVariable Long id) {
+        return ApiResponse.success(
+                UserResponse.of(
+                        userService.findUserById(id)
                 )
         );
     }
+
 }

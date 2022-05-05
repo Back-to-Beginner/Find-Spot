@@ -3,15 +3,14 @@ package com.backend.domain.location.controller;
 import com.backend.domain.location.dto.LocationRequest;
 import com.backend.domain.location.dto.LocationResponse;
 import com.backend.domain.location.service.LocationService;
-import com.backend.domain.trip.service.TripService;
+import com.backend.global.dto.ApiResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.stream.Collectors;
+
+import static org.springframework.http.HttpStatus.*;
 
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/locations")
@@ -19,51 +18,55 @@ import java.util.stream.Collectors;
 public class LocationController {
 
     private final LocationService locationService;
-    private final TripService tripService;
 
     @PostMapping
-    public ResponseEntity<LocationResponse> createLocation(@Validated @RequestBody LocationRequest locationRequest) {
-        return ResponseEntity.ok(LocationResponse
-                .of(locationService
-                        .createLocation(locationRequest
-                                .toEntity(tripService)
+    @ResponseStatus(CREATED)
+    public ApiResponse createLocation(@Validated @RequestBody LocationRequest locationRequest) {
+        return ApiResponse.created(
+                LocationResponse.of(
+                        locationService.createLocation(
+                                locationRequest.toEntity()
                         )
                 )
         );
     }
 
     @GetMapping
-    public ResponseEntity<List<LocationResponse>> findAllLocation() {
-        return ResponseEntity.ok(locationService
-                .findAllLocation()
-                .stream()
-                .map(LocationResponse::of)
-                .collect(Collectors.toList())
+    @ResponseStatus(OK)
+    public ApiResponse findAllLocation() {
+        return ApiResponse.success(
+                locationService.findAllLocation()
+                        .stream()
+                        .map(LocationResponse::of)
+                        .collect(Collectors.toList())
         );
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<LocationResponse> findLocationById(@PathVariable Long id) {
-        return ResponseEntity.ok(LocationResponse
-                .of(locationService
-                        .findLocationById(id)
+    @ResponseStatus(OK)
+    public ApiResponse findLocationById(@PathVariable Long id) {
+        return ApiResponse.success(
+                LocationResponse.of(
+                        locationService.findLocationById(id)
                 )
         );
     }
 
-    @GetMapping("/trips/{trip_id}")
-    public ResponseEntity<List<LocationResponse>> findAllLocationByTripId(@PathVariable Long trip_id) {
-        return ResponseEntity.ok(locationService
-                .findLocationByTripId(trip_id)
-                .stream()
-                .map(LocationResponse::of)
-                .collect(Collectors.toList())
-        );
-    }
+//    @GetMapping("/trips/{trip_id}")
+//    @ResponseStatus(OK)
+//    public ApiResponse findAllLocationByTripId(@PathVariable Long trip_id) {
+//        return ApiResponse.success(locationService
+//                .findLocationByTripId(trip_id)
+//                .stream()
+//                .map(LocationResponse::of)
+//                .collect(Collectors.toList())
+//        );
+//    }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<HttpStatus> deleteLocationById(@PathVariable Long id) {
+    @ResponseStatus(NO_CONTENT)
+    public ApiResponse deleteLocationById(@PathVariable Long id) {
         locationService.deleteLocationById(id);
-        return ResponseEntity.ok(HttpStatus.ACCEPTED);
+        return ApiResponse.noContent();
     }
 }

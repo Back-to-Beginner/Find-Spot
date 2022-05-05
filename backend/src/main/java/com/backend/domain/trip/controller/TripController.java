@@ -4,14 +4,15 @@ import com.backend.domain.trip.dto.TripRequest;
 import com.backend.domain.trip.dto.TripResponse;
 import com.backend.domain.trip.service.TripService;
 import com.backend.domain.user.service.UserService;
+import com.backend.global.dto.ApiResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.stream.Collectors;
+
+import static com.backend.global.dto.ApiResponse.*;
+import static org.springframework.http.HttpStatus.*;
 
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/trips")
@@ -21,19 +22,21 @@ public class TripController {
     private final UserService userService;
 
     @PostMapping
-    public ResponseEntity<TripResponse> createTrip(@Validated @RequestBody TripRequest tripRequest) {
-        return ResponseEntity.ok(TripResponse
-                .of(tripService
-                        .save(tripRequest
-                                .toEntity(userService)
+    @ResponseStatus(CREATED)
+    public ApiResponse createTrip(@Validated @RequestBody TripRequest tripRequest) {
+        return created(
+                TripResponse.of(
+                        tripService.save(
+                                tripRequest.toEntity(userService)
                         )
                 )
         );
     }
 
     @GetMapping
-    public ResponseEntity<List<TripResponse>> findAllTrip() {
-        return ResponseEntity.ok(tripService
+    @ResponseStatus(OK)
+    public ApiResponse findAllTrip() {
+        return success(tripService
                 .findAllTrip()
                 .stream()
                 .map(TripResponse::of)
@@ -42,18 +45,25 @@ public class TripController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<TripResponse> findOneTripById(@PathVariable Long id) {
-        return ResponseEntity.ok(TripResponse.of(tripService.findOneById(id)));
+    @ResponseStatus(OK)
+    public ApiResponse findOneTripById(@PathVariable Long id) {
+        return success(
+                TripResponse.of(
+                        tripService.findOneById(id)
+                )
+        );
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<HttpStatus> deleteTripById(@PathVariable Long id) {
+    @ResponseStatus(NO_CONTENT)
+    public ApiResponse deleteTripById(@PathVariable Long id) {
         tripService.deleteOneById(id);
-        return ResponseEntity.ok(HttpStatus.ACCEPTED);
+        return noContent();
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<TripResponse> updateTripById(@PathVariable Long id, @Validated @RequestBody TripRequest tripRequest) {
-        return ResponseEntity.ok(TripResponse.of(tripService.updateOneById(id, tripRequest)));
+    @ResponseStatus(CREATED)
+    public ApiResponse updateTripById(@PathVariable Long id, @Validated @RequestBody TripRequest tripRequest) {
+        return created(TripResponse.of(tripService.updateOneById(id, tripRequest)));
     }
 }
