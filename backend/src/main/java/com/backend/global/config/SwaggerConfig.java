@@ -52,7 +52,7 @@ public class SwaggerConfig {
                         .license(new License().name("Apache 2.0").url("http://springdoc.org")))
                 .externalDocs(new ExternalDocumentation()
                         .description("github link")
-                        .url("https://github.com/h-jjang/bauction"));//TODO 깃허브 링크 변경
+                        .url("https://github.com/Back-to-Beginner/capstone"));
     }
 
 }
