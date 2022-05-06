@@ -19,13 +19,9 @@ import java.util.stream.Collectors;
 @Getter
 public class ErrorResponse {
 
-    private final boolean success = false;
     private String code;
-
     private String message;
-
     private List<CustomFieldError> errors;
-
     private LocalDateTime timestamp = LocalDateTime.now();
 
     private ErrorResponse(ErrorCode errorCode, String message, List<FieldError> errors) {
