@@ -36,7 +36,7 @@ public class TripController {
     @GetMapping
     @ResponseStatus(OK)
     public ApiResponse findAllTrip() {
-        return success(tripService
+        return ok(tripService
                 .findAllTrip()
                 .stream()
                 .map(TripResponse::of)
@@ -47,7 +47,7 @@ public class TripController {
     @GetMapping("/{id}")
     @ResponseStatus(OK)
     public ApiResponse findOneTripById(@PathVariable Long id) {
-        return success(
+        return ok(
                 TripResponse.of(
                         tripService.findOneById(id)
                 )

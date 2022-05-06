@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.stream.Collectors;
 
+import static com.backend.global.dto.ApiResponse.*;
 import static org.springframework.http.HttpStatus.*;
 
 @RequiredArgsConstructor
@@ -21,7 +22,7 @@ public class UserController {
     @GetMapping
     @ResponseStatus(OK)
     public ApiResponse findAllUser() {
-        return ApiResponse.success(userService
+        return ok(userService
                 .findAllUser()
                 .stream()
                 .map(UserResponse::of)
@@ -32,7 +33,7 @@ public class UserController {
     @PostMapping
     @ResponseStatus(CREATED)
     public ApiResponse createUser(@Validated @RequestBody UserRequest userRequest) {
-        return ApiResponse.created(
+        return created(
                 UserResponse.of(
                         userService.createUser(
                                 userRequest.toEntity()
@@ -44,7 +45,7 @@ public class UserController {
     @GetMapping("/{id}")
     @ResponseStatus(OK)
     public ApiResponse findOneUserById(@PathVariable Long id) {
-        return ApiResponse.success(
+        return ok(
                 UserResponse.of(
                         userService.findUserById(id)
                 )

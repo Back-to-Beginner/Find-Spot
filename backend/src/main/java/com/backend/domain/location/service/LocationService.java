@@ -16,21 +16,21 @@ import java.util.List;
 public class LocationService {
     private final JpaLocationRepository locationRepository;
 
-    public Location createLocation(Location location) {
+    public Location create(Location location) {
         return locationRepository.save(location);
     }
 
-    public List<Location> findAllLocation() {
+    public List<Location> findAll() {
         return locationRepository.findAll();
     }
 
-    public Location findLocationById(Long id) {
+    public Location findOneById(Long id) {
         return locationRepository.findById(id).orElseThrow(
                 () -> new NotFoundException(ErrorCode.NOT_FOUND, "장소를 찾을 수 없습니다.")
         );
     }
-    public void deleteLocationById(Long id) {
-        findLocationById(id).deleteLocation();
+    public void deleteOneById(Long id) {
+        findOneById(id).deleteLocation();
     }
 
 }

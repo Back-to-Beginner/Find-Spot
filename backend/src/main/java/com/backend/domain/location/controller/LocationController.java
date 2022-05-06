@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.stream.Collectors;
 
+import static com.backend.global.dto.ApiResponse.*;
 import static org.springframework.http.HttpStatus.*;
 
 @RequiredArgsConstructor
@@ -22,9 +23,9 @@ public class LocationController {
     @PostMapping
     @ResponseStatus(CREATED)
     public ApiResponse createLocation(@Validated @RequestBody LocationRequest locationRequest) {
-        return ApiResponse.created(
+        return created(
                 LocationResponse.of(
-                        locationService.createLocation(
+                        locationService.create(
                                 locationRequest.toEntity()
                         )
                 )
@@ -34,8 +35,8 @@ public class LocationController {
     @GetMapping
     @ResponseStatus(OK)
     public ApiResponse findAllLocation() {
-        return ApiResponse.success(
-                locationService.findAllLocation()
+        return ok(
+                locationService.findAll()
                         .stream()
                         .map(LocationResponse::of)
                         .collect(Collectors.toList())
@@ -45,9 +46,9 @@ public class LocationController {
     @GetMapping("/{id}")
     @ResponseStatus(OK)
     public ApiResponse findLocationById(@PathVariable Long id) {
-        return ApiResponse.success(
+        return ok(
                 LocationResponse.of(
-                        locationService.findLocationById(id)
+                        locationService.findOneById(id)
                 )
         );
     }
@@ -66,7 +67,7 @@ public class LocationController {
     @DeleteMapping("/{id}")
     @ResponseStatus(NO_CONTENT)
     public ApiResponse deleteLocationById(@PathVariable Long id) {
-        locationService.deleteLocationById(id);
-        return ApiResponse.noContent();
+        locationService.deleteOneById(id);
+        return noContent();
     }
 }

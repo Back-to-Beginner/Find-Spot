@@ -4,7 +4,6 @@ import com.backend.domain.image.dto.ImageResponse;
 import com.backend.domain.image.service.ImageService;
 import com.backend.global.dto.ApiResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -34,7 +33,7 @@ public class ImageController {
     @GetMapping
     @ResponseStatus(OK)
     public ApiResponse findAllImage() {
-        return success(
+        return ok(
                 imageService.findAllImage()
                         .stream()
                         .map(ImageResponse::of)
@@ -45,7 +44,7 @@ public class ImageController {
     @GetMapping("/{id}")
     @ResponseStatus(OK)
     public ApiResponse findOneImageById(@PathVariable Long id) {
-        return success(
+        return ok(
                 ImageResponse.of(
                         imageService.findImageById(id)
                 )
