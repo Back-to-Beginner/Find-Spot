@@ -14,19 +14,14 @@ public class Location extends BaseTimeEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@Column(nullable = false)
 	private String region;
 
+	@Column(unique = true, nullable = false)
 	private String name;
 
 	private double latitude;
 	private double longitude;
-
-	@Column(name = "is_deleted")
-	private boolean isDeleted = false;
-
-	public void deleteLocation() {
-		this.isDeleted = true;
-	}
 
 	@Builder
 	public Location(String region, String name, int cost, double latitude, double longitude) {
@@ -35,4 +30,5 @@ public class Location extends BaseTimeEntity {
 		this.latitude = latitude;
 		this.longitude = longitude;
 	}
+
 }

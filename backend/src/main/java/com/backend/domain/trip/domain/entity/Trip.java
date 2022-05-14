@@ -3,7 +3,9 @@ package com.backend.domain.trip.domain.entity;
 import javax.persistence.*;
 
 import com.backend.domain.tag.domain.entity.Tag;
-import com.backend.domain.trip.dto.TripRequest;
+import com.backend.domain.tag.dto.TagMapper;
+import com.backend.domain.trip.dto.TripMapper;
+import com.backend.domain.trip.dto.TripRequestDto;
 import com.backend.domain.user.domain.entity.User;
 import com.backend.global.domain.basetime.domain.entity.BaseTimeEntity;
 import lombok.Builder;
@@ -25,11 +27,12 @@ public class Trip extends BaseTimeEntity {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @Column(nullable = false)
     private String title;
 
-    private java.sql.Date begin_date;
+    private java.sql.Date beginDate;
 
-    private java.sql.Date end_date;
+    private java.sql.Date endDate;
 
     private int fullCost;
 
@@ -38,19 +41,21 @@ public class Trip extends BaseTimeEntity {
     private Set<Tag> tagSet;
 
     @Builder
-    public Trip(User user, String title, Date begin_date, Date end_date, int fullCost) {
+    public Trip(User user, String title, Date beginDate, Date endDate, int fullCost, Set<Tag> tagSet) {
         this.user = user;
         this.title = title;
-        this.begin_date = begin_date;
-        this.end_date = end_date;
+        this.beginDate = beginDate;
+        this.endDate = endDate;
         this.fullCost = fullCost;
+        this.tagSet = tagSet;
     }
 
-    public Trip updateTrip(TripRequest tripRequest) {
-        this.title = tripRequest.getTitle();
-        this.begin_date = tripRequest.getBeginDate();
-        this.end_date = tripRequest.getEndDate();
-        this.fullCost = tripRequest.getFullCost();
+    public Trip update(Trip trip) {
+        this.title = trip.getTitle();
+        this.beginDate = trip.getBeginDate();
+        this.endDate = trip.getEndDate();
+        this.fullCost = trip.getFullCost();
+        this.tagSet = trip.tagSet;
         return this;
     }
 

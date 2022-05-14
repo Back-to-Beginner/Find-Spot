@@ -2,7 +2,7 @@ package com.backend.domain.image.domain.entity;
 
 import javax.persistence.*;
 
-import com.backend.domain.review.domain.entity.Review;
+import com.backend.domain.moment.domain.entity.Moment;
 import com.backend.domain.user.domain.entity.User;
 import com.backend.global.domain.basetime.domain.entity.BaseTimeEntity;
 import lombok.Builder;
@@ -18,8 +18,8 @@ public class Image extends BaseTimeEntity {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "review_id")
-    private Review review;
+    @JoinColumn(name = "moment_id")
+    private Moment moment;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -35,8 +35,8 @@ public class Image extends BaseTimeEntity {
         this.isDeleted = true;
     }
     @Builder
-    public Image(Review review, String path) {
-        this.review = review;
+    public Image(Moment moment, String path) {
+        this.moment = moment;
         this.path = path;
     }
 

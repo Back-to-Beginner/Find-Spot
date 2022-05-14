@@ -1,4 +1,4 @@
-package com.backend.domain.review.domain.entity;
+package com.backend.domain.moment.domain.entity;
 
 import com.backend.domain.location.domain.entity.Location;
 import com.backend.domain.trip.domain.entity.Trip;
@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Builder
 @AllArgsConstructor
 @RequiredArgsConstructor
-public class Review extends BaseTimeEntity {
+public class Moment extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -29,11 +29,11 @@ public class Review extends BaseTimeEntity {
 
     private int cost = 0;
 
-    public Review update(Review review){
-        this.location = review.location;
-        this.trip = review.trip;
-        this.content = review.content;
-        this.cost = review.cost;
+    public Moment update(Moment moment){
+        this.location = moment.location;
+        this.trip = moment.trip;
+        this.content = moment.content;
+        this.cost = moment.cost;
         return this;
     }
 

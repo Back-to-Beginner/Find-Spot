@@ -3,10 +3,7 @@ package com.backend.domain.user.domain.entity;
 import com.backend.global.domain.basetime.domain.entity.BaseTimeEntity;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Getter
 @RequiredArgsConstructor
@@ -17,10 +14,13 @@ public class User extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique = true, nullable = false)
     private String name;
 
+    @Column(unique = true, nullable = false, updatable = false)
     private String email;
 
+    @Column(nullable = false)
     private String pw;
 
     @Builder

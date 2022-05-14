@@ -1,11 +1,11 @@
-package com.backend.domain.review.dto;
+package com.backend.domain.moment.dto;
 
 import lombok.Data;
 
 import javax.validation.constraints.NotNull;
 
 @Data
-public class ReviewRequest {
+public class MomentRequest {
 
     @NotNull
     private Long location_id;

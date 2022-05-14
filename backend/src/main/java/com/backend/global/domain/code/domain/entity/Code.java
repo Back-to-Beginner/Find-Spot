@@ -13,6 +13,8 @@ public class Code {
 
     private String code;
 
+    private String memo;
+
     @ManyToOne
     @JoinColumn(name = "parent_code_id")
     private Code parentCode;

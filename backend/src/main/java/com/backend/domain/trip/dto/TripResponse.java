@@ -1,10 +1,10 @@
 package com.backend.domain.trip.dto;
 
-import com.backend.domain.trip.domain.entity.Trip;
-import com.backend.domain.user.domain.entity.User;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.Set;
 
 @Setter
 @Getter
@@ -13,11 +13,9 @@ public class TripResponse {
 
     private Long id;
 
-    private User user;
+    private Long user_id;
 
     private String title;
-
-    private String review;
 
     private java.sql.Date begin_date;
 
@@ -25,14 +23,5 @@ public class TripResponse {
 
     private int fullCost;
 
-    public static TripResponse of(Trip trip) {
-        return TripResponse.builder()
-                .id(trip.getId())
-                .user(trip.getUser())
-                .title(trip.getTitle())
-                .begin_date(trip.getBegin_date())
-                .end_date(trip.getEnd_date())
-                .fullCost(trip.getFullCost())
-                .build();
-    }
+    private Set<String> tags;
 }

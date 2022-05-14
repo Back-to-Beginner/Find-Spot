@@ -23,7 +23,6 @@ import java.nio.file.AccessDeniedException;
 @Slf4j
 @RestControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
-
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
         log.error("handleMethodArgumentNotValidException {}", ex.getMessage());
 

@@ -30,7 +30,7 @@ public class LocationService {
         );
     }
     public void deleteOneById(Long id) {
-        findOneById(id).deleteLocation();
+        locationRepository.delete(findOneById(id));
     }
 
 }

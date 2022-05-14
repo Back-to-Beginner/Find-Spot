@@ -2,11 +2,15 @@ package com.backend.domain.image.service;
 
 import com.backend.domain.image.domain.repository.JpaImageRepository;
 import com.backend.domain.image.domain.entity.Image;
+import com.backend.domain.location.domain.entity.Location;
 import com.backend.domain.location.service.LocationService;
 import com.backend.global.error.ErrorCode;
 import com.backend.global.error.NotFoundException;
 import com.backend.infra.aws.service.S3ImageUploader;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -23,6 +27,8 @@ public class ImageService {
     private final LocationService locationService;
 
     public Image saveImage(Long id, MultipartFile multipartFile) throws IOException {
+//        Location a = new Location();
+
         return imageRepository.save(Image.builder()
                 .path(imageUploader.upload(multipartFile))
                 .build()
