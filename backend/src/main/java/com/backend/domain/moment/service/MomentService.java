@@ -13,32 +13,32 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MomentService {
 
-    private final JpaMomentRepository reviewRepository;
+    private final JpaMomentRepository repository;
 
     public List<Moment> findAll() {
-        return reviewRepository.findAll();
+        return repository.findAll();
     }
 
     public Moment create(Moment moment) {
-        return reviewRepository.save(moment);
+        return repository.save(moment);
     }
 
-    public Moment findOneById(Long id) {
-        return reviewRepository.findById(id).orElseThrow(
+    public Moment findById(Long id) {
+        return repository.findById(id).orElseThrow(
                 () -> new NotFoundException(ErrorCode.NOT_FOUND, "리뷰를 찾을 수 없습니다.")
         );
     }
 
-    public Moment updateOneById(Long id, Moment moment) {
-        return reviewRepository.save(findOneById(id).update(moment));
+    public Moment updateById(Long id, Moment moment) {
+        return repository.save(findById(id).update(moment));
     }
 
-    public void deleteOneById(Long id) {
-        reviewRepository.delete(findOneById(id));
+    public void deleteById(Long id) {
+        repository.delete(findById(id));
     }
 
-    public List<Moment> findAllByTripId(Long tripId) {
-        List<Moment> momentList = reviewRepository.findAllByTripId(tripId);
+    public List<Moment> findAllByTripId(Long id) {
+        List<Moment> momentList = repository.findAllByTripId(id);
         if (momentList.isEmpty()) throw new NotFoundException(ErrorCode.NOT_FOUND, "등록된 리뷰가 없습니다.");
         return momentList;
     }

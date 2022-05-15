@@ -18,32 +18,32 @@ public class TripController {
 
     @PostMapping
     @ResponseStatus(CREATED)
-    public ApiResponse createTrip(@Validated @RequestBody TripRequestDto tripRequestDto) {
+    public ApiResponse create(@Validated @RequestBody TripRequestDto tripRequestDto) {
         return created(service.save(tripRequestDto));
     }
 
     @GetMapping
     @ResponseStatus(OK)
-    public ApiResponse findAllTrip() {
+    public ApiResponse findAll() {
         return ok(service.findAll());
     }
 
     @GetMapping("/{id}")
     @ResponseStatus(OK)
-    public ApiResponse findOneTripById(@PathVariable Long id) {
+    public ApiResponse findById(@PathVariable Long id) {
         return ok(service.findById(id));
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(NO_CONTENT)
-    public ApiResponse deleteTripById(@PathVariable Long id) {
+    public ApiResponse deleteById(@PathVariable Long id) {
         service.deleteById(id);
         return noContent();
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(CREATED)
-    public ApiResponse updateTripById(@PathVariable Long id, @Validated @RequestBody TripRequestDto tripRequestDto) {
+    public ApiResponse updateById(@PathVariable Long id, @Validated @RequestBody TripRequestDto tripRequestDto) {
         return created(service.updateById(id, tripRequestDto));
     }
 

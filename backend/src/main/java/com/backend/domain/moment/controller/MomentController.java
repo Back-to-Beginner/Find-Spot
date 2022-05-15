@@ -2,7 +2,6 @@ package com.backend.domain.moment.controller;
 
 import com.backend.domain.moment.dto.MomentMapper;
 import com.backend.domain.moment.dto.MomentRequest;
-import com.backend.domain.moment.dto.MomentResponse;
 import com.backend.domain.moment.service.MomentService;
 import com.backend.global.dto.ApiResponse;
 import lombok.RequiredArgsConstructor;
@@ -19,16 +18,16 @@ import static org.springframework.http.HttpStatus.*;
 @RequiredArgsConstructor
 public class MomentController {
 
-    private final MomentService momentService;
+    private final MomentService service;
     private final MomentMapper mapper;
 
     @GetMapping
     @ResponseStatus(OK)
     public ApiResponse findAll() {
         return ok(
-                momentService.findAll()
+                service.findAll()
                         .stream()
-                        .map(MomentResponse::of)
+                        .map(mapper::fromEntity)
                         .collect(Collectors.toList())
         );
     }
@@ -37,7 +36,7 @@ public class MomentController {
     @ResponseStatus(CREATED)
     public ApiResponse create(@Validated @RequestBody MomentRequest request) {
         return created(
-                momentService.create(
+                service.create(
                         mapper.toEntity(request)
                 )
         );
@@ -47,7 +46,7 @@ public class MomentController {
     @ResponseStatus(OK)
     public ApiResponse findOne(@PathVariable Long id) {
         return ok(
-                momentService.findOneById(id)
+                service.findById(id)
         );
     }
 
@@ -55,7 +54,7 @@ public class MomentController {
     @ResponseStatus(CREATED)
     public ApiResponse update(@PathVariable Long id, @Validated @RequestBody MomentRequest request) {
         return created(
-                momentService.updateOneById(
+                service.updateById(
                         id, mapper.toEntity(request)
                 )
         );
@@ -64,13 +63,13 @@ public class MomentController {
     @DeleteMapping("/{id}")
     @ResponseStatus(NO_CONTENT)
     public ApiResponse delete(@PathVariable Long id) {
-        momentService.deleteOneById(id);
+        service.deleteById(id);
         return noContent();
     }
 
     @GetMapping("/trips/{tripId}")
     @ResponseStatus(OK)
     public ApiResponse findAllByTrip(@PathVariable Long tripId) {
-        return ok(momentService.findAllByTripId(tripId));
+        return ok(service.findAllByTripId(tripId));
     }
 }

@@ -17,14 +17,4 @@ public class MomentResponse {
     private String content;
 
     private int cost;
-
-    public static MomentResponse of(Moment moment) {
-        return MomentResponse.builder()
-                .id(moment.getId())
-                .location_id(moment.getLocation().getId())
-                .trip_id(moment.getTrip().getId())
-                .content(moment.getContent())
-                .cost(moment.getCost())
-                .build();
-    }
 }
