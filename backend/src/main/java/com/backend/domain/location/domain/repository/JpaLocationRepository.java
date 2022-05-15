@@ -1,11 +1,14 @@
 package com.backend.domain.location.domain.repository;
 
 import com.backend.domain.location.domain.entity.Location;
+import com.backend.global.domain.code.domain.entity.Code;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
+import java.util.Optional;
 
 public interface JpaLocationRepository extends JpaRepository<Location, Long> {
 
-    Location findLocationByName(String name);
+    Optional<Location> findLocationByName(String name);
+
+    boolean existsByNameAndRegionCode(String name, Code regionCode);
 }

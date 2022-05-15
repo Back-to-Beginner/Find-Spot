@@ -11,8 +11,6 @@ import javax.validation.constraints.NotNull;
 @Getter
 @RequiredArgsConstructor
 public class LocationRequest {
-    @NotNull
-    private Long trip_id;
 
     @NotNull
     private String region;
@@ -26,12 +24,4 @@ public class LocationRequest {
     @NotNull
     private double longitude;
 
-    public Location toEntity() {
-        return Location.builder()
-                .region(this.region)
-                .name(this.name)
-                .latitude(this.latitude)
-                .longitude(this.longitude)
-                .build();
-    }
 }

@@ -1,7 +1,15 @@
 package com.backend.global.domain.code.domain.repository;
 
-import com.backend.domain.tag.domain.entity.Tag;
+import com.backend.global.domain.code.domain.entity.Code;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface JpaCodeRepository extends JpaRepository<Tag, Long> {
+import java.util.Optional;
+
+public interface JpaCodeRepository extends JpaRepository<Code, Long> {
+
+    boolean existsById(Long id);
+
+    Optional<Code> findCodeByCode(String code);
+
+    Optional<Code> findCodeByMemo(String code);
 }

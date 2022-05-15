@@ -2,6 +2,7 @@ package com.backend.domain.tag.domain.entity;
 
 import com.backend.domain.tag.dto.TagRequestDto;
 import com.backend.domain.trip.domain.entity.Trip;
+import com.backend.global.domain.basetime.domain.entity.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -12,7 +13,7 @@ import java.util.Set;
 @Entity
 @Getter
 @RequiredArgsConstructor
-public class Tag {
+public class Tag extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

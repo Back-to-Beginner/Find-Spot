@@ -76,7 +76,7 @@ public class TripService {
                 .map(trip -> trip.update(mapper.toEntity(request)))
                 .map(mapper::fromEntity)
                 .findAny()
-                .orElseThrow(() -> new NotFoundException(BAD_REQUEST, "태그를 갱신할 수 없습니다."));
+                .orElseThrow(() -> new NotFoundException(BAD_REQUEST, "코드를 갱신할 수 없습니다."));
     }
 
     public List<TripResponse> findByTagName(String tagName) {
