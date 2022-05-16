@@ -5,7 +5,6 @@ import com.backend.domain.location.service.LocationService;
 import com.backend.domain.moment.domain.entity.Moment;
 import com.backend.domain.trip.domain.entity.Trip;
 import com.backend.domain.trip.domain.repository.JpaTripRepository;
-import com.backend.domain.trip.service.TripService;
 import com.backend.global.error.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

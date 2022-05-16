@@ -35,11 +35,12 @@ public class TagService {
                 .orElseThrow(() -> new NotFoundException(BAD_REQUEST, "태그를 저장할 수 없습니다."));
     }
 
-    public List<TagResponseDto> saveList(TagListRequestDto listRequest){
+    public List<TagResponseDto> saveList(TagListRequestDto listRequest) {
         return listRequest.getNameList()
                 .stream()
                 .filter(name -> !repository.existsByName(name))
-                .map(name -> repository.save(new Tag(name)))
+                .map(Tag::new)
+                .map(repository::save)
                 .map(mapper::fromEntity)
                 .collect(Collectors.toList());
 

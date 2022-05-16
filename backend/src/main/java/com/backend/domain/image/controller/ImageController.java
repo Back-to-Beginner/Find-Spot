@@ -20,7 +20,7 @@ public class ImageController {
 
     private final ImageService imageService;
 
-    @PostMapping("/location")
+    @PostMapping("/moment")
     @ResponseStatus(CREATED)
     public ApiResponse createImage(@RequestParam("id") Long id, @RequestParam("images") MultipartFile multipartFile) throws IOException {
         return created(

@@ -1,8 +1,6 @@
 package com.backend.domain.tag.controller;
 
-
-import com.backend.domain.moment.dto.MomentMapper;
-import com.backend.domain.moment.dto.MomentRequest;
+import com.backend.domain.tag.dto.TagListRequestDto;
 import com.backend.domain.tag.dto.TagRequestDto;
 import com.backend.domain.tag.service.TagService;
 import com.backend.global.dto.ApiResponse;
@@ -23,7 +21,6 @@ import static org.springframework.http.HttpStatus.OK;
 public class TagController {
 
     private final TagService tagService;
-    private final MomentMapper mapper;
 
     @GetMapping
     @ResponseStatus(OK)
@@ -35,6 +32,12 @@ public class TagController {
     @ResponseStatus(CREATED)
     public ApiResponse create(@Valid @RequestBody TagRequestDto tagRequestDto) {
         return created(tagService.save(tagRequestDto));
+    }
+
+    @PostMapping("/list")
+    @ResponseStatus(CREATED)
+    public ApiResponse createByList(@Valid @RequestBody TagListRequestDto listRequest) {
+        return created(tagService.saveList(listRequest));
     }
 
     @GetMapping("/{id}")
@@ -58,7 +61,7 @@ public class TagController {
 
     @GetMapping("/name")
     @ResponseStatus(OK)
-    public ApiResponse findByNameLike(@RequestParam String name){
+    public ApiResponse findByNameLike(@RequestParam String name) {
         return ok(tagService.findByNameLike(name));
     }
 }

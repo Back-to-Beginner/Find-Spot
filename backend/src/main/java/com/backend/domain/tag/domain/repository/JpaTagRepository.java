@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface JpaTagRepository extends JpaRepository<Tag, Long> {
     List<Tag> findAllByNameLike(String name);
+
     Tag findByName(String name);
 
     boolean existsByName(String name);
