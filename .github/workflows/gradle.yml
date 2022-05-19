@@ -20,6 +20,8 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    env:
+      working-directory: ./backend
 
     steps:
       - uses: actions/checkout@v3
@@ -28,8 +30,6 @@ jobs:
         with:
           java-version: '11'
           distribution: 'temurin'
-      - name: change dir
-        uses: cd ./backend
       - name: Build with Gradle
         uses: gradle/gradle-build-action@0d13054264b0bb894ded474f08ebb30921341cee
         with:
