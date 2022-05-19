@@ -1,6 +1,7 @@
 package com.backend.global.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
 import org.springframework.context.annotation.Bean;
@@ -13,16 +14,12 @@ import org.springframework.data.redis.serializer.RedisSerializationContext;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 @Configuration
+@RequiredArgsConstructor
 public class CacheConfig {
 
-    @Autowired
-    RedisConnectionFactory redisConnectionFactory;
-
-    @Autowired
-    ObjectMapper objectMapper;
-
-    @Autowired
-    RedisConnectionFactory connectionFactory;
+    private final RedisConnectionFactory redisConnectionFactory;
+    private final ObjectMapper objectMapper;
+    private final RedisConnectionFactory connectionFactory;
 
 
     @Bean

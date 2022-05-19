@@ -1,18 +1,32 @@
 package com.backend.domain.tag.domain.entity;
 
+import com.backend.domain.tag.dto.TagRequestDto;
+import com.backend.global.domain.basetime.domain.entity.BaseTimeEntity;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-@Getter
 @Entity
-public class Tag {
+@Getter
+@RequiredArgsConstructor
+public class Tag extends BaseTimeEntity {
     @Id
-    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String tag;
+    @Column(unique = true, nullable = false)
+    private String name;
+
+    @Builder
+    public Tag(String name) {
+        this.name = name;
+    }
+
+    public Tag update(TagRequestDto tagRequestDto){
+        this.name = tagRequestDto.getName();
+        return this;
+    }
 
 }

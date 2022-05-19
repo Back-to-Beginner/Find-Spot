@@ -1,14 +1,9 @@
 package com.backend.domain.location.domain.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
-import com.backend.domain.trip.domain.entity.Trip;
-import com.backend.global.BaseTimeEntity;
+import com.backend.global.domain.basetime.domain.entity.BaseTimeEntity;
+import com.backend.global.domain.code.domain.entity.Code;
 import lombok.*;
 
 @Getter
@@ -16,39 +11,26 @@ import lombok.*;
 @Entity // This tells Hibernate to make a table out of this class
 public class Location extends BaseTimeEntity {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	@ManyToOne
-	@JoinColumn(name = "trip_id")
-	private Trip trip;
+    @ManyToOne
+    @JoinColumn(name = "code_id")
+    private Code regionCode;
 
-	private String region;
+    @Column(nullable = false)
+    private String name;
 
-	private String name;
+    private double latitude;
+    private double longitude;
 
-	private String review;
+    @Builder
+    public Location(Code regionCode, String name, double latitude, double longitude) {
+        this.regionCode = regionCode;
+        this.name = name;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
 
-	private int cost = 0;
-
-	private double latitude;
-	private double longitude;
-
-	private boolean is_deleted = false;
-
-	public void deleteLocation() {
-		this.is_deleted = true;
-	}
-
-	@Builder
-	public Location(Trip trip, String region, String name, String review, int cost, double latitude, double longitude) {
-		this.trip = trip;
-		this.region =region;
-		this.name = name;
-		this.review = review;
-		this.cost = cost;
-		this.latitude = latitude;
-		this.longitude = longitude;
-	}
 }

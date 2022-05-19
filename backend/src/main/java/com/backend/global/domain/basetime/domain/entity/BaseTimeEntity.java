@@ -1,12 +1,12 @@
-package com.backend.global;
+package com.backend.global.domain.basetime.domain.entity;
 
 import java.time.LocalDateTime;
 
 import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
 
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import lombok.Getter;
@@ -15,10 +15,11 @@ import lombok.Getter;
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 public class BaseTimeEntity {
-	@CreatedDate
-	private LocalDateTime createdDate;
 
-	@LastModifiedDate
-	private LocalDateTime modifiedDate;
+    @CreationTimestamp
+    private LocalDateTime createdAt;
+
+    @UpdateTimestamp
+    private LocalDateTime updatedAt;
 
 }
