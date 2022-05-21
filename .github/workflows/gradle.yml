@@ -61,15 +61,10 @@ jobs:
         working-directory: ${{ env.working-directory }}
         run: zip -r -qq -j ./springboot-intro-build.zip ./deploy
 
-      # 경로 확인
-      - name: ls file
-        working-directory: ${{ env.working-directory }}
-        run: ls
-
       # S3 Bucket으로 copy
       - name: Deliver to AWS S3
         working-directory: ${{ env.working-directory }}
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY }}
-        run: aws s3 cp --region ap-northeast-2 --acl private ./springboot-intro-build.zip s3://springboot-intro-build/
+        run: aws s3 cp --region ap-northeast-2 --acl private ./springboot-intro-build.zip s3://btb-deploy/
