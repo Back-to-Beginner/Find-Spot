@@ -1,0 +1,27 @@
+# appspec.yml
+
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /home/ec2-user/app/deploy
+
+permissions:
+  - object: /
+    pattern: "**"
+    owner: ec2-user
+    group: ec2-user
+
+hooks:
+  AfterInstall:
+    - location: stop.sh # nginx와 연결되지 않은 스프링 부트 종료.
+      timeout: 60
+      runas: ec2-user
+  ApplicationStart:
+    - location: start.sh # nginx와 연결되어 있지 않은 포트로 스프링 부트 시작.
+      timeout: 60
+      runas: ec2-user
+  ValidateService:
+    - location: health.sh # 새 서비스 health check.
+      timeout: 60
+      runas: ec2-user
