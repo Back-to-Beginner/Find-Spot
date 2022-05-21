@@ -21,6 +21,12 @@ jobs:
     runs-on: ubuntu-latest
     env:
       working-directory: ./backend
+      S3_BUCKET: ${{ secrets.S3_BUCKET }}
+      DB_URL: ${{ secrets.DB_URL }}
+      DB_USERNAME: ${{ secrets.DB_USERNAME }}
+      DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+      AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
+      AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}
 
     steps:
       - uses: actions/checkout@v3
