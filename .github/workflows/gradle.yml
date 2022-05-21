@@ -61,6 +61,11 @@ jobs:
         working-directory: ${{ env.working-directory }}
         run: zip -r -qq -j ./springboot-intro-build.zip ./deploy
 
+      # 경로 확인
+      - name: ls file
+        working-directory: ${{ env.working-directory }}
+        run: ls
+
       # S3 Bucket으로 copy
       - name: Deliver to AWS S3
         working-directory: ${{ env.working-directory }}
