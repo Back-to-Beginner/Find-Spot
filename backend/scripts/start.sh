@@ -4,7 +4,11 @@
 # 서버 구동을 위한 스크립트
 
 ABSPATH=$(readlink -f $0)
+echo ABSPATH
+
 ABSDIR=$(dirname $ABSPATH)
+echo ABSDIR
+
 source ${ABSDIR}/profile.sh
 
 REPOSITORY=/home/ec2-user/app
