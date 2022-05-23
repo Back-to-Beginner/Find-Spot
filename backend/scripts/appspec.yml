@@ -13,10 +13,10 @@ permissions:
     group: ubuntu
 
 hooks:
-#  AfterInstall:
-#    - location: stop.sh # nginx와 연결되지 않은 스프링 부트 종료.
-#      timeout: 60
-#      runas: ubuntu
+  AfterInstall:
+    - location: stop.sh # 스프링부트 종료 / nginx와 연결되지 않은 스프링 부트 종료.
+      timeout: 60
+      runas: ubuntu
   ApplicationStart:
     - location: start.sh # nginx와 연결되어 있지 않은 포트로 스프링 부트 시작.
       timeout: 60
