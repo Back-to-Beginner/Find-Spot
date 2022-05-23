@@ -38,4 +38,4 @@ echo "> $JAR_NAME 실행"
 #    -Dspring.profiles.active=$IDLE_PROFILE \
 #    $JAR_NAME > $REPOSITORY/nohup.out 2>&1 &
 
-nohup java -jar backend-0.0.1-SNAPSHOT.jar &
+nohup java -jar backend-0.0.1-SNAPSHOT.jar & > /dev/null
