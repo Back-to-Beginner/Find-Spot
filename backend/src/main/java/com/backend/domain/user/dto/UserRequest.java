@@ -4,7 +4,7 @@ import com.backend.domain.user.domain.entity.User;
 import lombok.*;
 
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
@@ -12,14 +12,14 @@ import javax.validation.constraints.NotEmpty;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class UserRequest {
 
-//    @Email
-    @NotEmpty
+    @Email
+    @NotNull
     private String email;
 
-    @NotEmpty
+    @NotNull
     private String name;
 
-    @NotEmpty
+    @NotNull
     private String pw;
 
     public User toEntity() {

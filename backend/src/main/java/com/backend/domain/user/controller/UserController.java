@@ -1,14 +1,18 @@
 package com.backend.domain.user.controller;
 
+import com.backend.domain.user.dto.LoginRequest;
 import com.backend.domain.user.dto.UserRequest;
 import com.backend.domain.user.dto.UserResponse;
 import com.backend.domain.user.service.UserService;
 import com.backend.global.dto.ApiResponse;
+import com.backend.global.error.ErrorCode;
+import com.backend.global.error.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static com.backend.global.dto.ApiResponse.*;
 import static org.springframework.http.HttpStatus.*;
@@ -50,6 +54,17 @@ public class UserController {
                         userService.findUserById(id)
                 )
         );
+    }
+
+    @GetMapping("/login")
+    @ResponseStatus(OK)
+    public ApiResponse login(@Validated @RequestBody LoginRequest request) {
+        return Stream.of(request)
+                .map(userService::login)
+                .map(UserResponse::of)
+                .map(ApiResponse::ok)
+                .findAny()
+                .orElseThrow(() -> new NotFoundException(ErrorCode.NOT_FOUND, "User Not Found"));
     }
 
 }
