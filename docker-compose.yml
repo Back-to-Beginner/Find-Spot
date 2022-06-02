@@ -1,15 +1,15 @@
 version: "3"
 
 services:
-  react-btb:
-    image: node:16-alpine
-    command: sh -c "npm install && npm start"
-    ports:
-      - "3000:3000"
-    working_dir: /app
-    volumes:
-      - ./frontend:/app
-    container_name: react-btb
+#  react-btb:
+#    image: node:16-alpine
+#    command: sh -c "npm install && npm start"
+#    ports:
+#      - "3000:3000"
+#    working_dir: /app
+#    volumes:
+#      - ./frontend:/app
+#    container_name: react-btb
 
   spring-boot-btb:
     build:
@@ -22,22 +22,7 @@ services:
     container_name: spring-boot-btb
 #     restart: always
     depends_on:
-      - mysql-btb
       - redis-btb
-
-  mysql-btb:
-    platform: linux/x86_64
-    container_name: mysql-btb
-    image: mysql:5.7
-    restart: unless-stopped #컨테이너 스탑하기전까지 항상 재시작
-    ports:
-      - "3308:3306"
-    environment: # -e 옵션
-      - MYSQL_DATABASE=btb
-      - MYSQL_ROOT_PASSWORD=1234 # MYSQL root 패스워드 설정 옵션
-      - TZ=Asia/Seoul
-    volumes:
-      - mysqlBtb:/data/db
 
   redis-btb:
     container_name: redis-btb
@@ -48,7 +33,7 @@ services:
       - redisBtb
 
 volumes:
-  mysqlBtb:
+#  mysqlBtb:
   redisBtb:
 
   #grafana

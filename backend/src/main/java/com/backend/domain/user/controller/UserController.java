@@ -58,7 +58,8 @@ public class UserController {
 
     @GetMapping("/login")
     @ResponseStatus(OK)
-    public ApiResponse login(@Validated @RequestBody LoginRequest request) {
+    //TODO RequestBody 를 스프링웹 기본 어노테이션으로 처리하였을 때 스웨거에서 리퀘스트 파라미터로 처리하는 버그
+    public ApiResponse loginUser(@Validated @io.swagger.v3.oas.annotations.parameters.RequestBody LoginRequest request) {
         return Stream.of(request)
                 .map(userService::login)
                 .map(UserResponse::of)
