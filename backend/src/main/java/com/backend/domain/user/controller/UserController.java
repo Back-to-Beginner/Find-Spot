@@ -36,7 +36,7 @@ public class UserController {
 
     @PostMapping
     @ResponseStatus(CREATED)
-    public ApiResponse createUser(@Validated UserRequest userRequest) {
+    public ApiResponse createUser(@Validated @RequestBody UserRequest userRequest) {
         return created(
                 UserResponse.of(
                         userService.createUser(
@@ -57,12 +57,12 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    @ResponseStatus(OK)
-    public ApiResponse loginUser(@Validated LoginRequest request) {
+    @ResponseStatus(CREATED)
+    public ApiResponse loginUser(@Validated @RequestBody LoginRequest request) {
         return Stream.of(request)
                 .map(userService::login)
                 .map(UserResponse::of)
-                .map(ApiResponse::ok)
+                .map(ApiResponse::created)
                 .findAny()
                 .orElseThrow(() -> new NotFoundException(ErrorCode.NOT_FOUND, "User Not Found"));
     }
