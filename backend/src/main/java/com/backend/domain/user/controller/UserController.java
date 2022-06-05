@@ -56,7 +56,7 @@ public class UserController {
         );
     }
 
-    @GetMapping("/login")
+    @PostMapping("/login")
     @ResponseStatus(OK)
     public ApiResponse loginUser(@Validated LoginRequest request) {
         return Stream.of(request)
