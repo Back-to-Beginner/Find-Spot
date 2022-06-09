@@ -1,10 +1,12 @@
 package com.backend.domain.trip.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -24,12 +26,10 @@ public class TripRequestDto {
     @NotNull
     private String region;
 
-    @Past
     @NotNull
     @JsonProperty("begin_date")
     private LocalDate beginDate;
 
-    @Past
     @NotNull
     @JsonProperty("end_date")
     private LocalDate endDate;
