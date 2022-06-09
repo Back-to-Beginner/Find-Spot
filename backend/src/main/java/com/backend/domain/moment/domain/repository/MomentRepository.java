@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface JpaMomentRepository extends JpaRepository<Moment, Long> {
+public interface MomentRepository extends JpaRepository<Moment, Long> {
     List<Moment> findAllByTripId(Long tripId);
 }

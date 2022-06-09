@@ -2,10 +2,10 @@ package com.backend.domain.trip.service;
 
 import com.backend.domain.tag.service.TagService;
 import com.backend.domain.trip.domain.entity.Trip;
-import com.backend.domain.trip.domain.repository.JpaTripRepository;
+import com.backend.domain.trip.domain.repository.TripRepository;
 import com.backend.domain.trip.dto.TripMapper;
 import com.backend.domain.trip.dto.TripRequestDto;
-import com.backend.domain.trip.dto.TripResponse;
+import com.backend.domain.trip.dto.TripResponseDto;
 import com.backend.global.error.ErrorCode;
 import com.backend.global.error.NotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -25,12 +24,12 @@ import static com.backend.global.error.ErrorCode.NOT_FOUND;
 @Transactional
 @Service
 public class TripService {
-    private final JpaTripRepository repository;
+    private final TripRepository repository;
 
     private final TripMapper mapper;
     private final TagService tagService;
 
-    public TripResponse save(TripRequestDto trip) {
+    public TripResponseDto save(TripRequestDto trip) {
         return Stream.of(trip)
                 .map(mapper::toEntity)
                 .map(repository::save)
@@ -39,18 +38,25 @@ public class TripService {
                 .orElseThrow(() -> new NotFoundException(BAD_REQUEST, "태그를 저장할 수 없습니다."));
     }
 
-    public List<TripResponse> findAll() {
+    public List<TripResponseDto> findAll() {
         return repository.findAll()
                 .stream()
                 .map(mapper::fromEntity)
                 .collect(Collectors.toList());
     }
 
-    public TripResponse findById(long id) {
+    public Trip findById(long id) {
         return Stream.of(id)
                 .map(repository::findById)
                 .filter(Optional::isPresent)
                 .map(Optional::get)
+                .findAny()
+                .orElseThrow(() -> new NotFoundException(NOT_FOUND, "트립을 조회할 수 없습니다."));
+    }
+
+    public TripResponseDto findByIdAsDto(long id) {
+        return Stream.of(id)
+                .map(this::findById)
                 .map(mapper::fromEntity)
                 .findAny()
                 .orElseThrow(() -> new NotFoundException(NOT_FOUND, "트립을 조회할 수 없습니다."));
@@ -70,7 +76,7 @@ public class TripService {
                 .forEach(repository::delete);
     }
 
-    public TripResponse updateById(long id, TripRequestDto request) {
+    public TripResponseDto updateById(long id, TripRequestDto request) {
         return Stream.of(id)
                 .map(this::getById)
                 .map(trip -> trip.update(mapper.toEntity(request)))
@@ -79,7 +85,7 @@ public class TripService {
                 .orElseThrow(() -> new NotFoundException(BAD_REQUEST, "코드를 갱신할 수 없습니다."));
     }
 
-    public List<TripResponse> findByTagName(String tagName) {
+    public List<TripResponseDto> findByTagName(String tagName) {
         return Stream.of(tagName)
                 .map(tagService::findByName)
                 .map(repository::findAllByTagSetContaining)

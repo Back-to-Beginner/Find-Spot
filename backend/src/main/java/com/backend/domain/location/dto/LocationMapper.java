@@ -20,8 +20,8 @@ public class LocationMapper {
                 .build();
     }
 
-    public LocationResponse fromEntity(Location location) {
-        return LocationResponse.builder()
+    public LocationResponseDto fromEntity(Location location) {
+        return LocationResponseDto.builder()
                 .id(location.getId())
                 .region(location.getRegionCode().getMemo())
                 .name(location.getName())

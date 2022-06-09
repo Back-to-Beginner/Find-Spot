@@ -4,7 +4,7 @@ import lombok.*;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
-import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Setter
@@ -20,11 +20,11 @@ public class TripRequestDto {
 
     @Past
     @NotNull
-    private Date beginDate;
+    private LocalDate beginDate;
 
     @Past
     @NotNull
-    private Date endDate;
+    private LocalDate endDate;
 
     @NotNull
     private int fullCost;

@@ -1,7 +1,5 @@
 package com.backend.domain.location.dto;
 
-import com.backend.domain.location.domain.entity.Location;
-import com.backend.domain.trip.domain.entity.Trip;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-public class LocationResponse {
+public class LocationResponseDto {
 
     private Long id;
 

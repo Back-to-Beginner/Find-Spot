@@ -36,19 +36,19 @@ public class TripMapper {
                 .collect(Collectors.toSet());
     }
 
-    public TripResponse fromEntity(Trip trip) {
+    public TripResponseDto fromEntity(Trip trip) {
 
         Set<String> tagSet = trip.getTagSet()
                 .stream()
                 .map(Tag::getName)
                 .collect(Collectors.toSet());
 
-        return TripResponse.builder()
+        return TripResponseDto.builder()
                 .id(trip.getId())
-                .user_id(trip.getUser().getId())
+                .userId(trip.getUser().getId())
                 .title(trip.getTitle())
-                .begin_date(trip.getBeginDate())
-                .end_date(trip.getEndDate())
+                .beginDate(trip.getBeginDate())
+                .endDate(trip.getEndDate())
                 .fullCost(trip.getFullCost())
                 .tags(tagSet)
                 .build();

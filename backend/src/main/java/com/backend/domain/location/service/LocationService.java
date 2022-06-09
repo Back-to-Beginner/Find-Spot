@@ -1,7 +1,9 @@
 package com.backend.domain.location.service;
 
 import com.backend.domain.location.domain.entity.Location;
-import com.backend.domain.location.domain.repository.JpaLocationRepository;
+import com.backend.domain.location.domain.repository.LocationRepository;
+import com.backend.domain.location.dto.LocationMapper;
+import com.backend.domain.location.dto.LocationResponseDto;
 import com.backend.global.error.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,7 +19,8 @@ import static com.backend.global.error.ErrorCode.*;
 @Transactional
 @Service
 public class LocationService {
-    private final JpaLocationRepository repository;
+    private final LocationRepository repository;
+    private final LocationMapper mapper;
 
     public Location create(Location location) {
         return Stream.of(location)
@@ -31,14 +34,22 @@ public class LocationService {
         return repository.findAll();
     }
 
-    public Location findOneById(Long id) {
+    public Location findById(Long id) {
         return repository.findById(id).orElseThrow(
                 () -> new NotFoundException(NOT_FOUND, "장소를 찾을 수 없습니다.")
         );
     }
 
+    public LocationResponseDto findByIdAsDto(Long id) {
+        return Stream.of(id)
+                .map(this::findById)
+                .map(mapper::fromEntity)
+                .findAny()
+                .orElseThrow(() -> new NotFoundException(NOT_FOUND, "장소를 찾을 수 없습니다."));
+    }
+
     public void deleteOneById(Long id) {
-        repository.delete(findOneById(id));
+        repository.delete(findById(id));
     }
 
     public Location findByName(String name) {

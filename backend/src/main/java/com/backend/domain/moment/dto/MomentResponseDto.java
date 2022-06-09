@@ -1,28 +1,24 @@
 package com.backend.domain.moment.dto;
 
+import com.backend.domain.location.dto.LocationResponseDto;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Builder;
 import lombok.Data;
 
-import javax.validation.constraints.NotNull;
-
 @Data
-public class MomentRequest {
+@Builder
+public class MomentResponseDto {
 
-    @NotNull
-    @JsonProperty("location_id")
-    private Long locationId;
+    private Long id;
 
-    @NotNull
     @JsonProperty("trip_id")
     private Long tripId;
 
-    @NotNull
+    private LocationResponseDto location;
+
     private String content;
 
-    @NotNull
     private int cost;
 
-    @NotNull
     private int sequence;
-
 }

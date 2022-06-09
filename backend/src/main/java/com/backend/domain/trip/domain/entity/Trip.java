@@ -7,12 +7,13 @@ import com.backend.domain.tag.dto.TagMapper;
 import com.backend.domain.trip.dto.TripMapper;
 import com.backend.domain.trip.dto.TripRequestDto;
 import com.backend.domain.user.domain.entity.User;
+import com.backend.global.domain.code.domain.entity.Code;
 import com.backend.global.domain.basetime.domain.entity.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
-import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Set;
 
 @Getter
@@ -30,9 +31,14 @@ public class Trip extends BaseTimeEntity {
     @Column(nullable = false)
     private String title;
 
-    private java.sql.Date beginDate;
+    //TODO Code 타입으로 변경 필요
+//    @ManyToOne
+//    @JoinColumn(name = "code_id")
+    private String regionCode;
 
-    private java.sql.Date endDate;
+    private LocalDate beginDate;
+
+    private LocalDate endDate;
 
     private int fullCost;
 
@@ -41,9 +47,10 @@ public class Trip extends BaseTimeEntity {
     private Set<Tag> tagSet;
 
     @Builder
-    public Trip(User user, String title, Date beginDate, Date endDate, int fullCost, Set<Tag> tagSet) {
+    public Trip(User user, String title, String regionCode, LocalDate beginDate, LocalDate endDate, int fullCost, Set<Tag> tagSet) {
         this.user = user;
         this.title = title;
+        this.regionCode = regionCode;
         this.beginDate = beginDate;
         this.endDate = endDate;
         this.fullCost = fullCost;

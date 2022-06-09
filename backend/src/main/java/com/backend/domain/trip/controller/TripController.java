@@ -31,7 +31,7 @@ public class TripController {
     @GetMapping("/{id}")
     @ResponseStatus(OK)
     public ApiResponse findById(@PathVariable Long id) {
-        return ok(service.findById(id));
+        return ok(service.findByIdAsDto(id));
     }
 
     @DeleteMapping("/{id}")

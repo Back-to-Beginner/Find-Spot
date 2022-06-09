@@ -2,7 +2,6 @@ package com.backend.domain.location.controller;
 
 import com.backend.domain.location.dto.LocationMapper;
 import com.backend.domain.location.dto.LocationRequest;
-import com.backend.domain.location.dto.LocationResponse;
 import com.backend.domain.location.service.LocationService;
 import com.backend.global.dto.ApiResponse;
 import com.backend.global.error.ErrorCode;
@@ -51,7 +50,7 @@ public class LocationController {
     @ResponseStatus(OK)
     public ApiResponse findLocationById(@PathVariable Long id) {
         return Stream.of(id)
-                .map(service::findOneById)
+                .map(service::findById)
                 .map(mapper::fromEntity)
                 .map(ApiResponse::ok)
                 .findAny()

@@ -8,7 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static com.backend.global.dto.ApiResponse.*;
 import static org.springframework.http.HttpStatus.*;
@@ -24,40 +24,39 @@ public class MomentController {
     @GetMapping
     @ResponseStatus(OK)
     public ApiResponse findAll() {
-        return ok(
-                service.findAll()
-                        .stream()
-                        .map(mapper::fromEntity)
-                        .collect(Collectors.toList())
-        );
+        return ok(service.findAll());
     }
 
     @PostMapping
     @ResponseStatus(CREATED)
     public ApiResponse create(@Validated @RequestBody MomentRequest request) {
-        return created(
-                service.create(
-                        mapper.toEntity(request)
-                )
-        );
+        return Stream.of(request)
+                .map(mapper::toEntity)
+                .map(service::create)
+                .map(ApiResponse::created)
+                .findAny()
+                .orElseThrow();
     }
 
     @GetMapping("/{id}")
     @ResponseStatus(OK)
     public ApiResponse findOne(@PathVariable Long id) {
-        return ok(
-                service.findById(id)
-        );
+        return Stream.of(id)
+                .map(service::findByIdAsDto)
+                .map(ApiResponse::ok)
+                .findAny()
+                .orElseThrow();
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(CREATED)
     public ApiResponse update(@PathVariable Long id, @Validated @RequestBody MomentRequest request) {
-        return created(
-                service.updateById(
-                        id, mapper.toEntity(request)
-                )
-        );
+        return Stream.of(request)
+                .map(mapper::toEntity)
+                .map(entity -> service.updateById(id, entity))
+                .map(ApiResponse::created)
+                .findAny()
+                .orElseThrow();
     }
 
     @DeleteMapping("/{id}")
