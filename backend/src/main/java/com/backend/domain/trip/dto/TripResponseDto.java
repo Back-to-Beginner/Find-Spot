@@ -20,6 +20,8 @@ public class TripResponseDto {
 
     private String title;
 
+    private String region;
+
     @JsonProperty("begin_date")
     private LocalDate beginDate;
 

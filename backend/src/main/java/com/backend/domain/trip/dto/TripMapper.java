@@ -26,6 +26,7 @@ public class TripMapper {
                 .beginDate(request.getBeginDate())
                 .endDate(request.getEndDate())
                 .fullCost(request.getFullCost())
+                .regionCode(request.getRegion())
                 .tagSet(toTagSet(request.getTagNameList()))
                 .build();
     }
