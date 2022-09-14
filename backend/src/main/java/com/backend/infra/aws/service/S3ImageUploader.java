@@ -16,7 +16,7 @@ import java.io.IOException;
 @Slf4j
 @RequiredArgsConstructor
 @Service
-public class S3ImageUploader extends ImageUploader {
+public class S3ImageUploader implements ImageUploader {
 
     private final AmazonS3Client amazonS3Client;
 
@@ -30,11 +30,11 @@ public class S3ImageUploader extends ImageUploader {
                         .orElseThrow(
                                 () -> new IllegalArgumentException("error: MultipartFile -> File convert fail"));
 
-        return upload(uploadFile);
+        return uploadAndGetUUID(uploadFile);
     }
 
     // S3로 파일 업로드하기
-    private String upload(File uploadFile) {
+    private String uploadAndGetUUID(File uploadFile) {
         String uploadImageUrl = putS3(uploadFile, "static/" + uploadFile.getName()); // s3로 업로드
         removeNewFile(uploadFile);
         return uploadImageUrl;

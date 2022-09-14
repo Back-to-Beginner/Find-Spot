@@ -1,48 +1,47 @@
 package com.backend.domain.image.domain.entity;
 
-import javax.persistence.*;
-
-import com.backend.domain.moment.domain.entity.Moment;
-import com.backend.domain.user.domain.entity.User;
-import com.backend.global.domain.basetime.domain.entity.BaseTimeEntity;
+import com.backend.domain.post.domain.entity.Post;
+import com.backend.global.domain.BaseTimeEntity;
+import com.backend.global.domain.UpdateEntityAble;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
+import javax.persistence.*;
+
 @Getter
 @RequiredArgsConstructor
 @Entity // This tells Hibernate to make a table out of this class
-public class Image extends BaseTimeEntity {
+public class Image
+        extends BaseTimeEntity
+        implements UpdateEntityAble<Image> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "moment_id")
-    private Moment moment;
+    @JoinColumn(name = "post_id")
+    private Post post;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-
-    @Column(length = 300, nullable = false)
+    @Column(length = 128, nullable = false)
     private String path;
 
-    @Column(name = "is_deleted")
     private boolean isDeleted = false;
 
-    public void deleteImage() {
+    public void delete() {
         this.isDeleted = true;
-    }
-    @Builder
-    public Image(Moment moment, String path) {
-        this.moment = moment;
-        this.path = path;
     }
 
     @Builder
-    public Image(User user, String path) {
-        this.user = user;
+    public Image(Post post, String path) {
+        this.post = post;
         this.path = path;
+    }
+
+    @Override
+    public Image update(Image image) {
+        this.post = image.getPost();
+        this.path = image.getPath();
+        return this;
     }
 }

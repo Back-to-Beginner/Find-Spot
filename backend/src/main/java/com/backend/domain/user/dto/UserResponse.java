@@ -1,11 +1,13 @@
 package com.backend.domain.user.dto;
 
 import com.backend.domain.user.domain.entity.User;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 
 @Getter
 @Builder
+@AllArgsConstructor
 public class UserResponse {
 
     private Long id;

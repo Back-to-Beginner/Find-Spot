@@ -1,13 +1,27 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://${DB_URL}/btb?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
+    url: jdbc:mysql://localhost:3306/btb-db?useSSL=false&allowPublicKeyRetrieval=true&useUnicode=true&serverTimezone=Asia/Seoul
+#    url: jdbc:mysql://${DB_URL}/btb-db?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul
+    database: btb-db
+    username: "root"
+    password: "btbdatabase"
+#    username: ${DB_USERNAME}
+#    password: ${MYSQL_ROOT_PASSWORD}
+
+#spring:
+#  datasource:
+#    driver-class-name: org.h2.Driver
+#    url: jdbc:h2:mem:testdb
+#    username: sa
+#    password:
+
   jpa:
-    show-sql: true
+    database: "mysql"
+    show-sql: "true"
     hibernate:
-      ddl-auto: none
+      ddl-auto: "update"
     properties:
       hibernate:
-        format_sql: ture
+        format_sql: true
+    generate-ddl: true

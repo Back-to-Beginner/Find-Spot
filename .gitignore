@@ -32,3 +32,4 @@ backend/src/main/resources/application-credentials.yml
 backend/src/main/resources/application-database.yml
 
 backend/.env
+/.env

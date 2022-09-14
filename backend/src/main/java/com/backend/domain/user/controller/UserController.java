@@ -2,7 +2,6 @@ package com.backend.domain.user.controller;
 
 import com.backend.domain.user.dto.LoginRequest;
 import com.backend.domain.user.dto.UserRequest;
-import com.backend.domain.user.dto.UserResponse;
 import com.backend.domain.user.service.UserService;
 import com.backend.global.dto.ApiResponse;
 import com.backend.global.error.ErrorCode;
@@ -11,11 +10,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static com.backend.global.dto.ApiResponse.*;
-import static org.springframework.http.HttpStatus.*;
+import static com.backend.global.dto.ApiResponse.created;
+import static com.backend.global.dto.ApiResponse.ok;
+import static org.springframework.http.HttpStatus.CREATED;
+import static org.springframework.http.HttpStatus.OK;
 
 @RequiredArgsConstructor
 @RestController // This means that this class is a Controller
@@ -26,42 +26,32 @@ public class UserController {
     @GetMapping
     @ResponseStatus(OK)
     public ApiResponse findAllUser() {
-        return ok(userService
-                .findAllUser()
-                .stream()
-                .map(UserResponse::of)
-                .collect(Collectors.toList())
-        );
+        return ok(userService.findAll());
     }
 
     @PostMapping
     @ResponseStatus(CREATED)
-    public ApiResponse createUser(@Validated @RequestBody UserRequest userRequest) {
-        return created(
-                UserResponse.of(
-                        userService.createUser(
-                                userRequest.toEntity()
-                        )
-                )
-        );
+    public ApiResponse createUser(
+            @Validated @RequestBody UserRequest userRequest
+    ) {
+        return created(userService.save(userRequest));
     }
 
     @GetMapping("/{id}")
     @ResponseStatus(OK)
-    public ApiResponse findOneUserById(@PathVariable Long id) {
-        return ok(
-                UserResponse.of(
-                        userService.findUserById(id)
-                )
-        );
+    public ApiResponse findOneUserById(
+            @PathVariable Long id
+    ) {
+        return ok(userService.findById(id));
     }
 
     @PostMapping("/login")
     @ResponseStatus(CREATED)
-    public ApiResponse loginUser(@Validated @RequestBody LoginRequest request) {
+    public ApiResponse loginUser(
+            @Validated @RequestBody LoginRequest request
+    ) {
         return Stream.of(request)
                 .map(userService::login)
-                .map(UserResponse::of)
                 .map(ApiResponse::created)
                 .findAny()
                 .orElseThrow(() -> new NotFoundException(ErrorCode.NOT_FOUND, "User Not Found"));
