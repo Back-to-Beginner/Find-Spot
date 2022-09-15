@@ -7,6 +7,7 @@ import com.backend.domain.image.service.ImageUploader;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -16,6 +17,7 @@ import java.io.IOException;
 @Slf4j
 @RequiredArgsConstructor
 @Service
+@Primary
 public class S3ImageUploader implements ImageUploader {
 
     private final AmazonS3Client amazonS3Client;

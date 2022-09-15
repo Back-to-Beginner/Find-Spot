@@ -31,12 +31,13 @@ public class ImageMapper implements
         return ImageResponse.builder()
                 .id(image.getId())
                 .path(image.getPath())
+                .postId(image.getPost().getId())
                 .build();
     }
 
     @Override
     public Image PathToEntity(Long postId, String path) {
-        Post post = postService.getEntity(postId);
+        Post post = postService.findEntity(postId);
 
         return Image.builder()
                 .post(post)

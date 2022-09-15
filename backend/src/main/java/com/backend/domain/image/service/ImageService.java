@@ -30,6 +30,7 @@ public class ImageService implements
     private final ImageUploader uploader;
     private final ImageMapper mapper;
 
+    @Transactional
     public ImageResponse uploadImage(Long postId, MultipartFile multipartFile) throws IOException {
         String path = uploader.upload(multipartFile);
         Image image = mapper.PathToEntity(postId, path);
@@ -38,6 +39,7 @@ public class ImageService implements
     }
 
     @Override
+    @Transactional
     public ImageResponse save(ImageRequest imageRequest) {
         Image image = mapper.toEntity(imageRequest);
         return mapper.fromEntity(repository.save(image));
@@ -63,6 +65,7 @@ public class ImageService implements
     }
 
     @Override
+    @Transactional
     public ImageResponse update(long id, ImageRequest imageRequest) {
         Image newImage = mapper.toEntity(imageRequest);
         return mapper.fromEntity(findEntity(id).update(newImage));
