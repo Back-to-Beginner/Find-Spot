@@ -1,5 +1,6 @@
 package com.backend.global.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
@@ -9,6 +10,7 @@ import static org.springframework.http.HttpStatus.*;
 
 @Data
 @Builder
+@AllArgsConstructor
 public class ApiResponse<T> {
     private String code;
     private String message;
