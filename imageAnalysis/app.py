@@ -2,7 +2,7 @@ from flask import Flask, request
 from werkzeug.utils import secure_filename
 import cv2 as cv2
 import numpy as np
-from skimage.metrics import structural_similarity as ssim
+from skiㅊmage.metrics import structural_similarity as ssim
 
 app = Flask(__name__)
 
