@@ -23,6 +23,8 @@
 hs_err_pid*
 
 *.DS_Store
+.idea
+
 backend/src/main/resources/application-aws.yml
 
 backend/src/main/resources/application-cache.yml
