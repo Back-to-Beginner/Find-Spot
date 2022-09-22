@@ -35,6 +35,7 @@ public class User
         this.name = name;
         this.email = email;
         this.pw = pw;
+        this.isDeleted = false;
     }
 
     @Override
