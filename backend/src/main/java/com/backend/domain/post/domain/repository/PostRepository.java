@@ -24,5 +24,4 @@ public interface PostRepository extends JpaRepository<Post, Long> {
             nativeQuery = true)
     List<Post> findAllByTypeAndParentPostAndUser(Character type, Post parentPost, User user);
 
-
 }
