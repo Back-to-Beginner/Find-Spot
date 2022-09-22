@@ -22,3 +22,171 @@
     width: 316px;
     height: 316px;
 }
+
+.emailBox {
+    width: 405px;
+    height: 65px;
+    flex-grow: 0;
+    /*margin: 0 0 20px;*/
+    border-radius: 9999px;
+    box-shadow: 0 4px 8px 0 rgba(92, 92, 92, 0.25);
+    border: solid 2px #f5e9a9;
+    background-color: #fff;
+  
+}
+
+.emailTextInput{
+    border: 0;
+    font-size: 16px;
+    height: 30px;
+    width: 325px;
+    margin-left: 40px;
+    margin-top: 17px;
+    color: #878787;
+}
+
+.passwordBox {
+    width: 405px;
+    height: 65px;
+    flex-grow: 0;
+    /*margin: 20px 0 0;*/
+    border-radius: 9999px;
+    box-shadow: 0 4px 8px 0 rgba(92, 92, 92, 0.25);
+    border: solid 2px #f5e9a9;
+    background-color: #fff;
+  
+}
+
+.passwordTextInput{
+    border: 0;
+    font-size: 16px;
+    height: 30px;
+    width: 325px;
+    margin-left: 40px;
+    margin-top: 17px;
+    color: #878787;
+}
+
+.yellowbuttonBox{
+    width: 405px;
+    height: 65px;
+    flex-grow: 0;
+    /*margin: 20px 0 0;*/
+    border-radius: 9999px;
+    box-shadow: 0 4px 8px 0 rgba(92, 92, 92, 0.25);
+    border: solid 2px #f5e9a9;
+    background-color: #ffe86a;
+  
+}
+
+.yellowbuttonLogin{
+    border: 0;
+    height: 10px;
+    width: 58px;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    color: #595959;
+}
+
+.loginformBox {
+  width: 505px;
+  height: 570px;
+  flex-grow: 0;
+  margin: 68px 0 0 435px;
+  padding: 80px 46px 22px 50px;
+  border-radius: 24px;
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  box-shadow: 0 4px 16px 0 rgba(129, 129, 129, 0.25);
+  border: solid 5px #fff;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.register {
+    margin-left: auto;
+    margin-right: auto;
+  font-family: Roboto;
+  margin-top: 21px;
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
+  color: #595959;
+}
+
+.loginBoxTitle {
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    color: #595959;
+}
+
+button {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    background-color:rgba(0, 0, 0, 0);
+}
+
+.findText {
+  position:absolute;
+  top: 291px;
+  left: 10%;
+  font-family: Roboto;
+  font-size: 128px;
+  font-weight: bold;
+  text-align: center;
+  color: #7d7d7d;
+}
+
+.yellowText{
+    color: #ffe03e;
+}
+
+.spotText {
+    position:absolute;
+    top: 427px;
+    left: 10%;
+    font-family: Roboto;
+    font-size: 128px;
+    font-weight: bold;
+    text-align: center;
+    color: #7d7d7d; 
+}
+
+.logo {
+  position: absolute;
+  top: 179px;
+  left: 10%;
+  width: 123px;
+  height: 123px;
+}
+
+.loginBoxPosition {
+    position: absolute;
+    right: 10%;
+    top: 247px;
+}
+
+.topWave{
+    position: absolute;
+    top: 20%;
+    width: 100%;
+    height: 60%;
+    flex-grow: 0;
+    opacity: 0.02;
+    mix-blend-mode: multiply;
+    background-image: linear-gradient(120deg, #ffeb3b 30%, #fae41e 87%);
+}
+
+.bottomWave{
+    position: absolute;
+    top: 40%;
+    width: 100%;
+    height: 60%;
+    flex-grow: 0;
+    opacity: 0.04;
+    background-image: linear-gradient(114deg, #f3bb87 30%, #e59010 87%);
+}
