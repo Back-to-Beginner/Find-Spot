@@ -10,6 +10,10 @@
     padding-bottom: 29px;
     font-size: 24px;
     font-weight: 600;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 300px;
 }
 
 .missionImage  {
@@ -19,6 +23,32 @@
 
 .missionImageMask {
     margin: 0 42px 0 42px;
+    width: 316px;
+    height: 316px;
+}
+
+.successView {
+    width: 316px;
+    height: 446px;
+    padding: 42px 42px 0 42px;
+    background-color: #fff;
+    box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+.successImageMask {
+    width: 316px;
+    height: 316px;
+}
+
+.successCardContent{
+    padding-top: 27px;
+    font-size: 16px;
+    font-weight: 600;
+    width: 316px;
+    height: 72px;
+}
+
+.successImage  {
     width: 316px;
     height: 316px;
 }
