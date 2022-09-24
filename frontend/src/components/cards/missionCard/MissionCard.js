@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import '../../../css/common.css';
+import '../../../css/common.css'
 import missionImageExample from '../../../images/missionExample.jpeg';
 
 const MissionCard = (props) => {
@@ -8,8 +8,7 @@ const MissionCard = (props) => {
 
     return <>
         <div className={'missionView'}>
-            <div className={'missionCardTitle'}
-                 style={{textAlign: "center", marginLeft: "auto", marginRight: "auto", width: "300px"}}>
+            <div className={'missionCardTitle'}>
                 {missionName}
             </div>
             <div className={'missionImageMask'}>
