@@ -4,19 +4,14 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import MissionCard from "./components/cards/missionCard/MissionCard";
-import EmailInput from './components/input/EmaiInput';
-import PasswordInput from './components/input/PasswordInput';
-import YellowButton from './components/button/YelloButton';
-import LoginBox from './components/box/LoginBox';
-import LoginPage from './pages/loginPage/LoginPage';
+import SuccessCard from "./components/cards/successCard/SuccessCard";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     {/*<App />*/}
-    
-      <LoginPage/>
-      
+    {/*  <MissionCard/>*/}
+      <SuccessCard/>
   </React.StrictMode>
 );
 

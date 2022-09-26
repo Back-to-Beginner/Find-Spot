@@ -10,6 +10,10 @@
     padding-bottom: 29px;
     font-size: 24px;
     font-weight: 600;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 300px;
 }
 
 .missionImage {
@@ -21,6 +25,89 @@
     margin: 0 42px 0 42px;
     width: 316px;
     height: 316px;
+}
+
+.successView {
+    width: 316px;
+    height: 446px;
+    padding: 42px 42px 0 42px;
+    background-color: #fff;
+    box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+.successImageMask {
+    width: 316px;
+    height: 316px;
+}
+
+.successCardContent {
+    padding-top: 27px;
+    font-size: 16px;
+    font-weight: 600;
+    width: 316px;
+    height: 72px;
+}
+
+.successImage {
+    width: 316px;
+    height: 316px;
+}
+
+.commentBox {
+    width: 100%;
+    font-family: Inter;
+    font-size: 16px;
+}
+
+.commentUsername {
+    font-weight: bold;
+}
+
+.commentContent {
+}
+
+.commentView {
+    width: 378px;
+    height: 466px;
+    flex-grow: 0;
+    padding: 10px 10px 10px 10px;
+    box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, 0.25);
+    border: solid 1px #000;
+    background-color: #fff;
+}
+
+.commentList {
+    width: 100%;
+    height: 440px;
+}
+
+.sendBox {
+    display: flex;
+    width: 100%;
+    height: 28px;
+}
+
+.commentInput {
+    width: 330px;
+    height: 24px;
+    padding: 0 0 2px;
+    border-radius: 5px;
+    border: solid 1px #afafaf;
+    background-color: rgba(217, 217, 217, 0);
+}
+
+.commentInputLocation {
+    width: 342px;
+}
+
+.sendIcon {
+    width: 26px;
+    height: 26px;
+}
+
+.sendIconButton {
+    width: 26px;
+    height: 26px;
 }
 
 .emailBox {
