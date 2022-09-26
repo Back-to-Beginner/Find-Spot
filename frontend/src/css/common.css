@@ -12,7 +12,7 @@
     font-weight: 600;
 }
 
-.missionImage  {
+.missionImage {
     width: 316px;
     height: 316px;
 }
@@ -32,10 +32,10 @@
     box-shadow: 0 4px 8px 0 rgba(92, 92, 92, 0.25);
     border: solid 2px #f5e9a9;
     background-color: #fff;
-  
+
 }
 
-.emailTextInput{
+.emailTextInput {
     border: 0;
     font-size: 16px;
     height: 30px;
@@ -44,6 +44,8 @@
     margin-top: 17px;
     color: #878787;
 }
+
+
 
 .passwordBox {
     width: 405px;
@@ -54,10 +56,10 @@
     box-shadow: 0 4px 8px 0 rgba(92, 92, 92, 0.25);
     border: solid 2px #f5e9a9;
     background-color: #fff;
-  
+
 }
 
-.passwordTextInput{
+.passwordTextInput {
     border: 0;
     font-size: 16px;
     height: 30px;
@@ -67,7 +69,28 @@
     color: #878787;
 }
 
-.yellowbuttonBox{
+.passwordconfirmBox {
+    width: 405px;
+    height: 65px;
+    flex-grow: 0;
+    /*margin: 20px 0 0;*/
+    border-radius: 9999px;
+    box-shadow: 0 4px 8px 0 rgba(92, 92, 92, 0.25);
+    border: solid 2px #f5e9a9;
+    background-color: #fff;
+}
+
+.passwordConfirmTextInput {
+    border: 0;
+    font-size: 16px;
+    height: 30px;
+    width: 325px;
+    margin-left: 40px;
+    margin-top: 17px;
+    color: #878787;
+}
+
+.yellowloginbuttonBox {
     width: 405px;
     height: 65px;
     flex-grow: 0;
@@ -76,10 +99,33 @@
     box-shadow: 0 4px 8px 0 rgba(92, 92, 92, 0.25);
     border: solid 2px #f5e9a9;
     background-color: #ffe86a;
-  
+
 }
 
-.yellowbuttonLogin{
+.yellowbuttonlogin {
+    border: 0;
+    height: 10px;
+    width: 58px;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    color: #595959;
+}
+
+.yellowConfirmbuttonBox {
+    width: 405px;
+    height: 65px;
+    flex-grow: 0;
+    /*margin: 20px 0 0;*/
+
+    border-radius: 9999px;
+    box-shadow: 0 4px 8px 0 rgba(92, 92, 92, 0.25);
+    border: solid 2px #f5e9a9;
+    background-color: #ffe86a;
+
+}
+
+.yellowbuttonConfirm {
     border: 0;
     height: 10px;
     width: 58px;
@@ -90,31 +136,65 @@
 }
 
 .loginformBox {
-  width: 505px;
-  height: 570px;
-  flex-grow: 0;
-  margin: 68px 0 0 435px;
-  padding: 80px 46px 22px 50px;
-  border-radius: 24px;
-  -webkit-backdrop-filter: blur(4px);
-  backdrop-filter: blur(4px);
-  box-shadow: 0 4px 16px 0 rgba(129, 129, 129, 0.25);
-  border: solid 5px #fff;
-  background-color: rgba(255, 255, 255, 0.8);
+    width: 505px;
+    height: 570px;
+    flex-grow: 0;
+    margin: 68px 0 0 435px;
+    padding: 80px 46px 22px 50px;
+    border-radius: 24px;
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+    box-shadow: 0 4px 16px 0 rgba(129, 129, 129, 0.25);
+    border: solid 5px #fff;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.registerformBox {
+    width: 505px;
+    height: 570px;
+    flex-grow: 0;
+    margin: 68px 0 0 435px;
+    padding: 80px 46px 22px 50px;
+    border-radius: 24px;
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+    box-shadow: 0 4px 16px 0 rgba(129, 129, 129, 0.25);
+    border: solid 5px #fff;
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
 .register {
     margin-left: auto;
     margin-right: auto;
-  font-family: Roboto;
-  margin-top: 21px;
-  font-size: 20px;
-  font-weight: 600;
-  text-align: center;
-  color: #595959;
+    font-family: Roboto;
+    margin-top: 21px;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    color: #595959;
+}
+
+.login {
+    margin-left: auto;
+    margin-right: auto;
+    font-family: Roboto;
+    margin-top: 21px;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    color: #595959;
 }
 
 .loginBoxTitle {
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    color: #595959;
+}
+
+.registerBoxTitle {
     margin-left: auto;
     margin-right: auto;
     font-size: 20px;
@@ -127,41 +207,41 @@ button {
     padding: 0;
     margin: 0;
     border: 0;
-    background-color:rgba(0, 0, 0, 0);
+    background-color: rgba(0, 0, 0, 0);
 }
 
 .findText {
-  position:absolute;
-  top: 291px;
-  left: 10%;
-  font-family: Roboto;
-  font-size: 128px;
-  font-weight: bold;
-  text-align: center;
-  color: #7d7d7d;
+    position: absolute;
+    top: 291px;
+    left: 10%;
+    font-family: Roboto;
+    font-size: 128px;
+    font-weight: bold;
+    text-align: center;
+    color: #7d7d7d;
 }
 
-.yellowText{
+.yellowText {
     color: #ffe03e;
 }
 
 .spotText {
-    position:absolute;
+    position: absolute;
     top: 427px;
     left: 10%;
     font-family: Roboto;
     font-size: 128px;
     font-weight: bold;
     text-align: center;
-    color: #7d7d7d; 
+    color: #7d7d7d;
 }
 
 .logo {
-  position: absolute;
-  top: 179px;
-  left: 10%;
-  width: 123px;
-  height: 123px;
+    position: absolute;
+    top: 179px;
+    left: 10%;
+    width: 123px;
+    height: 123px;
 }
 
 .loginBoxPosition {
@@ -170,7 +250,13 @@ button {
     top: 247px;
 }
 
-.topWave{
+.RegisterBoxPosition {
+    position: absolute;
+    right: 10%;
+    top: 247px;
+}
+
+.topWave {
     position: absolute;
     top: 20%;
     width: 100%;
@@ -181,7 +267,7 @@ button {
     background-image: linear-gradient(120deg, #ffeb3b 30%, #fae41e 87%);
 }
 
-.bottomWave{
+.bottomWave {
     position: absolute;
     top: 40%;
     width: 100%;
@@ -189,4 +275,65 @@ button {
     flex-grow: 0;
     opacity: 0.04;
     background-image: linear-gradient(114deg, #f3bb87 30%, #e59010 87%);
+}
+
+.searchcloseForm {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%-100px;
+    height: 80px;
+    flex-grow: 0;
+    padding: 0 100px;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    background-color: #fff;
+}
+
+.headerLogo {
+    width: 190px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    /* margin: 0 899px 0 0; */
+    font-family: Inter;
+    font-size: 24px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: left;
+    color: #444;
+}
+
+.headerLogo .headeryellowText {
+    color: #ffe03e;
+}
+
+.searchbuttonBox {
+    width: 46px;
+    height: 32px;
+    flex-grow: 0;
+    padding: 4px 11px;
+    border-radius: 30px;
+    border: solid 1px #fff7d9;
+    background-color: #ffe76a;
+}
+
+.profilebuttonBox {
+    width: 41px;
+    height: 41px;
+    flex-grow: 0;
+    /* margin: 20px 0 19px 64px; */
+    padding: 10.8px 10.3px 10.3px 10.8px;
+    background-color: #d9d9d9;
+}
+
+.headerbuttonGroup {
+    display: flex;
+    justify-content: space-between;
+}
+
+.searchButtonLocation {
+    margin-right: 40px;
 }

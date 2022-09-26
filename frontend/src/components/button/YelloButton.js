@@ -1,11 +1,11 @@
 import React from 'react';
 
-const YellowButton = () => {
+const YellowButton = (props) => {
 
     return <>
-      <button className={'yellowbuttonBox'}>
-        <span class="yellowbuttonLogin">
-            LOGIN
+      <button className={'yellowloginbuttonBox'}>
+        <span class="yellowbuttonlogin">
+            {props.buttonName}
             </span>
       </button>
     </>

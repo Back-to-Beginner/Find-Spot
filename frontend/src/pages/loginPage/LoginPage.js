@@ -22,7 +22,7 @@ const LoginPage = () => {
       </span>
       T
       </div> 
-      <div className="loginBoxPosition"><LoginBox/></div>
+      <div className="loginBoxPosition"><LoginBox buttonName={'LOGIN'}/></div>
       </div>
     </>
 };
