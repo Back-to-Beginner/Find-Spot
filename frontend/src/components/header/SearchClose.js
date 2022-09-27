@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import SearchButton from "../../components/button/SearchButton";
+import SearchOpenButton from "../../components/button/SearchOpenButton";
 import ProfileButton from "../../components/button/ProfileButton";
 
 const SearchClose = () => {
@@ -15,7 +16,7 @@ const SearchClose = () => {
     }
 
     const selectSearchButton = {
-        1: <input/>,
+        1: <SearchOpenButton/>,
         0: <SearchButton/>,
     };
 

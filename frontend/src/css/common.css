@@ -399,7 +399,7 @@ button {
 
 .searchbuttonBox {
     width: 46px;
-    height: 32px;
+    height: 41px;
     flex-grow: 0;
     padding: 4px 11px;
     border-radius: 30px;
@@ -411,6 +411,7 @@ button {
     width: 41px;
     height: 41px;
     flex-grow: 0;
+    border-radius: 30px;
     /* margin: 20px 0 19px 64px; */
     padding: 10.8px 10.3px 10.3px 10.8px;
     background-color: #d9d9d9;
@@ -423,4 +424,40 @@ button {
 
 .searchButtonLocation {
     margin-right: 40px;
+}
+
+.user-2 {
+    width: 19.9px;
+    /*height: 19.9px;  안보임*/
+    /*flex-grow: 0; 반으로 잘림*/
+}
+
+.searchIcon {
+  width: 19.9x;
+  height: 19.9px;
+  flex-grow: 0;
+}
+
+.searchOpen {
+  width: 295px;
+  height: 32px;
+  flex-grow: 0;
+  /*margin: 24px 64px 24px 108px;*/
+  padding: 4px 9.5px 4px 16.5px;
+  border-radius: 30px;
+  border: solid 1px #fffae9;
+  background-color: #fff7d9;
+}
+
+.searchForm {
+  border: 0;
+  width: 242.9px;
+  height: 21px;
+  flex-grow: 0;
+  margin: 3px 5.2px 2px 0;
+  font-family: Inter;
+  font-size: 16px;
+  text-align: left;
+  background-color: #fff7d9;
+  color: #000;
 }
