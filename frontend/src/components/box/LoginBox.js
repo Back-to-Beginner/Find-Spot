@@ -3,22 +3,27 @@ import EmailInput from '../input/EmaiInput';
 import PasswordInput from '../input/PasswordInput';
 import YellowButton from '../button/YelloButton';
 
-const LoginBox = () => {
+const LoginBox = (props) => {
 
     return <>
     <div className="loginformBox">
         <div className='loginBoxTitle'>
             LOGIN
         </div>
-            <form>
+        <form>
+        
+    
         <div style={{marginTop: '67px', marginLeft: '50px', marginRight: '50px'}}>
         <EmailInput/>
         </div>
-    
+
+        
     <div style={{marginTop: '20px', marginLeft: '50px', marginRight: '50px'}}>
     <PasswordInput/>
     </div>
-    <button style={{marginTop: '105px', marginLeft: '50px', marginRight: '50px'}}><YellowButton/></button>
+    <button style={{marginTop: '105px', marginLeft: '50px', marginRight: '50px'}}>
+        <YellowButton buttonName={props.buttonName}/>
+    </button>
     </form>
     <div className='register'>
         Resigter

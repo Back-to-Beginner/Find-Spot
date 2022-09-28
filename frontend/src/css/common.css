@@ -318,6 +318,8 @@ html {
     color: #878787;
 }
 
+
+
 .passwordBox {
     width: 405px;
     height: 65px;
@@ -340,7 +342,28 @@ html {
     color: #878787;
 }
 
-.yellowbuttonBox {
+.passwordconfirmBox {
+    width: 405px;
+    height: 65px;
+    flex-grow: 0;
+    /*margin: 20px 0 0;*/
+    border-radius: 9999px;
+    box-shadow: 0 4px 8px 0 rgba(92, 92, 92, 0.25);
+    border: solid 2px #f5e9a9;
+    background-color: #fff;
+}
+
+.passwordConfirmTextInput {
+    border: 0;
+    font-size: 16px;
+    height: 30px;
+    width: 325px;
+    margin-left: 40px;
+    margin-top: 17px;
+    color: #878787;
+}
+
+.yellowloginbuttonBox {
     width: 405px;
     height: 65px;
     flex-grow: 0;
@@ -352,7 +375,30 @@ html {
 
 }
 
-.yellowbuttonLogin {
+.yellowbuttonlogin {
+    border: 0;
+    height: 10px;
+    width: 58px;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    color: #595959;
+}
+
+.yellowConfirmbuttonBox {
+    width: 405px;
+    height: 65px;
+    flex-grow: 0;
+    /*margin: 20px 0 0;*/
+
+    border-radius: 9999px;
+    box-shadow: 0 4px 8px 0 rgba(92, 92, 92, 0.25);
+    border: solid 2px #f5e9a9;
+    background-color: #ffe86a;
+
+}
+
+.yellowbuttonConfirm {
     border: 0;
     height: 10px;
     width: 58px;
@@ -363,6 +409,20 @@ html {
 }
 
 .loginformBox {
+    width: 505px;
+    height: 570px;
+    flex-grow: 0;
+    margin: 68px 0 0 435px;
+    padding: 80px 46px 22px 50px;
+    border-radius: 24px;
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+    box-shadow: 0 4px 16px 0 rgba(129, 129, 129, 0.25);
+    border: solid 5px #fff;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.registerformBox {
     width: 505px;
     height: 570px;
     flex-grow: 0;
@@ -387,7 +447,27 @@ html {
     color: #595959;
 }
 
+.login {
+    margin-left: auto;
+    margin-right: auto;
+    font-family: Roboto;
+    margin-top: 21px;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    color: #595959;
+}
+
 .loginBoxTitle {
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    color: #595959;
+}
+
+.registerBoxTitle {
     margin-left: auto;
     margin-right: auto;
     font-size: 20px;
@@ -438,6 +518,12 @@ button {
 }
 
 .loginBoxPosition {
+    position: absolute;
+    right: 10%;
+    top: 247px;
+}
+
+.RegisterBoxPosition {
     position: absolute;
     right: 10%;
     top: 247px;
@@ -508,4 +594,102 @@ button {
     padding-top: 50px;
     display: flex;
     flex-wrap: wrap;
+}
+
+.searchcloseForm {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%-100px;
+    height: 80px;
+    flex-grow: 0;
+    padding: 0 100px;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    background-color: #fff;
+}
+
+.headerLogo {
+    width: 190px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    /* margin: 0 899px 0 0; */
+    font-family: Inter;
+    font-size: 24px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: left;
+    color: #444;
+}
+
+.headerLogo .headeryellowText {
+    color: #ffe03e;
+}
+
+.searchbuttonBox {
+    width: 46px;
+    height: 41px;
+    flex-grow: 0;
+    padding: 4px 11px;
+    border-radius: 30px;
+    border: solid 1px #fff7d9;
+    background-color: #ffe76a;
+}
+
+.profilebuttonBox {
+    width: 41px;
+    height: 41px;
+    flex-grow: 0;
+    border-radius: 30px;
+    /* margin: 20px 0 19px 64px; */
+    padding: 10.8px 10.3px 10.3px 10.8px;
+    background-color: #d9d9d9;
+}
+
+.headerbuttonGroup {
+    display: flex;
+    justify-content: space-between;
+}
+
+.searchButtonLocation {
+    margin-right: 40px;
+}
+
+.user-2 {
+    width: 19.9px;
+    /*height: 19.9px;  안보임*/
+    /*flex-grow: 0; 반으로 잘림*/
+}
+
+.searchIcon {
+  width: 19.9x;
+  height: 19.9px;
+  flex-grow: 0;
+}
+
+.searchOpen {
+  width: 295px;
+  height: 32px;
+  flex-grow: 0;
+  /*margin: 24px 64px 24px 108px;*/
+  padding: 4px 9.5px 4px 16.5px;
+  border-radius: 30px;
+  border: solid 1px #fffae9;
+  background-color: #fff7d9;
+}
+
+.searchForm {
+  border: 0;
+  width: 242.9px;
+  height: 21px;
+  flex-grow: 0;
+  margin: 3px 5.2px 2px 0;
+  font-family: Inter;
+  font-size: 16px;
+  text-align: left;
+  background-color: #fff7d9;
+  color: #000;
 }
