@@ -1,16 +1,19 @@
 import React, {useState} from 'react';
 import '../../../css/common.css'
-import missionImageExample from '../../../images/missionExample.jpeg';
 
 const SmallSuccessCard = (props) => {
-    const [successContent, setSuccessContent] = useState("success Content");
-    // const [missionImage, setMissionImage] = useState(props.image);
+    const [successContent, setSuccessContent] = useState(props.content);
+    const [imageSrc, setImageSrc] = useState(props.image);
+
+    const getImage = () => {
+      return imageSrc ? imageSrc : null;
+    }
 
     return <>
         <div className={'smallSuccessView'}>
             <div className={'smallSuccessImageMask'}>
                 <img className={'smallSuccessImage'}
-                     src={missionImageExample}
+                     src={getImage()}
                      alt={null}/>
             </div>
 
