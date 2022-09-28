@@ -10,9 +10,13 @@
     padding-bottom: 29px;
     font-size: 24px;
     font-weight: 600;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 300px;
 }
 
-.missionImage  {
+.missionImage {
     width: 316px;
     height: 316px;
 }
@@ -21,6 +25,275 @@
     margin: 0 42px 0 42px;
     width: 316px;
     height: 316px;
+}
+
+.smallMissionView {
+    width: 146px;
+    height: 232px;
+    display: flex;
+    flex-direction: column;
+    padding: 0 22px;
+    background-color: #fff;
+    box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+.smallMissionCardTitle {
+    padding-top: 14px;
+    padding-bottom: 15px;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+    height: 14px;
+}
+
+.smallMissionImage {
+    width: 146px;
+    height: 146px;
+}
+
+.smallMissionImageMask {
+    width: 146px;
+    height: 146px;
+}
+
+.successView {
+    width: 316px;
+    height: 446px;
+    padding: 42px 42px 0 42px;
+    background-color: #fff;
+    box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+.successImageMask {
+    width: 316px;
+    height: 316px;
+}
+
+.successCardContent {
+    padding-top: 27px;
+    font-size: 16px;
+    font-weight: 600;
+    width: 316px;
+    height: 72px;
+}
+
+.successImage {
+    width: 316px;
+    height: 316px;
+}
+
+.smallSuccessView {
+    width: 146px;
+    height: 210px;
+    display: flex;
+    flex-direction: column;
+    padding: 22px 22px 0;
+    background-color: #fff;
+    box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+.smallSuccessImageMask {
+    width: 146px;
+    height: 146px;
+}
+
+.smallSuccessCardContent {
+    padding-top: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    width: 146px;
+    height: 54px;
+}
+
+.smallSuccessImage {
+    width: 146px;
+    height: 146px;
+}
+
+.commentBox {
+    width: 100%;
+    font-family: Inter;
+    font-size: 16px;
+}
+
+.commentUsername {
+    font-weight: bold;
+}
+
+.commentContent {
+}
+
+.commentView {
+    width: 378px;
+    height: 466px;
+    flex-grow: 0;
+    padding: 10px 10px 10px 10px;
+    box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, 0.25);
+    border: solid 1px #000;
+    background-color: #fff;
+}
+
+.commentList {
+    width: 100%;
+    height: 440px;
+}
+
+.sendBox {
+    display: flex;
+    width: 100%;
+    height: 28px;
+}
+
+.commentInput {
+    width: 330px;
+    height: 24px;
+    padding: 0 0 2px;
+    border-radius: 5px;
+    border: solid 1px #afafaf;
+    background-color: rgba(217, 217, 217, 0);
+}
+
+.commentInputLocation {
+    width: 342px;
+}
+
+.sendIcon {
+    width: 26px;
+    height: 26px;
+}
+
+.sendIconButton {
+    width: 26px;
+    height: 26px;
+}
+
+.uploadView {
+    width: 316px;
+    height: 421px;
+    padding: 42px 42px 25px 42px;
+    box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, 0.25);
+    background-color: #fff;
+
+}
+
+.uploadImageMask {
+
+}
+
+.uploadImage {
+
+}
+
+.uploadInput {
+    display: none;
+}
+
+.fileupload {
+    width: 316px;
+    height: 316px;
+    background-color: #afafaf;
+}
+
+.fileuploadImage {
+    width: 64px;
+    height: 64px;
+    position: absolute;
+    left: 168px;
+    top: 168px;
+}
+
+.fileuploadText {
+    font-family: Inter;
+    font-size: 20px;
+    color: #525252;
+    position: absolute;
+    width: 316px;
+    top: 244px;
+    text-align: center;
+}
+
+.information {
+    position: absolute;
+    top: 50px;
+    left: 326px;
+}
+
+.informationImage {
+    width: 24px;
+    height: 24px;
+}
+
+.informationTooltipText {
+    visibility: hidden;       /* 이벤트가 없으면 툴팁 영역을 숨김 */
+    width: 320px;             /* 툴팁 영역의 넓이를 설정 */
+    left: 40px;
+    background-color: white;
+    text-align: center;
+    border-radius: 6px;
+    box-shadow: 0 4px 8px 0 rgba(92, 92, 92, 0.25);
+    padding: 5px 0;
+    position: absolute;       /* 절대 위치를 사용 */
+    z-index: 1;
+}
+
+.information:hover .informationTooltipText {
+    visibility: visible;
+}
+
+.approved {
+    position: absolute;
+    top: 81px;
+    left: 326px;
+}
+
+.approvedImage {
+    width: 24px;
+    height: 24px;
+}
+
+.approveTooltipText {
+    visibility: hidden;       /* 이벤트가 없으면 툴팁 영역을 숨김 */
+    width: 300px;             /* 툴팁 영역의 넓이를 설정 */
+    left: 40px;
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    box-shadow: 0 4px 8px 0 rgba(92, 92, 92, 0.25);
+    padding: 5px 0;
+    position: absolute;       /* 절대 위치를 사용 */
+    z-index: 1;
+}
+
+.approved:hover .approveTooltipText {
+    visibility: visible;      /* hover 이벤트 발생시 영역을 보여줌 */
+}
+
+.uploadContent {
+    position: relative;
+    top: 25px;
+}
+
+.uploadContentTextarea {
+    width: 308px;
+    height: 72px;
+    resize: none;
+}
+
+.approveContentTooltipText {
+    visibility: hidden;       /* 이벤트가 없으면 툴팁 영역을 숨김 */
+    width: 300px;             /* 툴팁 영역의 넓이를 설정 */
+    left: 330px;
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    box-shadow: 0 4px 8px 0 rgba(92, 92, 92, 0.25);
+    padding: 5px 0;
+    position: absolute;       /* 절대 위치를 사용 */
+    z-index: 1;
+}
+
+.uploadContent:hover .approveContentTooltipText {
+    visibility: visible;      /* hover 이벤트 발생시 영역을 보여줌 */
 }
 
 .emailBox {
@@ -32,10 +305,10 @@
     box-shadow: 0 4px 8px 0 rgba(92, 92, 92, 0.25);
     border: solid 2px #f5e9a9;
     background-color: #fff;
-  
+
 }
 
-.emailTextInput{
+.emailTextInput {
     border: 0;
     font-size: 16px;
     height: 30px;
@@ -54,10 +327,10 @@
     box-shadow: 0 4px 8px 0 rgba(92, 92, 92, 0.25);
     border: solid 2px #f5e9a9;
     background-color: #fff;
-  
+
 }
 
-.passwordTextInput{
+.passwordTextInput {
     border: 0;
     font-size: 16px;
     height: 30px;
@@ -67,7 +340,7 @@
     color: #878787;
 }
 
-.yellowbuttonBox{
+.yellowbuttonBox {
     width: 405px;
     height: 65px;
     flex-grow: 0;
@@ -76,10 +349,10 @@
     box-shadow: 0 4px 8px 0 rgba(92, 92, 92, 0.25);
     border: solid 2px #f5e9a9;
     background-color: #ffe86a;
-  
+
 }
 
-.yellowbuttonLogin{
+.yellowbuttonLogin {
     border: 0;
     height: 10px;
     width: 58px;
@@ -90,28 +363,28 @@
 }
 
 .loginformBox {
-  width: 505px;
-  height: 570px;
-  flex-grow: 0;
-  margin: 68px 0 0 435px;
-  padding: 80px 46px 22px 50px;
-  border-radius: 24px;
-  -webkit-backdrop-filter: blur(4px);
-  backdrop-filter: blur(4px);
-  box-shadow: 0 4px 16px 0 rgba(129, 129, 129, 0.25);
-  border: solid 5px #fff;
-  background-color: rgba(255, 255, 255, 0.8);
+    width: 505px;
+    height: 570px;
+    flex-grow: 0;
+    margin: 68px 0 0 435px;
+    padding: 80px 46px 22px 50px;
+    border-radius: 24px;
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+    box-shadow: 0 4px 16px 0 rgba(129, 129, 129, 0.25);
+    border: solid 5px #fff;
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
 .register {
     margin-left: auto;
     margin-right: auto;
-  font-family: Roboto;
-  margin-top: 21px;
-  font-size: 20px;
-  font-weight: 600;
-  text-align: center;
-  color: #595959;
+    font-family: Roboto;
+    margin-top: 21px;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    color: #595959;
 }
 
 .loginBoxTitle {
@@ -127,41 +400,41 @@ button {
     padding: 0;
     margin: 0;
     border: 0;
-    background-color:rgba(0, 0, 0, 0);
+    background-color: rgba(0, 0, 0, 0);
 }
 
 .findText {
-  position:absolute;
-  top: 291px;
-  left: 10%;
-  font-family: Roboto;
-  font-size: 128px;
-  font-weight: bold;
-  text-align: center;
-  color: #7d7d7d;
+    position: absolute;
+    top: 291px;
+    left: 10%;
+    font-family: Roboto;
+    font-size: 128px;
+    font-weight: bold;
+    text-align: center;
+    color: #7d7d7d;
 }
 
-.yellowText{
+.yellowText {
     color: #ffe03e;
 }
 
 .spotText {
-    position:absolute;
+    position: absolute;
     top: 427px;
     left: 10%;
     font-family: Roboto;
     font-size: 128px;
     font-weight: bold;
     text-align: center;
-    color: #7d7d7d; 
+    color: #7d7d7d;
 }
 
 .logo {
-  position: absolute;
-  top: 179px;
-  left: 10%;
-  width: 123px;
-  height: 123px;
+    position: absolute;
+    top: 179px;
+    left: 10%;
+    width: 123px;
+    height: 123px;
 }
 
 .loginBoxPosition {
@@ -170,7 +443,7 @@ button {
     top: 247px;
 }
 
-.topWave{
+.topWave {
     position: absolute;
     top: 20%;
     width: 100%;
@@ -181,7 +454,7 @@ button {
     background-image: linear-gradient(120deg, #ffeb3b 30%, #fae41e 87%);
 }
 
-.bottomWave{
+.bottomWave {
     position: absolute;
     top: 40%;
     width: 100%;
