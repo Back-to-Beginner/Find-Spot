@@ -27,6 +27,35 @@
     height: 316px;
 }
 
+.smallMissionView {
+    width: 146px;
+    height: 232px;
+    display: flex;
+    flex-direction: column;
+    padding: 0 22px;
+    background-color: #fff;
+    box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+.smallMissionCardTitle {
+    padding-top: 14px;
+    padding-bottom: 15px;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+    height: 14px;
+}
+
+.smallMissionImage {
+    width: 146px;
+    height: 146px;
+}
+
+.smallMissionImageMask {
+    width: 146px;
+    height: 146px;
+}
+
 .successView {
     width: 316px;
     height: 446px;
@@ -51,6 +80,34 @@
 .successImage {
     width: 316px;
     height: 316px;
+}
+
+.smallSuccessView {
+    width: 146px;
+    height: 210px;
+    display: flex;
+    flex-direction: column;
+    padding: 22px 22px 0;
+    background-color: #fff;
+    box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+.smallSuccessImageMask {
+    width: 146px;
+    height: 146px;
+}
+
+.smallSuccessCardContent {
+    padding-top: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    width: 146px;
+    height: 54px;
+}
+
+.smallSuccessImage {
+    width: 146px;
+    height: 146px;
 }
 
 .commentBox {
@@ -108,6 +165,135 @@
 .sendIconButton {
     width: 26px;
     height: 26px;
+}
+
+.uploadView {
+    width: 316px;
+    height: 421px;
+    padding: 42px 42px 25px 42px;
+    box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, 0.25);
+    background-color: #fff;
+
+}
+
+.uploadImageMask {
+
+}
+
+.uploadImage {
+
+}
+
+.uploadInput {
+    display: none;
+}
+
+.fileupload {
+    width: 316px;
+    height: 316px;
+    background-color: #afafaf;
+}
+
+.fileuploadImage {
+    width: 64px;
+    height: 64px;
+    position: absolute;
+    left: 168px;
+    top: 168px;
+}
+
+.fileuploadText {
+    font-family: Inter;
+    font-size: 20px;
+    color: #525252;
+    position: absolute;
+    width: 316px;
+    top: 244px;
+    text-align: center;
+}
+
+.information {
+    position: absolute;
+    top: 50px;
+    left: 326px;
+}
+
+.informationImage {
+    width: 24px;
+    height: 24px;
+}
+
+.informationTooltipText {
+    visibility: hidden;       /* 이벤트가 없으면 툴팁 영역을 숨김 */
+    width: 320px;             /* 툴팁 영역의 넓이를 설정 */
+    left: 40px;
+    background-color: white;
+    text-align: center;
+    border-radius: 6px;
+    box-shadow: 0 4px 8px 0 rgba(92, 92, 92, 0.25);
+    padding: 5px 0;
+    position: absolute;       /* 절대 위치를 사용 */
+    z-index: 1;
+}
+
+.information:hover .informationTooltipText {
+    visibility: visible;
+}
+
+.approved {
+    position: absolute;
+    top: 81px;
+    left: 326px;
+}
+
+.approvedImage {
+    width: 24px;
+    height: 24px;
+}
+
+.approveTooltipText {
+    visibility: hidden;       /* 이벤트가 없으면 툴팁 영역을 숨김 */
+    width: 300px;             /* 툴팁 영역의 넓이를 설정 */
+    left: 40px;
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    box-shadow: 0 4px 8px 0 rgba(92, 92, 92, 0.25);
+    padding: 5px 0;
+    position: absolute;       /* 절대 위치를 사용 */
+    z-index: 1;
+}
+
+.approved:hover .approveTooltipText {
+    visibility: visible;      /* hover 이벤트 발생시 영역을 보여줌 */
+}
+
+.uploadContent {
+    position: relative;
+    top: 25px;
+}
+
+.uploadContentTextarea {
+    width: 308px;
+    height: 72px;
+    resize: none;
+}
+
+.approveContentTooltipText {
+    visibility: hidden;       /* 이벤트가 없으면 툴팁 영역을 숨김 */
+    width: 300px;             /* 툴팁 영역의 넓이를 설정 */
+    left: 330px;
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    box-shadow: 0 4px 8px 0 rgba(92, 92, 92, 0.25);
+    padding: 5px 0;
+    position: absolute;       /* 절대 위치를 사용 */
+    z-index: 1;
+}
+
+.uploadContent:hover .approveContentTooltipText {
+    visibility: visible;      /* hover 이벤트 발생시 영역을 보여줌 */
 }
 
 .emailBox {
