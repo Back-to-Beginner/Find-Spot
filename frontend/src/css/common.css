@@ -192,23 +192,22 @@ html {
     width: 316px;
     height: 316px;
     background-color: #afafaf;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .fileuploadImage {
     width: 64px;
     height: 64px;
-    position: absolute;
-    left: 168px;
-    top: 168px;
 }
 
 .fileuploadText {
     font-family: Inter;
     font-size: 20px;
     color: #525252;
-    position: absolute;
     width: 316px;
-    top: 244px;
     text-align: center;
 }
 
@@ -560,7 +559,7 @@ button {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    padding: 20px 20px;
+    padding: 40px 20px 20px;
 }
 
 .profile {
@@ -590,10 +589,23 @@ button {
     padding: 5px;
 }
 
+.profileUploadLocation {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 247, 217, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
 .cardGrid {
     padding-top: 50px;
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-around;
 }
 
 .searchcloseForm {
