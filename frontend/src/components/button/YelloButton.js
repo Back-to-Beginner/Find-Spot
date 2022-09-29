@@ -3,8 +3,8 @@ import React from 'react';
 const YellowButton = (props) => {
 
     return <>
-      <button className={'yellowloginbuttonBox'}>
-        <span class="yellowbuttonlogin">
+      <button className={'yellowButtonBox'}>
+        <span class="yellowButton">
             {props.buttonName}
             </span>
       </button>

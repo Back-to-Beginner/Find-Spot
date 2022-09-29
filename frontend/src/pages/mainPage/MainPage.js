@@ -1,32 +1,46 @@
 import React from "react";
 import Header from "../../components/header/Header";
-import MissionCard from "../../components/cards/missionCard/MissionCard";
-import SuccessCard from "../../components/cards/successCard/SuccessCard";
+import SmallMissionCard from "../../components/cards/missionCard/SmallMissionCard";
+import SmallSuccessCard from "../../components/cards/successCard/SmallSuccessCard";
 import YellowButton from "../../components/button/YelloButton";
 
 const MainPage = () => {
 
     return <>
+        <Header />
+
+
         <div className="mainPageWave">
-            <Header />
             <div className='mainPageTitle'>
                 New Success
             </div>
-            <div className="missionViewEdge">
-                <MissionCard />
+            <div className="cardViewLocation">
+                <div className="previousArrow">
+                    &#5176;
+                </div>
+                <div style={{ padding: '10px' }}>
+                    <SmallMissionCard />
+                    </div>
+                <div style={{ padding: '10px' }}>
+                    <SmallSuccessCard image={''} content={''}/>
+                    </div>
+                <div className="postArrow">
+                    &#5171;
+                </div>
             </div>
-            <div className="successViewEdge">
-                <SuccessCard />
-            </div>
-            <div className="postArrow">
-            
-            </div>
+
             <div className="mainBoxPosition">
-                <YellowButton buttonName={'Challenge this Mission'} />
+                <div style={{ paddingTop: '50px' }}>
+                    <YellowButton buttonName={'Challenge this Mission'} />
+                </div>
+                <div style={{ padding: '10px' }}>
+
+                    <div className='findOtherSpot'>
+                        Find other Spot
+                    </div>
+                </div>
             </div>
-            <div className='findOtherSpot'>
-                Find other Spot
-            </div>
+
         </div>
     </>
 };

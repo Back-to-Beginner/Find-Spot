@@ -361,11 +361,10 @@ html {
     color: #878787;
 }
 
-.yellowloginbuttonBox {
-    width: 405px;
-    height: 65px;
+.yellowButtonBox {
+    width: 305px;
+    height: 45px;
     flex-grow: 0;
-    /*margin: 20px 0 0;*/
     border-radius: 9999px;
     box-shadow: 0 4px 8px 0 rgba(92, 92, 92, 0.25);
     border: solid 2px #f5e9a9;
@@ -373,34 +372,11 @@ html {
 
 }
 
-.yellowbuttonlogin {
+.yellowButton {
     border: 0;
     height: 10px;
     width: 58px;
-    font-size: 20px;
-    font-weight: 600;
-    text-align: center;
-    color: #595959;
-}
-
-.yellowConfirmbuttonBox {
-    width: 405px;
-    height: 65px;
-    flex-grow: 0;
-    /*margin: 20px 0 0;*/
-
-    border-radius: 9999px;
-    box-shadow: 0 4px 8px 0 rgba(92, 92, 92, 0.25);
-    border: solid 2px #f5e9a9;
-    background-color: #ffe86a;
-
-}
-
-.yellowbuttonConfirm {
-    border: 0;
-    height: 10px;
-    width: 58px;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 600;
     text-align: center;
     color: #595959;
@@ -612,7 +588,7 @@ button {
     justify-content: space-between;
     align-items: center;
     width: 100%-100px;
-    height: 80px;
+    height: 60px;
     flex-grow: 0;
     padding: 0 100px;
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
@@ -707,57 +683,41 @@ button {
 }
 
 .mainPageWave {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    flex-grow: 0;
-    padding: 0 0 103px;
-    background-color: #fff7d9;
+    padding: 40px 0 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
 }
 
-.missionViewEdge {
-    position: absolute;
-    left: 690px;
-    top: 268px;
-    background-color: #fff;
-}
-
-.successViewEdge {
-    position: absolute;
-    right: 700px;
-    top: 268px;
-    background-color: #fff;
+.cardViewLocation {
+    display: flex;
+    flex-direction: row;
+    /* flex-wrap: wrap; */
+    align-items: center;
+    justify-content: center;
 }
 
 .mainPageTitle {
-    position: absolute;
-    right: 900px;
-    top: 168px;
-    width: 489px;
-    height: 46px;
-    flex-grow: 0;
     font-family: Roboto;
-    font-size: 40px;
+    font-size: 28px;
     font-weight: 500;
     text-align: center;
     color: #525252;
+    padding-bottom: 30px;
 }
 
 .mainBoxPosition {
-    position: absolute;
-    right: 945px;
-    top: 812px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .findOtherSpot {
-    position: absolute;
-    bottom: 230px;
-    right: 1070px;
-    width: 160px;
-    height: 30px;
     flex-grow: 0;
     font-family: Roboto;
-    font-size: 20px;
+    font-size: 12px;
     font-weight: 800;
     line-height: 1.88;
     text-align: center;
@@ -765,13 +725,11 @@ button {
 }
 
 .postArrow {
-    position: absolute;
-    top: 510px;
-    right: 210px;
-    width: 30px;
-    height: 3px;
-    transform: rotate(-360deg);
-    background-color: #525252;
+    padding-left: 10%;
+}
+
+.previousArrow {
+    padding-right: 10%;
 }
 
 .CommentViewEdge {
