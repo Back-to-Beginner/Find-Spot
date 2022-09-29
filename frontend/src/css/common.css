@@ -63,8 +63,7 @@
     font-weight: bold;
 }
 
-.commentContent {
-}
+.commentContent {}
 
 .commentView {
     width: 378px;
@@ -433,31 +432,144 @@ button {
 }
 
 .searchIcon {
-  width: 19.9x;
-  height: 19.9px;
-  flex-grow: 0;
+    width: 19.9x;
+    height: 19.9px;
+    flex-grow: 0;
 }
 
 .searchOpen {
-  width: 295px;
-  height: 32px;
-  flex-grow: 0;
-  /*margin: 24px 64px 24px 108px;*/
-  padding: 4px 9.5px 4px 16.5px;
-  border-radius: 30px;
-  border: solid 1px #fffae9;
-  background-color: #fff7d9;
+    width: 295px;
+    height: 32px;
+    flex-grow: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 9.5px 4px 16.5px;
+    border-radius: 30px;
+    border: solid 1px #fffae9;
+    background-color: #fff7d9;
 }
 
 .searchForm {
-  border: 0;
-  width: 242.9px;
-  height: 21px;
-  flex-grow: 0;
-  margin: 3px 5.2px 2px 0;
-  font-family: Inter;
-  font-size: 16px;
-  text-align: left;
-  background-color: #fff7d9;
-  color: #000;
+    border: 0;
+    width: 242.9px;
+    height: 21px;
+    flex-grow: 0;
+    font-family: Inter;
+    font-size: 16px;
+    text-align: left;
+    background-color: #fff7d9;
+    color: #000;
+}
+
+.mainPageWave {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    flex-grow: 0;
+    padding: 0 0 103px;
+    background-color: #fff7d9;
+}
+
+.missionViewEdge {
+    position: absolute;
+    left: 690px;
+    top: 268px;
+    background-color: #fff;
+}
+
+.successViewEdge {
+    position: absolute;
+    right: 700px;
+    top: 268px;
+    background-color: #fff;
+}
+
+.mainPageTitle {
+    position: absolute;
+    right: 900px;
+    top: 168px;
+    width: 489px;
+    height: 46px;
+    flex-grow: 0;
+    font-family: Roboto;
+    font-size: 40px;
+    font-weight: 500;
+    text-align: center;
+    color: #525252;
+}
+
+.mainBoxPosition {
+    position: absolute;
+    right: 945px;
+    top: 812px;
+}
+
+.findOtherSpot {
+    position: absolute;
+    bottom: 230px;
+    right: 1070px;
+    width: 160px;
+    height: 30px;
+    flex-grow: 0;
+    font-family: Roboto;
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 1.88;
+    text-align: center;
+    color: #595959;
+}
+
+.postArrow {
+    position: absolute;
+    top: 510px;
+    right: 210px;
+    width: 30px;
+    height: 3px;
+    transform: rotate(-360deg);
+    background-color: #525252;
+}
+
+.CommentViewEdge {
+    position: absolute;
+    right: 750px;
+    top: 268px;
+    background-color: #fff;
+}
+
+.missionDetailViewEdge {
+    position: absolute;
+    left: 730px;
+    top: 268px;
+    background-color: #fff;
+}
+
+.background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    flex-grow: 0;
+    padding: 0 0 103px;
+    background-color: #fff7d9;
+}
+
+.detailBoxPosition {
+    position: absolute;
+    right: 945px;
+    top: 812px;
+}
+
+.findSuccess {
+    position: absolute;
+    bottom: 230px;
+    right: 1070px;
+    width: 160px;
+    height: 30px;
+    flex-grow: 0;
+    font-family: Roboto;
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 1.88;
+    text-align: center;
+    color: #595959;
 }

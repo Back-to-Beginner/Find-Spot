@@ -6,8 +6,7 @@ const SearchOpenButton = () => {
     return <>
         <div className={'searchOpen'}>
             <input className={'searchForm'} placeholder='apple'></input>
-            <img className="searchIcon" src="searchlogo">
-        </img>
+            <img className={'searchIcon'} src={searchlogo}/>
         </div>
     </>
 }

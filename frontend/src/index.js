@@ -5,14 +5,19 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import MissionCard from "./components/cards/missionCard/MissionCard";
 import RegisterPage from './pages/registerPage/RegisterPage';
-import SearchClose from './components/header/SearchClose';
+import Header from './components/header/Header';
+import MainPage from './pages/mainPage/MainPage';
+import DetailView from './pages/detailView/DetailVieiw';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     {/*<App />*/}
       {/*<RegisterPage/>*/}
-      <SearchClose/>
+      {/*<SearchClose/>*/}
+      {/* <Header/> */}
+      <MainPage/>
+      {/* <DetailView/> */}
       
   </React.StrictMode>
 )

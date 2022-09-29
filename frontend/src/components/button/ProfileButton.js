@@ -5,8 +5,8 @@ const ProfileButton = () => {
 
     return <>
        <button className={'profilebuttonBox'}>
-        <img className="user-2" src="profilelogo">
-        </img>
+        <img className={'user-2'} src={profilelogo}/>
+        
        </button>
     </>
 } 

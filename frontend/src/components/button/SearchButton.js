@@ -5,8 +5,7 @@ const SearchButton = () => {
 
     return <>
        <button className={'searchbuttonBox'}>
-       <img className="searchIcon" src="searchlogo">
-        </img>
+       <img className={'searchIcon'} src={searchlogo}/>
        </button>
     </>
 } 
