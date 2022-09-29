@@ -1,3 +1,7 @@
+html {
+    background-color: #fff7d9;
+}
+
 .missionView {
     width: 400px;
     height: 488px;
@@ -179,10 +183,6 @@
 
 }
 
-.uploadImage {
-
-}
-
 .uploadInput {
     display: none;
 }
@@ -191,23 +191,22 @@
     width: 316px;
     height: 316px;
     background-color: #afafaf;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .fileuploadImage {
     width: 64px;
     height: 64px;
-    position: absolute;
-    left: 168px;
-    top: 168px;
 }
 
 .fileuploadText {
     font-family: Inter;
     font-size: 20px;
     color: #525252;
-    position: absolute;
     width: 316px;
-    top: 244px;
     text-align: center;
 }
 
@@ -547,6 +546,65 @@ button {
     flex-grow: 0;
     opacity: 0.04;
     background-image: linear-gradient(114deg, #f3bb87 30%, #e59010 87%);
+}
+
+.profilePage {
+    width: 100%-200px;
+    height: 100%;
+    padding: 0 100px;
+}
+
+.profilePageHeader {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 40px 20px 20px;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+}
+
+.profileImage {
+    background-color: #d9d9d9;
+    border-radius: 9999px;
+    width: 120px;
+}
+
+.description {
+    padding-left: 30px;
+    width: 300px;
+}
+
+.profileSub {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.profileSub span {
+    padding: 5px;
+}
+
+.profileUploadLocation {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 247, 217, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.cardGrid {
+    padding-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
 
 .searchcloseForm {
