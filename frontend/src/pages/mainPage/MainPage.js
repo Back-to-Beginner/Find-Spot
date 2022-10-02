@@ -20,10 +20,10 @@ const MainPage = () => {
                 </div>
                 <div style={{ padding: '10px' }}>
                     <SmallMissionCard />
-                    </div>
+                </div>
                 <div style={{ padding: '10px' }}>
-                    <SmallSuccessCard image={''} content={''}/>
-                    </div>
+                    <SmallSuccessCard image={''} content={''} />
+                </div>
                 <div className="postArrow">
                     &#5171;
                 </div>

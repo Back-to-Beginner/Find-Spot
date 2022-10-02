@@ -1,6 +1,6 @@
 import React from "react";
 import SmallMissionCard from "../../components/cards/missionCard/SmallMissionCard";
-import SmallSuccessCard from "../../components/cards/successCard/SmallSuccessCard";
+import SuccessCard from "../../components/cards/successCard/SuccessCard";
 import CommentCard from "../../components/cards/commentCard/CommentCard";
 import YellowButton from "../../components/button/YelloButton";
 
@@ -9,11 +9,11 @@ const DetailView = () => {
     return <>
         <div className='background' >
             <div className='detailViewLocation'>
-                <div style={{ padding: '10px' }}>
-                    <SmallMissionCard /> {/*SmallMissionCard */}
+                <div style={{ padding: 0 }}>
+                    <SuccessCard /> {/*SmallSuccessCard */}
                 </div>
-                <div style={{ padding: '10px' }}>
-                    <SmallSuccessCard />  {/*SmallCommentCard */}
+                <div style={{ padding: 0 }}>
+                    <CommentCard />  {/*SmallCommentCard */}
                 </div>
             </div>
             <div className="mainBoxPosition">

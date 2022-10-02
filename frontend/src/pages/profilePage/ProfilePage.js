@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import profileIcon from '../../images/user.png'
 import '../../css/common.css'
 import SmallSuccessCard from "../../components/cards/successCard/SmallSuccessCard";
-import SearchCLose from '../../components/header/SearchClose.js'
+import Header from '../../components/header/Header'
 import ProfileUploadCard from "../../components/cards/uploadCard/ProfileUploadCard";
 import YellowButton from "../../components/button/YelloButton";
 
@@ -64,6 +64,7 @@ const ProfilePage = () => {
                     <span className={'profileUploadClose'}>cancel</span>
                 </div>
             </div>
+            <Header/>
             <div className={'profilePage'}>
                 <div className={'profilePageHeader'}>
                     <div className={'profile'} onClick={clickProfileEdit}>
