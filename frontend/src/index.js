@@ -16,8 +16,8 @@ root.render(
       {/*<RegisterPage/>*/}
       {/*<SearchClose/>*/}
       {/* <Header/> */}
-      <MainPage/>
-      {/* <DetailView/> */}
+      {/* <MainPage/> */}
+      <DetailView/>
       
   </React.StrictMode>
 )

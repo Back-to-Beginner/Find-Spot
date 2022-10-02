@@ -2,6 +2,10 @@ html {
     background-color: #fff7d9;
 }
 
+::-webkit-scrollbar {
+    display: none;
+}
+
 .missionView {
     width: 400px;
     height: 488px;
@@ -128,11 +132,11 @@ html {
 
 .commentView {
     width: 378px;
-    height: 466px;
+    height: 468px;
     flex-grow: 0;
     padding: 10px 10px 10px 10px;
     box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, 0.25);
-    border: solid 1px #000;
+    border-left: solid 1px #000;
     background-color: #fff;
 }
 
@@ -383,11 +387,10 @@ html {
 }
 
 .loginformBox {
-    width: 505px;
-    height: 570px;
+    width: 375px;
+    height: 470px;
     flex-grow: 0;
-    margin: 68px 0 0 435px;
-    padding: 80px 46px 22px 50px;
+    /* padding: 80px 46px 22px 50px; */
     border-radius: 24px;
     -webkit-backdrop-filter: blur(4px);
     backdrop-filter: blur(4px);
@@ -457,12 +460,26 @@ button {
     background-color: rgba(0, 0, 0, 0);
 }
 
+.loginLayout {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 10% 10% 0 10%;
+}
+
+.loginLeft {
+    display: flex;
+    flex-direction: column;
+    padding: 4%;
+    line-height: 1.1;
+}
+
 .findText {
-    position: absolute;
+    /* position: absolute;
     top: 291px;
-    left: 10%;
+    left: 10%; */
     font-family: Roboto;
-    font-size: 128px;
+    font-size: 64px;
     font-weight: bold;
     text-align: center;
     color: #7d7d7d;
@@ -473,34 +490,34 @@ button {
 }
 
 .spotText {
-    position: absolute;
+    /* position: absolute;
     top: 427px;
-    left: 10%;
+    left: 10%; */
     font-family: Roboto;
-    font-size: 128px;
+    font-size: 64px;
     font-weight: bold;
     text-align: center;
     color: #7d7d7d;
 }
 
 .logo {
-    position: absolute;
+    /* position: absolute;
     top: 179px;
-    left: 10%;
+    left: 10%; */
     width: 123px;
     height: 123px;
 }
 
 .loginBoxPosition {
-    position: absolute;
+    /* position: absolute;
     right: 10%;
-    top: 247px;
+    top: 247px; */
 }
 
 .RegisterBoxPosition {
-    position: absolute;
+    /* position: absolute;
     right: 10%;
-    top: 247px;
+    top: 247px; */
 }
 
 .topWave {
@@ -732,27 +749,12 @@ button {
     padding-right: 10%;
 }
 
-.CommentViewEdge {
-    position: absolute;
-    right: 750px;
-    top: 268px;
-    background-color: #fff;
-}
-
-.missionDetailViewEdge {
-    position: absolute;
-    left: 730px;
-    top: 268px;
-    background-color: #fff;
-}
-
 .background {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    flex-grow: 0;
-    padding: 0 0 103px;
-    background-color: #fff7d9;
+    padding: 140px 0 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .detailBoxPosition {
@@ -762,16 +764,20 @@ button {
 }
 
 .findSuccess {
-    position: absolute;
-    bottom: 230px;
-    right: 1070px;
-    width: 160px;
-    height: 30px;
     flex-grow: 0;
     font-family: Roboto;
-    font-size: 20px;
+    font-size: 12px;
     font-weight: 800;
     line-height: 1.88;
     text-align: center;
     color: #595959;
+
+}
+
+.detailViewLocation{
+    display: flex;
+    flex-direction: row;
+    /* flex-wrap: wrap; */
+    align-items: center;
+    justify-content: center;
 }
