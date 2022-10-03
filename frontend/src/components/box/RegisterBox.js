@@ -3,6 +3,7 @@ import EmailInput from '../input/EmaiInput';
 import PasswordInput from '../input/PasswordInput';
 import YellowButton from '../button/YelloButton';
 import PasswordConfirmInput from '../input/PasswordConfirmInput';
+import { Link } from 'react-router-dom';
 
 const RegisterBox = () => {
 
@@ -12,7 +13,8 @@ const RegisterBox = () => {
                 Register
             </div>
             <form>
-                <div style={{ marginTop: '67px', marginLeft: '50px', marginRight: '50px' }}>
+                <div className='registerformLocation'>
+                <div style={{ marginTop: '60px', marginLeft: '50px', marginRight: '50px' }}>
                     <EmailInput />
                 </div>
                 <div style={{ marginTop: '20px', marginLeft: '50px', marginRight: '50px' }}>
@@ -21,13 +23,16 @@ const RegisterBox = () => {
                 <div style={{ marginTop: '20px', marginLeft: '50px', marginRight: '50px' }}>
                     <PasswordConfirmInput />
                 </div>
-                <button style={{ marginTop: '105px', marginLeft: '50px', marginRight: '50px' }}>
+                <button style={{ marginTop: '40px', marginLeft: '50px', marginRight: '50px' }}>
                     <YellowButton buttonName={'Confirm'} />
                 </button>
-            </form>
+                </div>
+            <Link to={'/login'}>
             <div className='login'>
                 Login
             </div>
+            </Link>
+            </form>
         </div>
     </>
 }
