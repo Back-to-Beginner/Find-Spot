@@ -299,8 +299,8 @@ html {
 }
 
 .emailBox {
-    width: 405px;
-    height: 65px;
+    width: 305px;
+    height: 60px;
     flex-grow: 0;
     /*margin: 0 0 20px;*/
     border-radius: 9999px;
@@ -314,17 +314,17 @@ html {
     border: 0;
     font-size: 16px;
     height: 30px;
-    width: 325px;
-    margin-left: 40px;
-    margin-top: 17px;
+    width: 250px;
+    margin-left: 20px;
+    margin-top: 15px;
     color: #878787;
 }
 
 
 
 .passwordBox {
-    width: 405px;
-    height: 65px;
+    width: 305px;
+    height: 60px;
     flex-grow: 0;
     /*margin: 20px 0 0;*/
     border-radius: 9999px;
@@ -338,15 +338,15 @@ html {
     border: 0;
     font-size: 16px;
     height: 30px;
-    width: 325px;
-    margin-left: 40px;
-    margin-top: 17px;
+    width: 250px;
+    margin-left: 20px;
+    margin-top: 15px;
     color: #878787;
 }
 
 .passwordconfirmBox {
-    width: 405px;
-    height: 65px;
+    width: 305px;
+    height: 60px;
     flex-grow: 0;
     /*margin: 20px 0 0;*/
     border-radius: 9999px;
@@ -359,8 +359,8 @@ html {
     border: 0;
     font-size: 16px;
     height: 30px;
-    width: 325px;
-    margin-left: 40px;
+    width: 250px;
+    margin-left: 20px;
     margin-top: 17px;
     color: #878787;
 }
@@ -400,11 +400,11 @@ html {
 }
 
 .registerformBox {
-    width: 505px;
-    height: 570px;
+    width: 375px;
+    height: 470px;
     flex-grow: 0;
-    margin: 68px 0 0 435px;
-    padding: 80px 46px 22px 50px;
+    /* margin: 68px 0 0 435px; */
+    /* padding: 80px 46px 22px 50px; */
     border-radius: 24px;
     -webkit-backdrop-filter: blur(4px);
     backdrop-filter: blur(4px);
@@ -438,6 +438,7 @@ html {
 .loginBoxTitle {
     margin-left: auto;
     margin-right: auto;
+    margin-top: 10px;
     font-size: 20px;
     font-weight: 600;
     text-align: center;
@@ -447,6 +448,7 @@ html {
 .registerBoxTitle {
     margin-left: auto;
     margin-right: auto;
+    margin-top: 10px;
     font-size: 20px;
     font-weight: 600;
     text-align: center;
@@ -506,6 +508,23 @@ button {
     left: 10%; */
     width: 123px;
     height: 123px;
+}
+
+.loginformLocation {
+    display: flex;
+    flex-direction: column;
+    /* flex-wrap: wrap; */
+    align-items: center;
+    justify-content: center;
+
+}
+
+.registerformLocation {
+    display: flex;
+    flex-direction: column;
+    /* flex-wrap: wrap; */
+    align-items: center;
+    justify-content: center;
 }
 
 .loginBoxPosition {
