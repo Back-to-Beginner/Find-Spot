@@ -39,18 +39,6 @@ const ProfilePage = () => {
         {image: profileIcon, content: 'Success 4'},
         {image: profileIcon, content: 'Success 5'},
         {image: profileIcon, content: 'Success 6'},
-        {image: profileIcon, content: 'Success 1'},
-        {image: profileIcon, content: 'Success 2'},
-        {image: profileIcon, content: 'Success 3'},
-        {image: profileIcon, content: 'Success 4'},
-        {image: profileIcon, content: 'Success 5'},
-        {image: profileIcon, content: 'Success 6'},
-        {image: profileIcon, content: 'Success 1'},
-        {image: profileIcon, content: 'Success 2'},
-        {image: profileIcon, content: 'Success 3'},
-        {image: profileIcon, content: 'Success 4'},
-        {image: profileIcon, content: 'Success 5'},
-        {image: profileIcon, content: 'Success 6'},
     ]
 
     return (

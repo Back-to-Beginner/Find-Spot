@@ -1,6 +1,6 @@
 import React from "react";
 import RegisterBox from "../../components/box/RegisterBox";
-import tempLogo from "../../images/missionExample.jpeg"
+import Logo from "../../images/SHOOTING.png"
 
 
 const RegisterPage = () => {
@@ -10,7 +10,7 @@ const RegisterPage = () => {
       <div className="bottomWave" />
       <div className="loginLayout">
         <div className="loginLeft">
-          <img className="logo" src="tempLogo"></img>
+          <img className="logo" src={Logo}></img>
           <div className="findText">
             <span className='yellowText'>
               F

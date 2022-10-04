@@ -466,7 +466,7 @@ button {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    padding: 10% 10% 0 10%;
+    padding: 10% 10% 10% 10%;
 }
 
 .loginLeft {
@@ -668,7 +668,7 @@ button {
     flex-grow: 0;
     border-radius: 30px;
     /* margin: 20px 0 19px 64px; */
-    padding: 10.8px 10.3px 10.3px 10.8px;
+    padding: 11px 10px 10px 11px;
     background-color: #d9d9d9;
 }
 
@@ -682,14 +682,14 @@ button {
 }
 
 .user-2 {
-    width: 19.9px;
+    width: 20px;
     /*height: 19.9px;  안보임*/
     /*flex-grow: 0; 반으로 잘림*/
 }
 
 .searchIcon {
-    width: 19.9x;
-    height: 19.9px;
+    width: 20px;
+    height: 20px;
     flex-grow: 0;
 }
 
@@ -769,7 +769,6 @@ button {
 }
 
 .background {
-    padding: 140px 0 0 0;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
@@ -799,4 +798,15 @@ button {
     /* flex-wrap: wrap; */
     align-items: center;
     justify-content: center;
+}
+
+.detailViewLayout{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 247, 217, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
