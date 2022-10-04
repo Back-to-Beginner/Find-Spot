@@ -53,7 +53,6 @@ const UploadCard = (props) => {
 
     return <>
         <div className={'uploadView'}>
-
             <div className={'uploadImageMask'} onClick={handleClick}>
                 <div className={'information'}>
                     <img className={'informationImage'} src={information}/>
@@ -65,7 +64,7 @@ const UploadCard = (props) => {
                 </div>
 
                 <div className={'approved'}>
-                    <img className={'approvedImage'} title={getApproveText()} src={getApproveImage()}/>
+                    <img className={'approvedImage'} src={getApproveImage()}/>
                     <span className={'approveTooltipText'} style={getApproveTextColor()}>{getApproveText()}</span>
                 </div>
 
