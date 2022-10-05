@@ -3,7 +3,6 @@ package com.backend.domain.user.service;
 import com.backend.domain.user.domain.entity.User;
 import com.backend.domain.user.domain.repository.UserRepository;
 import com.backend.domain.user.dto.LoginRequest;
-import com.backend.domain.user.dto.UserMapper;
 import com.backend.domain.user.dto.UserRequest;
 import com.backend.domain.user.dto.UserResponse;
 import com.backend.global.domain.CrudAble;
@@ -25,10 +24,10 @@ public class UserService implements
         FindEntityAble<User> {
 
     private final UserRepository repository;
-    private final UserMapper mapper;
 
     public UserResponse login(LoginRequest request) {
-        User user = repository.findByEmailAndAndPw(request.getEmail(), request.getPw());
+        User user = repository.findByEmailAndAndPw(request.getEmail(), request.getPw())
+                .orElseThrow(() -> new NotFoundException(ErrorCode.NOT_FOUND, "로그인 정보가 일치하지 않습니다."));
         return UserResponse.of(user);
     }
 
@@ -61,8 +60,8 @@ public class UserService implements
 
     @Override
     public UserResponse update(long id, UserRequest userRequest) {
-        User newUser = mapper.toEntity(userRequest);
-        return mapper.fromEntity(findEntity(id).update(newUser));
+        User newUser = userRequest.toEntity();
+        return UserResponse.of(findEntity(id).update(newUser));
     }
 
     @Override
