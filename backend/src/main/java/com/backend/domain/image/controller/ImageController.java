@@ -4,8 +4,10 @@ import com.backend.domain.image.dto.ImageRequest;
 import com.backend.domain.image.service.ImageService;
 import com.backend.global.dto.ApiResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -28,6 +30,25 @@ public class ImageController {
     ) throws IOException {
         return created(
                 imageService.uploadImage(id, multipartFile)
+        );
+    }
+
+    @GetMapping("/compare")
+    @ResponseStatus(CREATED)
+    public ApiResponse compareImage(
+            @RequestParam("challengeId") Long challengeId,
+            @RequestParam("missionId") Long missionId
+    ) throws IOException {
+        return ok(
+                imageService.compareImage(challengeId, missionId)
+        );
+    }
+
+    @GetMapping("/test")
+    public ResponseEntity testConnection() {
+        RestTemplate restTemplate = new RestTemplate();
+        return ResponseEntity.ok(
+                restTemplate.getForObject("http://image-analysis:5001/api-python/v1/test", String.class)
         );
     }
 

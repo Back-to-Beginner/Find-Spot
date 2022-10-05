@@ -1,5 +1,8 @@
 version: "3"
 
+volumes:
+  mysql-volume:
+
 services:
 #  react-btb:
 #    image: node:16-alpine
@@ -11,29 +14,29 @@ services:
 #      - ./frontend:/app
 #    container_name: react-btb
 
-  spring-boot-btb:
+  spring-boot:
     build:
       context: ./backend
       dockerfile: Dockerfile
+    env_file:
+      - ./backend/.env
     image: spring-backend
     ports:
       - "8080:8080"
       - "5005:5005"
-    container_name: spring-boot-btb
-#     restart: always
+    container_name: spring-boot
+    restart: always
     depends_on:
-      - redis-btb
+      - redis
 
-  redis-btb:
-    container_name: redis-btb
+  redis:
+    container_name: redis
     image: arm64v8/redis:6.2-alpine
     ports:
       - "6379:6379"
-    volumes:
-      - redisBtb
 
-  mysql-btb:
-    container_name: mysql-btb
+  mysql:
+    container_name: mysql
     image: arm64v8/mysql:8.0.30
     env_file:
       - ./backend/.env
@@ -45,13 +48,21 @@ services:
         "--collation-server=utf8mb4_unicode_ci",
       ]
     volumes:
-      - mysqlBtb:/var/lib/${MYSQL_DATABASE}
+      - mysql-volume:/var/lib/${MYSQL_DATABASE}
     ports:
       - "3306:3306"
 
-volumes:
-  mysqlBtb:
-  redisBtb:
+  image-analysis:
+    build:
+      context: ./imageAnalysis
+      dockerfile: Dockerfile
+    image: image-analysis
+    container_name: image-analysis
+    command: gunicorn --bind 0.0.0.0:5001 app:app
+    ports:
+      - "5001:5001"
+    volumes:
+      - ./imageAnalysis/:/app
 
   #grafana
   #prometheus

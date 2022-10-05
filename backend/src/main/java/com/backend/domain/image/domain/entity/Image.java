@@ -20,7 +20,7 @@ public class Image
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "post_id", nullable = false)
+    @JoinColumn(name = "post_id")
     private Post post;
 
     @Column(length = 128, nullable = false)
