@@ -1,5 +1,6 @@
 package com.backend.domain.user.service;
 
+import com.backend.domain.post.service.PostService;
 import com.backend.domain.user.domain.entity.User;
 import com.backend.domain.user.domain.repository.UserRepository;
 import com.backend.domain.user.dto.LoginRequest;
@@ -13,6 +14,7 @@ import com.backend.global.error.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,6 +26,7 @@ public class UserService implements
         FindEntityAble<User> {
 
     private final UserRepository repository;
+    private final PostService postService;
 
     public UserResponse login(LoginRequest request) {
         User user = repository.findByEmailAndAndPw(request.getEmail(), request.getPw())
@@ -32,8 +35,10 @@ public class UserService implements
     }
 
     @Override
+    @Transactional
     public UserResponse save(UserRequest userRequest) {
         User user = repository.save(userRequest.toEntity());
+        postService.createProfile(user.getId());
         return UserResponse.of(user);
     }
 

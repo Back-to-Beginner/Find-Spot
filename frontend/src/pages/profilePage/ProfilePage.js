@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import profileIcon from '../../images/user.png'
 import '../../css/common.css'
 import SmallSuccessCard from "../../components/cards/successCard/SmallSuccessCard";
@@ -15,6 +15,10 @@ const ProfilePage = () => {
     const [follower, setFollower] = useState(0);
     const [following, setFollowing] = useState(0);
     const [edit, setEdit] = useState(false);
+
+    useEffect(() => {
+
+    }, [])
 
     const getProfileImage = () => {
         return imageSrc ? imageSrc : profileIcon;

@@ -48,25 +48,11 @@ public class PostService implements
         } else {
             post = request.toEntity(user, findEntity(request.getParentPostId()));
         }
+
+        checkParentTypeAvailable(post.getParentPost().getType(), post.getType());
+
         return PostResponse.of(repository.save(post));
 
-    }
-
-    public PostResponse saveMission(MissionRequest request) {
-        User user = userService.findEntity(request.getUserId());
-
-
-        Post post = request.toEntity(user);
-        return PostResponse.of(repository.save(post));
-    }
-
-    public PostResponse saveSuccess(SuccessRequest request) {
-        User user = userService.findEntity(request.getUserId());
-        Post parentPost = findEntity(request.getParentPostId());
-        checkParentTypeAvailable(parentPost.getType(), PostType.SUCCESS);
-
-        Post post = request.toEntity(user, parentPost);
-        return PostResponse.of(repository.save(post));
     }
 
     @Override
@@ -104,6 +90,7 @@ public class PostService implements
                 .stream()
                 .map(PostResponse::of)
                 .collect(Collectors.toList());
+
     }
 
     @Override
@@ -139,13 +126,36 @@ public class PostService implements
         return repository.findAllByTypeAndParentPost(type, parentPost);
     }
 
-    private void checkParentTypeAvailable(Character parentType, PostType postType) {
-        if (!postType.getParentType().contains(parentType))
-            throw new RuntimeException("parent type is not available type");
+    private void checkParentTypeAvailable(Character parentType, Character postType) {
+        PostType type;
+        if (PostType.SUCCESS.getType() == postType) {
+            type = PostType.SUCCESS;
+        } else if (PostType.MISSION.getType() == postType) {
+            type = PostType.MISSION;
+        } else if (PostType.COMMENT.getType() == postType) {
+            type = PostType.COMMENT;
+        } else if (PostType.PROFILE.getType() == postType) {
+            type = PostType.PROFILE;
+        } else {
+            throw new NotFoundException(ErrorCode.NOT_FOUND, "타입이 옳바르지 않습니다.");
+        }
+
+        if (!type.getParentType().contains(parentType))
+            throw new NotFoundException(ErrorCode.BAD_REQUEST, "부모 타입이 옳바르지 않습니다.");
     }
 
     @Override
     public boolean isExist(Long id) {
         return repository.existsById(id);
+    }
+
+    public void createProfile(Long userId) {
+        PostRequest profileBuilder = PostRequest.builder()
+                .userId(userId)
+                .type(PostType.PROFILE.getType())
+                .content("새로 가입하였습니다. 반갑습니다!")
+                .build();
+
+        save(profileBuilder);
     }
 }
