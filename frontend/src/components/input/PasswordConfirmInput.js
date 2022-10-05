@@ -1,10 +1,15 @@
 import React from 'react';
 
-const PasswordConfirmInput = () => {
+const PasswordConfirmInput = ({value, setValue}) => {
 
     return <>
     <div className={'passwordconfirmBox'}>
-          <input type={'password'} className={'passwordConfirmTextInput'} placeholder='Password Confirm'></input>
+          <input
+              type={'password'}
+              className={'passwordConfirmTextInput'}
+              value={value}
+              onChange={(e) => {setValue(e.target.value)}}
+              placeholder='Password Confirm'></input>
     </div>
     </>
 

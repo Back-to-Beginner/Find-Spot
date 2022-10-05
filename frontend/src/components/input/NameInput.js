@@ -1,16 +1,16 @@
 import React from 'react';
 
-const EmailInput = ({value, setValue}) => {
+const NameInput = ({value, setValue}) => {
     return <>
         <div className={'emailBox'}>
             <input
-                type={'email'}
+                type={'text'}
                 className={'emailTextInput'}
                 value={value}
                 onChange={(e) => {setValue(e.target.value)}}
-                placeholder='Email'></input>
+                placeholder='Name'></input>
         </div>
     </>
 }
 
-export default EmailInput;
+export default NameInput;
