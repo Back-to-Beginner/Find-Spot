@@ -14,7 +14,15 @@ methods = ['CORREL',  # cv2.HISTCMP_CORREL: 상관관계 (1: 완전 일치, -1: 
            'EMD']
 
 
-@app.route('/api/compare', methods=['POST'])
+@app.route('/api-python/v1/test', methods=['GET'])
+def hello():
+    if request.method == 'GET':
+        return 'True'
+    else:
+        'False'
+
+
+@app.route('/api-python/v1/compare', methods=['POST'])
 def check_simular():
     if request.method == 'POST':
         image1 = request.files['file1']
@@ -67,9 +75,9 @@ def check_simular():
 
         print(score)
         if score > 3:
-            return 'similar image'
+            return 'True'
 
-    return 'fail!'
+    return 'False'
 
 
 def image_to_hsv(img):

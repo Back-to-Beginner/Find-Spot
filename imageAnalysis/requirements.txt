@@ -1,0 +1,9 @@
+flask==2.0.2
+gunicorn==20.0.4
+flask-Cors == 3.0.10
+pandas
+requests
+numpy
+scikit-image
+opencv-python
+opencv-contrib-python
