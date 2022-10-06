@@ -64,20 +64,20 @@ public class PostController implements
         return noContent();
     }
 
-    @GetMapping("/{type}}")
+    @GetMapping("/types/{type}")
     @ResponseStatus(OK)
     public ApiResponse findAllByType(
-            @PathVariable Character type) {
-        return ok(service.findByType(type));
+            @PathVariable String type) {
+        return ok(service.findByType(type.charAt(0)));
     }
 
-    @GetMapping("/{type}/{userId}")
+    @GetMapping("/types/{type}/users/{userId}")
     @ResponseStatus(OK)
     public ApiResponse findAllByTypeAndUser(
-            @PathVariable Character type,
+            @PathVariable String type,
             @PathVariable Long userId
     ) {
-        return ok(service.findByTypeAndUser(type, userId));
+        return ok(service.findByTypeAndUser(type.charAt(0), userId));
     }
 
     @GetMapping("/missions/{postId}/successes")

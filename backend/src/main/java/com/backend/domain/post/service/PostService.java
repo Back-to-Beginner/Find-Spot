@@ -45,12 +45,11 @@ public class PostService implements
         Post post;
         if (request.getParentPostId() == -1L) {
             post = request.toEntity(user);
+            checkParentTypeAvailable(post.getType());
         } else {
             post = request.toEntity(user, findEntity(request.getParentPostId()));
+            checkParentTypeAvailable(post.getParentPost().getType(), post.getType());
         }
-
-        checkParentTypeAvailable(post.getParentPost().getType(), post.getType());
-
         return PostResponse.of(repository.save(post));
 
     }
@@ -127,6 +126,18 @@ public class PostService implements
     }
 
     private void checkParentTypeAvailable(Character parentType, Character postType) {
+        PostType type = getPostType(postType);
+        if (!type.getParentType().contains(parentType))
+            throw new NotFoundException(ErrorCode.BAD_REQUEST, "부모 타입이 옳바르지 않습니다.");
+    }
+
+    private void checkParentTypeAvailable(Character postType) {
+        PostType type = getPostType(postType);
+        if (!type.getParentType().isEmpty())
+            throw new NotFoundException(ErrorCode.BAD_REQUEST, "부모 타입이 옳바르지 않습니다.");
+    }
+
+    private PostType getPostType(Character postType) {
         PostType type;
         if (PostType.SUCCESS.getType() == postType) {
             type = PostType.SUCCESS;
@@ -139,9 +150,7 @@ public class PostService implements
         } else {
             throw new NotFoundException(ErrorCode.NOT_FOUND, "타입이 옳바르지 않습니다.");
         }
-
-        if (!type.getParentType().contains(parentType))
-            throw new NotFoundException(ErrorCode.BAD_REQUEST, "부모 타입이 옳바르지 않습니다.");
+        return type;
     }
 
     @Override
@@ -149,13 +158,4 @@ public class PostService implements
         return repository.existsById(id);
     }
 
-    public void createProfile(Long userId) {
-        PostRequest profileBuilder = PostRequest.builder()
-                .userId(userId)
-                .type(PostType.PROFILE.getType())
-                .content("새로 가입하였습니다. 반갑습니다!")
-                .build();
-
-        save(profileBuilder);
-    }
 }

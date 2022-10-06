@@ -5,6 +5,8 @@ import com.backend.domain.image.domain.repository.ImageRepository;
 import com.backend.domain.image.dto.ImageMapper;
 import com.backend.domain.image.dto.ImageRequest;
 import com.backend.domain.image.dto.ImageResponse;
+import com.backend.domain.post.domain.entity.Post;
+import com.backend.domain.post.service.PostService;
 import com.backend.global.domain.CrudAble;
 import com.backend.global.domain.FindEntityAble;
 import com.backend.global.domain.GetEntityAble;
@@ -29,6 +31,7 @@ public class ImageService implements
     private final ImageRepository repository;
     private final ImageUploader uploader;
     private final ImageMapper mapper;
+    private final PostService postService;
     private final ImageAnalysis imageAnalysis;
 
 
@@ -94,5 +97,17 @@ public class ImageService implements
     @Override
     public Image getEntity(Long id) {
         return repository.getById(id);
+    }
+
+    public List<ImageResponse> findByPost(Long postId) {
+        return findEntityByPost(postId)
+                .stream()
+                .map(mapper::fromEntity)
+                .collect(Collectors.toList());
+    }
+
+    public List<Image> findEntityByPost(Long postId) {
+        Post post = postService.findEntity(postId);
+        return repository.findAllByPost(post);
     }
 }

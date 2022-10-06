@@ -15,7 +15,8 @@ const RouterPage = () => {
                            element={sessionStorage.getItem('id') ? <Navigate replace to='/'/> : <LoginPage/>}/>
                     <Route path={'/register'}
                            element={sessionStorage.getItem('id') ? <Navigate replace to='/'/> : <RegisterPage/>}/>
-                    <Route path={'/user/:id'} element={<ProfilePage/>}/>
+                    <Route path={'/user/:id'}
+                           element={<ProfilePage/>}/>
                     <Route path={'/'} element={<MainPage/>}/>
                     <Route path={'*'} element={<Navigate replace to={'/'}/>}/>
                 </Routes>
