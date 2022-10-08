@@ -120,7 +120,7 @@ html {
 
 .commentBox {
     width: 100%;
-    font-family: Inter;
+    font-family: Arial;
     font-size: 16px;
 }
 
@@ -207,7 +207,7 @@ html {
 }
 
 .fileuploadText {
-    font-family: Inter;
+    font-family: Arial;
     font-size: 20px;
     color: #525252;
     width: 316px;
@@ -416,7 +416,7 @@ html {
 .register {
     margin-left: auto;
     margin-right: auto;
-    font-family: Roboto;
+    font-family: Arial;
     margin-top: 21px;
     font-size: 20px;
     font-weight: 600;
@@ -427,7 +427,7 @@ html {
 .login {
     margin-left: auto;
     margin-right: auto;
-    font-family: Roboto;
+    font-family: Arial;
     margin-top: 21px;
     font-size: 20px;
     font-weight: 600;
@@ -480,7 +480,7 @@ button {
     /* position: absolute;
     top: 291px;
     left: 10%; */
-    font-family: Roboto;
+    font-family: Arial;
     font-size: 64px;
     font-weight: bold;
     text-align: center;
@@ -495,7 +495,7 @@ button {
     /* position: absolute;
     top: 427px;
     left: 10%; */
-    font-family: Roboto;
+    font-family: Arial;
     font-size: 64px;
     font-weight: bold;
     text-align: center;
@@ -637,7 +637,7 @@ button {
     display: flex;
     align-items: center;
     /* margin: 0 899px 0 0; */
-    font-family: Inter;
+    font-family: Arial;
     font-size: 24px;
     font-weight: 600;
     font-stretch: normal;
@@ -711,7 +711,7 @@ button {
     width: 242.9px;
     height: 21px;
     flex-grow: 0;
-    font-family: Inter;
+    font-family: Arial;
     font-size: 16px;
     text-align: left;
     background-color: #fff7d9;
@@ -735,7 +735,7 @@ button {
 }
 
 .mainPageTitle {
-    font-family: Roboto;
+    font-family: Arial;
     font-size: 28px;
     font-weight: 500;
     text-align: center;
@@ -752,7 +752,7 @@ button {
 
 .findOtherSpot {
     flex-grow: 0;
-    font-family: Roboto;
+    font-family: Arial;
     font-size: 12px;
     font-weight: 800;
     line-height: 1.88;
@@ -783,7 +783,7 @@ button {
 
 .findSuccess {
     flex-grow: 0;
-    font-family: Roboto;
+    font-family: Arial;
     font-size: 12px;
     font-weight: 800;
     line-height: 1.88;
@@ -809,4 +809,32 @@ button {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.resultPageWave {
+    padding: 40px 0 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.resultPageTitle {
+    font-family: Arial;
+    font-size: 28px;
+    font-weight: 500;
+    margin-top : 40px;
+    text-align: center;
+    color: #525252;
+    padding-bottom: 15px;
+}
+
+.resultPageServeTitle {
+    font-family: Arial;
+    font-size: 20px;
+    font-weight: 500;
+    
+    text-align: center;
+    color: #afafaf;
+    padding-bottom: 30px;
 }

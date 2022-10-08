@@ -4,6 +4,7 @@ import LoginPage from './loginPage/LoginPage';
 import MainPage from './mainPage/MainPage';
 import ProfilePage from './profilePage/ProfilePage';
 import RegisterPage from './registerPage/RegisterPage';
+import ResultPage from './resultPage/ResultPage';
 
 const RouterPage = () => {
 
@@ -18,6 +19,7 @@ const RouterPage = () => {
                     <Route path={'/user/:id'} element={<ProfilePage/>}/>
                     <Route path={'/'} element={<MainPage/>}/>
                     <Route path={'*'} element={<Navigate replace to={'/'}/>}/>
+                    <Route path={'/result'} element={<ResultPage />}/>
                 </Routes>
             </BrowserRouter>
         </div>
