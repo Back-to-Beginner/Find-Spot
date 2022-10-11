@@ -5,6 +5,7 @@ import SmallSuccessCard from "../../components/cards/successCard/SmallSuccessCar
 import YellowButton from "../../components/button/YelloButton";
 import DetailView from "../../components/cards/detailView/DetailView";
 import axios from "axios";
+import {Link} from 'react-router-dom';
 
 const MainPage = () => {
     const [detailView, setDetailView] = useState(false);
@@ -92,9 +93,11 @@ const MainPage = () => {
                 </div>
                 <div style={{padding: '10px'}}>
 
+                <Link to={'/collection'}>
                     <div className='findOtherSpot'>
                         Find other Spot
                     </div>
+                    </Link>
                 </div>
             </div>
 

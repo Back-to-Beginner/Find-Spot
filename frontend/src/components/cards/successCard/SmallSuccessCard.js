@@ -1,3 +1,4 @@
+
 import React, {useEffect, useState} from 'react';
 import '../../../css/common.css'
 import axios from "axios";
@@ -17,12 +18,20 @@ const SmallSuccessCard = (props) => {
 
     return <>
         <div className={'smallSuccessView'}>
-            <div className={'smallSuccessImageMask'}>
-                <img className={'smallSuccessImage'}
-                     src={imageSrc}
-                     alt={null}/>
-            </div>
-
+            <ul>
+                <li>
+                    <a href="#">
+                        <figure>
+                            <div className={'smallSuccessImageMask'}>
+                                <img className={'smallSuccessImage'}
+                                    src={imageSrc}
+                                    alt={null} />
+                            </div>
+                            <figcaption>자세히보기</figcaption>
+                        </figure>
+                    </a>
+                </li>
+            </ul>
             <div className={'smallSuccessCardContent'}>
                 {props.data.content}
             </div>

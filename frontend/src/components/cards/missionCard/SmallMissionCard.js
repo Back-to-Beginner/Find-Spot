@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import '../../../css/common.css'
 import missionImageExample from '../../../images/missionExample.jpeg';
 
@@ -8,14 +8,24 @@ const SmallMissionCard = (props) => {
 
     return <>
         <div className={'smallMissionView'}>
+
             <div className={'smallMissionCardTitle'}>
                 {missionName}
             </div>
-            <div className={'smallMissionImageMask'}>
-                <img className={'smallMissionImage'}
-                     src={missionImageExample}
-                     alt={null}/>
-            </div>
+            <ul>
+                <li>
+                    <a href="#">
+                        <figure>
+                            <div className={'smallMissionImageMask'}>
+                                <img className={'smallMissionImage'}
+                                    src={missionImageExample}
+                                    alt={null} />
+                            </div>
+                            <figcaption>자세히보기</figcaption>
+                        </figure>
+                    </a>
+                </li>
+            </ul>
         </div>
     </>
 }
