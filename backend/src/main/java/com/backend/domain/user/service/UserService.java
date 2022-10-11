@@ -13,6 +13,7 @@ import com.backend.global.error.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -32,6 +33,7 @@ public class UserService implements
     }
 
     @Override
+    @Transactional
     public UserResponse save(UserRequest userRequest) {
         User user = repository.save(userRequest.toEntity());
         return UserResponse.of(user);

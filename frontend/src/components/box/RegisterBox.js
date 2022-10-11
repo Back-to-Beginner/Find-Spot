@@ -32,9 +32,23 @@ const RegisterBox = () => {
                 "pw": formValue.pw
             }
         }).catch((err) => {
-            alert("로그인 정보가 일치하지 않습니다.");
+            alert("로그인 정보가 일치하지 않습니다." + err);
         }).then((res) => {
-            navigate('/login');
+            console.log(res.data.data)
+            res.data.data.id && axios({
+                method: "post",
+                url: '/posts',
+                data: {
+                    "userId": Number(res.data.data.id),
+                    "type": 'u',
+                    "content": "신규 가입했습니다. 반갑습니다!",
+                    "parentPostId": -1
+                }
+            }).catch(err => {
+                alert(err);
+            }).then(res => {
+                navigate('/login');
+            });
         });
     });
 

@@ -1,12 +1,9 @@
 import React, {useRef, useState} from 'react';
 import '../../../css/common.css'
 import fileupload from '../../../images/fileupload.png';
-import information from '../../../images/information.png';
-import approved from '../../../images/approved.png';
-import cancel from '../../../images/cancel.png';
 
 const ProfileUploadCard = (props) => {
-    const [imageSrc, setImageSrc] = useState(props.image);
+    const [image, setImage] = useState();
 
     const getUploadImage = () => {
         return (<>
@@ -24,11 +21,12 @@ const ProfileUploadCard = (props) => {
     }
 
     const encodeFileToBase64 = (fileBlob) => {
+        props.setImageSrc(fileBlob);
         const reader = new FileReader();
         reader.readAsDataURL(fileBlob);
         return new Promise((resolve) => {
             reader.onload = () => {
-                setImageSrc(reader.result);
+                setImage(reader.result);
                 resolve();
             };
         });
@@ -44,8 +42,8 @@ const ProfileUploadCard = (props) => {
                        }}
                        ref={imageInput}/>
 
-                {imageSrc ? <img className={'successImage'}
-                                 src={imageSrc}
+                {image ? <img className={'successImage'}
+                                 src={image}
                                  alt={null}/> : getUploadImage()}
             </div>
 

@@ -42,7 +42,7 @@ const Header = () => {
                     {selectSearchButton[searchButtonValue]}
                     {/* <SearchButton/> */}
                 </div>
-                <Link to={'/user'}>
+                <Link to={`/user/${sessionStorage.getItem('id')}`}>
                     <ProfileButton/>
                 </Link>
             </div>

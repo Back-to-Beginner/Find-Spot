@@ -1,13 +1,20 @@
-import React, { useState } from 'react';
+
+import React, {useEffect, useState} from 'react';
 import '../../../css/common.css'
+import axios from "axios";
 
 const SmallSuccessCard = (props) => {
-    const [successContent, setSuccessContent] = useState(props.content);
-    const [imageSrc, setImageSrc] = useState(props.image);
+    const [imageSrc, setImageSrc] = useState();
 
-    const getImage = () => {
-        return imageSrc ? imageSrc : null;
-    }
+    useEffect(() => {
+        axios({
+            method: 'get',
+            url: `/images/post/${props.data.id}`
+        }).then(res => {
+            // console.log(res.data.data);
+            res.data.data[0] && setImageSrc(res.data.data[0].path);
+        });
+    });
 
     return <>
         <div className={'smallSuccessView'}>
@@ -17,7 +24,7 @@ const SmallSuccessCard = (props) => {
                         <figure>
                             <div className={'smallSuccessImageMask'}>
                                 <img className={'smallSuccessImage'}
-                                    src={getImage()}
+                                    src={imageSrc}
                                     alt={null} />
                             </div>
                             <figcaption>자세히보기</figcaption>
@@ -26,7 +33,7 @@ const SmallSuccessCard = (props) => {
                 </li>
             </ul>
             <div className={'smallSuccessCardContent'}>
-                {successContent}
+                {props.data.content}
             </div>
         </div>
     </>

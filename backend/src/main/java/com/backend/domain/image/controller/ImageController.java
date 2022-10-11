@@ -22,14 +22,13 @@ public class ImageController {
 
     private final ImageService imageService;
 
-    @PostMapping("/upload")
+    @PostMapping("/upload/{postId}")
     @ResponseStatus(CREATED)
     public ApiResponse uploadImage(
-            @RequestParam("id") Long id,
-            @RequestParam("images") MultipartFile multipartFile
-    ) throws IOException {
+            @RequestParam("images") MultipartFile multipartFile,
+            @PathVariable Long postId) throws IOException {
         return created(
-                imageService.uploadImage(id, multipartFile)
+                imageService.uploadImage(postId, multipartFile)
         );
     }
 
@@ -81,5 +80,13 @@ public class ImageController {
     ) {
         imageService.deleteById(id);
         return noContent();
+    }
+
+    @GetMapping("/post/{postId}")
+    @ResponseStatus(OK)
+    public ApiResponse findByPostId(
+            @PathVariable Long postId
+    ) {
+        return ok(imageService.findByPost(postId));
     }
 }
