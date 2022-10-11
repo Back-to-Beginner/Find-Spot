@@ -416,7 +416,7 @@ html {
 .register {
     margin-left: auto;
     margin-right: auto;
-    font-family: Roboto;
+    font-family: Arial;
     margin-top: 21px;
     font-size: 20px;
     font-weight: 600;
@@ -427,7 +427,7 @@ html {
 .login {
     margin-left: auto;
     margin-right: auto;
-    font-family: Roboto;
+    font-family: Arial;
     margin-top: 21px;
     font-size: 20px;
     font-weight: 600;
@@ -480,7 +480,7 @@ button {
     /* position: absolute;
     top: 291px;
     left: 10%; */
-    font-family: Roboto;
+    font-family: Arial;
     font-size: 64px;
     font-weight: bold;
     text-align: center;
@@ -495,7 +495,7 @@ button {
     /* position: absolute;
     top: 427px;
     left: 10%; */
-    font-family: Roboto;
+    font-family: Arial;
     font-size: 64px;
     font-weight: bold;
     text-align: center;
@@ -735,7 +735,7 @@ button {
 }
 
 .mainPageTitle {
-    font-family: Roboto;
+    font-family: Arial;
     font-size: 28px;
     font-weight: 500;
     text-align: center;
@@ -752,7 +752,7 @@ button {
 
 .findOtherSpot {
     flex-grow: 0;
-    font-family: Roboto;
+    font-family: Arial;
     font-size: 12px;
     font-weight: 800;
     line-height: 1.88;
@@ -783,7 +783,7 @@ button {
 
 .findSuccess {
     flex-grow: 0;
-    font-family: Roboto;
+    font-family: Arial;
     font-size: 12px;
     font-weight: 800;
     line-height: 1.88;
@@ -800,6 +800,34 @@ button {
     justify-content: center;
 }
 
+.resultPageWave {
+    padding: 40px 0 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.resultPageTitle {
+    font-family: Arial;
+    font-size: 28px;
+    font-weight: 500;
+    margin-top : 40px;
+    text-align: center;
+    color: #525252;
+    padding-bottom: 15px;
+}
+
+.resultPageServeTitle {
+    font-family: Arial;
+    font-size: 20px;
+    font-weight: 500;
+
+    text-align: center;
+    color: #afafaf;
+    padding-bottom: 30px;
+}
+
 .detailViewLayout{
     position: fixed;
     width: 100%;
@@ -809,4 +837,72 @@ button {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.schoolCardGrid {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.AnyangCardGrid {
+    padding-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.collectionPageWave {
+    padding: 40px 0 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.collectionPageTitle {
+    font-family: Arial;
+    font-size: 28px;
+    font-weight: 500;
+    text-align: center;
+    color: #525252;
+    padding-bottom: 30px;
+}
+
+.schoolTitle {
+    font-family: Arial;
+    margin-left : 20px;
+    font-size: 20px;
+    font-weight: 500;
+    text-align: left;
+    color: #525252;
+    padding-bottom: 30px;
+}
+
+.schoolServeTitle {
+    font-family: Arial;
+    margin-left : 20px;
+    font-size: 18px;
+    font-weight: 500;
+    text-align: left;
+    line-height: 140%;
+    color: #525252;
+    padding-bottom: 30px;
+}
+
+.colloectionSuccess {
+    font-family: Arial;
+    margin-right : 50px;
+    font-size: 18px;
+    font-weight: 500;
+    text-align: right;
+    color: #525252;
+    padding-bottom: 30px;
+
+}
+
+.collectionLocation {
+    
 }
