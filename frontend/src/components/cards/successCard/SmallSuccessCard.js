@@ -10,7 +10,7 @@ const SmallSuccessCard = (props) => {
             method: 'get',
             url: `/images/post/${props.data.id}`
         }).then(res => {
-            console.log(res.data.data);
+            // console.log(res.data.data);
             res.data.data[0] && setImageSrc(res.data.data[0].path);
         });
     });

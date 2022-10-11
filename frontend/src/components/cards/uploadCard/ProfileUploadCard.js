@@ -1,9 +1,6 @@
 import React, {useRef, useState} from 'react';
 import '../../../css/common.css'
 import fileupload from '../../../images/fileupload.png';
-import information from '../../../images/information.png';
-import approved from '../../../images/approved.png';
-import cancel from '../../../images/cancel.png';
 
 const ProfileUploadCard = (props) => {
     const [image, setImage] = useState();

@@ -5,7 +5,7 @@ import SmallSuccessCard from "../../components/cards/successCard/SmallSuccessCar
 import Header from '../../components/header/Header'
 import ProfileUploadCard from "../../components/cards/uploadCard/ProfileUploadCard";
 import YellowButton from "../../components/button/YelloButton";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
 
 const ProfilePage = () => {
@@ -19,8 +19,14 @@ const ProfilePage = () => {
     const [edit, setEdit] = useState(false);
 
     const param = useParams();
+    const navigate = useNavigate();
 
     useEffect(() => {
+        if (param.id === 'null'){
+            navigate('/login');
+            return;
+        }
+
         axios({
             method: 'get',
             url: `/posts/types/u/users/${param.id}`
@@ -34,7 +40,6 @@ const ProfilePage = () => {
                 method: 'get',
                 url: `/images/post/${sessionStorage.getItem('profileId')}`,
             }).then(res => {
-                console.log(res.data.data)
                 res.data.data[0] && setProfileImage(res.data.data[0])
             });
         });
@@ -57,15 +62,17 @@ const ProfilePage = () => {
 
     const updateProfileImage = () => {
         const form = new FormData();
+        console.log(imageSrc);
         form.append('images', imageSrc);
 
         axios({
-            header: {contentType: 'multipart/form-data'},
+            header: {'content-type': 'multipart/form-data'},
             method: 'post',
             url: `/images/upload/${sessionStorage.getItem('profileId')}`,
-            data: {form}
+            data: form
         }).then(res => {
             console.log(res.data.data)
+            window.location.reload();
         })
     }
 

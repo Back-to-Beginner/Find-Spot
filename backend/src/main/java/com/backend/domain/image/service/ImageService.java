@@ -108,6 +108,6 @@ public class ImageService implements
 
     public List<Image> findEntityByPost(Long postId) {
         Post post = postService.findEntity(postId);
-        return repository.findAllByPost(post);
+        return repository.findAllByPostOrderByUpdatedAtDesc(post);
     }
 }
