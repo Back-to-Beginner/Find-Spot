@@ -45,6 +45,59 @@ html {
     box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, 0.25);
 }
 
+/* 호버 여기부터 */
+*{ padding: 0; margin: 0; }
+li{ list-style: none; }
+
+  .smallMissionView li{
+    float: left;
+    width: 146px; height: 146px;
+    /* margin-right: 20px; */
+  }
+  .smallMissionView li:last-child{ margin-right: 0; }
+  
+  .smallMissionView a{
+    display: block; /* 영역적용위해 사용 */
+    width: 100%; height: 100%;
+    overflow: hidden; /* 넘어가는 자손을 안보이게 처리 */
+    position: relative; /* figcaption의 앱솔루트 기준을 현재 요소로 변경 */
+  }
+  
+  .smallMissionView figcaption{
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.2);
+    color: #fff; text-align: center;
+    line-height: 150px;
+    font-size:10px;
+    position: absolute; /* 기본기준 : body */
+    top: 0; left: 0;
+    opacity: 0; /* 처음에 안보이게 처리 */
+    transition: 0.3s; /* 변화되는 CSS에 시간차를 줌 */
+  }
+  
+  /* 테두리 */
+  .smallMissionView figcaption:after{
+    content: ''; /* 비워둠 */
+    display: block;
+    width: calc(100% - 15px);
+    height: calc(100% - 15px);
+    border: 1px solid #fff;
+    box-sizing: border-box;
+    position: absolute;
+    left: 0; right: 0; top: 0; bottom: 0;
+    margin: auto; /* 기준에서 정가운데 오도록 처리 */
+  }
+  
+  .smallMissionView a:hover figcaption{
+    opacity: 1;
+  }
+
+  .smallMissionView a:focus figcaption {
+    opacity: 0;
+  }
+
+/* 여기까지 */
+
 .smallMissionCardTitle {
     padding-top: 14px;
     padding-bottom: 15px;
@@ -99,6 +152,59 @@ html {
     background-color: #fff;
     box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, 0.25);
 }
+
+/* 호버 여기부터 */
+*{ padding: 0; margin: 0; }
+li{ list-style: none; }
+
+  .smallSuccessView li{
+    float: left;
+    width: 146px; height: 146px;
+    /* margin-right: 20px; */
+  }
+  .smallSuccessView li:last-child{ margin-right: 0; }
+  
+  .smallSuccessView a{
+    display: block; /* 영역적용위해 사용 */
+    width: 100%; height: 100%;
+    overflow: hidden; /* 넘어가는 자손을 안보이게 처리 */
+    position: relative; /* figcaption의 앱솔루트 기준을 현재 요소로 변경 */
+  }
+  
+  .smallSuccessView figcaption{
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.2);
+    color: #fff; text-align: center;
+    line-height: 150px;
+    font-size:10px;
+    position: absolute; /* 기본기준 : body */
+    top: 0; left: 0;
+    opacity: 0; /* 처음에 안보이게 처리 */
+    transition: 0.3s; /* 변화되는 CSS에 시간차를 줌 */
+  }
+  
+  /* 테두리 */
+  .smallSuccessView figcaption:after{
+    content: ''; /* 비워둠 */
+    display: block;
+    width: calc(100% - 15px);
+    height: calc(100% - 15px);
+    border: 1px solid #fff;
+    box-sizing: border-box;
+    position: absolute;
+    left: 0; right: 0; top: 0; bottom: 0;
+    margin: auto; /* 기준에서 정가운데 오도록 처리 */
+  }
+  
+  .smallSuccessView a:hover figcaption{
+    opacity: 1;
+  }
+
+  .smallSuccessView a:focus figcaption{
+    opacity: 0;
+  }
+
+/* 여기까지 */
 
 .smallSuccessImageMask {
     width: 146px;
@@ -839,6 +945,34 @@ button {
     align-items: center;
 }
 
+.resultPageWave {
+    padding: 40px 0 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.resultPageTitle {
+    font-family: Arial;
+    font-size: 28px;
+    font-weight: 500;
+    margin-top : 40px;
+    text-align: center;
+    color: #525252;
+    padding-bottom: 15px;
+}
+
+.resultPageServeTitle {
+    font-family: Arial;
+    font-size: 20px;
+    font-weight: 500;
+
+    text-align: center;
+    color: #afafaf;
+    padding-bottom: 30px;
+}
+
 .schoolCardGrid {
     padding-top: 30px;
     padding-bottom: 30px;
@@ -904,5 +1038,5 @@ button {
 }
 
 .collectionLocation {
-    
+
 }
