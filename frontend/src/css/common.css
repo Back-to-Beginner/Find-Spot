@@ -955,11 +955,12 @@ button {
     align-items: center;
 }
 
-.uploadLocation{
+.uploadLocation {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
+}
 
 .resultPageWave {
     padding: 40px 0 0 0;
@@ -1050,7 +1051,6 @@ button {
     text-align: right;
     color: #525252;
     padding-bottom: 30px;
-
 }
 
 .collectionLocation {

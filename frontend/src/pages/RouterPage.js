@@ -4,7 +4,7 @@ import LoginPage from './loginPage/LoginPage';
 import MainPage from './mainPage/MainPage';
 import ProfilePage from './profilePage/ProfilePage';
 import RegisterPage from './registerPage/RegisterPage';
-import ResultPage from './resultPage/ResultPage';
+// import ResultPage from './resultPage/ResultPage';
 import CollectionPage from './collectionPage/CollectionPage';
 
 const RouterPage = () => {
@@ -20,7 +20,7 @@ const RouterPage = () => {
                     <Route path={'/user/:id'}
                            element={<ProfilePage/>}/>
                     <Route path={'/'} element={<MainPage/>}/>
-                    <Route path={'/result'} element={<ResultPage/>}/>
+                    {/*<Route path={'/result'} element={<ResultPage/>}/>*/}
                     <Route path={'/collection'} element={<CollectionPage/>}/>
                     <Route path={'*'} element={<Navigate replace to={'/'}/>}/>
                 </Routes>
