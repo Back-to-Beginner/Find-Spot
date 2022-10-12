@@ -1,24 +1,31 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import '../../../css/common.css'
 
 const SmallSuccessCard = (props) => {
-    const [successContent, setSuccessContent] = useState(props.content);
-    const [imageSrc, setImageSrc] = useState(props.image);
+    const [content, setContent] = useState("");
+    const [imagePath, setImagePath] = useState("");
 
-    const getImage = () => {
-      return imageSrc ? imageSrc : null;
-    }
+    useEffect(() => {
+        if (props.data) {
+            setContent(props.data.content);
+            setImagePath(props.data.imagePath);
+        }
+    });
 
     return <>
         <div className={'smallSuccessView'}>
             <div className={'smallSuccessImageMask'}>
-                <img className={'smallSuccessImage'}
-                     src={getImage()}
-                     alt={null}/>
+                <a>
+                    <figure>
+                        <img className={'smallSuccessImage'}
+                             src={imagePath}
+                             alt={null}/>
+                        <figcaption>자세히 보기</figcaption>
+                    </figure>
+                </a>
             </div>
-
             <div className={'smallSuccessCardContent'}>
-                {successContent}
+                {content}
             </div>
         </div>
     </>

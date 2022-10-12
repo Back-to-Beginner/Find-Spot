@@ -1,9 +1,6 @@
 package com.backend.domain.post.controller;
 
-import com.backend.domain.post.domain.entity.PostType;
-import com.backend.domain.post.dto.MissionRequest;
 import com.backend.domain.post.dto.PostRequest;
-import com.backend.domain.post.dto.SuccessRequest;
 import com.backend.domain.post.service.PostService;
 import com.backend.global.domain.CrudControllerAble;
 import com.backend.global.dto.ApiResponse;
@@ -66,50 +63,39 @@ public class PostController implements
         return noContent();
     }
 
-    @PostMapping("/missions")
-    @ResponseStatus(CREATED)
-    public ApiResponse saveMission(
-            @RequestBody @Validated MissionRequest missionRequest
-    ) {
-        return ok(service.saveMission(missionRequest));
-    }
-
-    @GetMapping("/missions")
+    @GetMapping("/types/{type}")
     @ResponseStatus(OK)
-    public ApiResponse findAllMission(
-    ) {
-        return ok(service.findByType(PostType.MISSION.getType()));
+    public ApiResponse findAllByType(
+            @PathVariable String type) {
+        return ok(service.findByType(type.charAt(0)));
     }
 
-    @PostMapping("/successes")
-    @ResponseStatus(CREATED)
-    public ApiResponse saveSuccess(
-            @RequestBody @Validated SuccessRequest successRequest
-    ) {
-        return ok(service.saveSuccess(successRequest));
-    }
-
-    @GetMapping("/successes")
+    @GetMapping("/types/{type}/users/{userId}")
     @ResponseStatus(OK)
-    public ApiResponse findAllSuccess(
-    ) {
-        return ok(service.findByType(PostType.SUCCESS.getType()));
-    }
-
-    @GetMapping("/successes/users/{userId}")
-    @ResponseStatus(OK)
-    public ApiResponse findAllSuccessByUser(
+    public ApiResponse findAllByTypeAndUser(
+            @PathVariable String type,
             @PathVariable Long userId
     ) {
-        return ok(service.findByTypeAndUser(PostType.SUCCESS.getType(), userId));
+        return ok(service.findByTypeAndUser(type.charAt(0), userId));
     }
 
-    @GetMapping("/missions/{postId}/successes")
+    @GetMapping("/parent/{parentPostId}/child/{type}")
     @ResponseStatus(OK)
-    public ApiResponse findAllSuccessByMission(
-            @PathVariable Long postId
+    public ApiResponse findAllChildByParentPostId(
+            @PathVariable Long parentPostId,
+            @PathVariable String type
     ) {
-        return ok(service.findByTypeAndParentPost(PostType.SUCCESS.getType(), postId));
+        return ok(service.findTypeAndParentPost(type.charAt(0), parentPostId));
     }
+
+    @GetMapping("/search/{type}")
+    @ResponseStatus(OK)
+    public ApiResponse searchTypeAndWord(
+            @PathVariable("type") String type,
+            @RequestParam("word") String word
+    ) {
+        return ok(service.search(type.charAt(0), word));
+    }
+
 
 }

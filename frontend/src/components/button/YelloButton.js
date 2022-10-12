@@ -3,7 +3,7 @@ import React from 'react';
 const YellowButton = (props) => {
 
     return <>
-        <button
+        <button type={"submit"}
             className={'yellowButtonBox'}>
         <span className="yellowButton">
             {props.buttonName}

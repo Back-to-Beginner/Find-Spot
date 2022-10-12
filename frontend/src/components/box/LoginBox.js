@@ -3,7 +3,7 @@ import axios from 'axios';
 import EmailInput from '../input/EmaiInput';
 import PasswordInput from '../input/PasswordInput';
 import YellowButton from '../button/YelloButton';
-import {Link, Navigate, useNavigate} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 
 const LoginBox = (props) => {
     const [formValue, setFormValue] = useState({
