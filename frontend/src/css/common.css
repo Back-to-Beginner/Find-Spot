@@ -800,6 +800,10 @@ button {
     flex-grow: 0;
 }
 
+.searchIcon :hover {
+    cursor: pointer;
+}
+
 .searchOpen {
     width: 295px;
     height: 32px;
@@ -913,6 +917,7 @@ button {
     flex-wrap: wrap;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
 }
 
 .resultPageTitle {
@@ -960,33 +965,6 @@ button {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-}
-
-.resultPageWave {
-    padding: 40px 0 0 0;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.resultPageTitle {
-    font-family: Arial;
-    font-size: 28px;
-    font-weight: 500;
-    margin-top : 40px;
-    text-align: center;
-    color: #525252;
-    padding-bottom: 15px;
-}
-
-.resultPageServeTitle {
-    font-family: Arial;
-    font-size: 20px;
-    font-weight: 500;    
-    text-align: center;
-    color: #afafaf;
-    padding-bottom: 30px;
 }
 
 .schoolCardGrid {

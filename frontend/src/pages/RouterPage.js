@@ -23,7 +23,7 @@ const RouterPage = () => {
                     {/*<Route path={'/result'} element={<ResultPage/>}/>*/}
                     <Route path={'/collection'} element={<CollectionPage/>}/>
                     <Route path={'*'} element={<Navigate replace to={'/'}/>}/>
-                    <Route path={'/result'} element={<ResultPage />}/>
+                    <Route path={'/result/:searchWord'} element={<ResultPage />}/>
                 </Routes>
             </BrowserRouter>
         </div>

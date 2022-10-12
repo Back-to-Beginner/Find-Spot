@@ -220,8 +220,9 @@ public class PostService implements
 
     private List<CardResponse> searchEntity(char type, String word) {
         booleanBuilder = new BooleanBuilder();
+        if (type == 'u' && !word.equals("*")) booleanBuilder.and(qPost.user.name.contains(word));
+        else if (!word.equals("*")) booleanBuilder.and(qPost.content.contains(word));
         booleanBuilder.and(qPost.type.eq(type));
-        if (!word.equals("*")) booleanBuilder.and(qPost.content.contains(word));
         booleanBuilder.and(qPost.isDeleted.eq(false));
         booleanBuilder.and(qImage.isDeleted.eq(false));
 

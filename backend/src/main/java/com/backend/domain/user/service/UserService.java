@@ -77,5 +77,4 @@ public class UserService implements
     public User getEntity(Long id) {
         return repository.getById(id);
     }
-
 }
