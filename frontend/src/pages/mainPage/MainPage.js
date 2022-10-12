@@ -90,9 +90,8 @@ const MainPage = () => {
                 <div style={{paddingTop: '50px'}}>
                     <YellowButton buttonName={'Challenge this Mission'}/>
                 </div>
-                <div style={{padding: '10px'}}>
-
-                <Link to={'/collection'}>
+                <div style={{ padding: '10px' }}>
+                    <Link to={'/result'}>
                     <div className='findOtherSpot'>
                         Find other Spot
                     </div>

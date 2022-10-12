@@ -226,7 +226,7 @@ li{ list-style: none; }
 
 .commentBox {
     width: 100%;
-    font-family: Inter;
+    font-family: Arial;
     font-size: 16px;
 }
 
@@ -313,7 +313,7 @@ li{ list-style: none; }
 }
 
 .fileuploadText {
-    font-family: Inter;
+    font-family: Arial;
     font-size: 20px;
     color: #525252;
     width: 316px;
@@ -744,7 +744,7 @@ button {
     display: flex;
     align-items: center;
     /* margin: 0 899px 0 0; */
-    font-family: Inter;
+    font-family: Arial;
     font-size: 24px;
     font-weight: 600;
     font-stretch: normal;
@@ -818,7 +818,7 @@ button {
     width: 242.9px;
     height: 21px;
     flex-grow: 0;
-    font-family: Inter;
+    font-family: Arial;
     font-size: 16px;
     text-align: left;
     background-color: #fff7d9;
@@ -983,8 +983,7 @@ button {
 .resultPageServeTitle {
     font-family: Arial;
     font-size: 20px;
-    font-weight: 500;
-
+    font-weight: 500;    
     text-align: center;
     color: #afafaf;
     padding-bottom: 30px;
