@@ -3,11 +3,13 @@ import '../../../css/common.css'
 
 const SmallMissionCard = (props) => {
     const [content, setContent] = useState("");
+    const [userName, setUserName] = useState("");
     const [imagePath, setImagePath] = useState("");
 
     useEffect(() => {
         if (props.data) {
             setContent(props.data.content);
+            setUserName(props.data.userName);
             setImagePath(props.data.imagePath);
         }
     },)

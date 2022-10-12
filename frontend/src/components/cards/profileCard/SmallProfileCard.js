@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import '../../../css/common.css'
 
-const SmallSuccessCard = (props) => {
+const SmallProfileCard = (props) => {
     const [content, setContent] = useState("");
     const [userName, setUserName] = useState("");
     const [imagePath, setImagePath] = useState("");
@@ -17,20 +17,14 @@ const SmallSuccessCard = (props) => {
     return <>
         <div className={'smallSuccessView'}>
             <div className={'smallSuccessImageMask'}>
-                <a>
-                    <figure>
-                        <img className={'smallSuccessImage'}
-                             src={imagePath}
-                             alt={null}/>
-                        <figcaption>자세히 보기</figcaption>
-                    </figure>
-                </a>
+                <img className={'smallSuccessImage'} style={{borderRadius: '9999px'}} src={imagePath}/>
             </div>
             <div className={'smallSuccessCardContent'}>
-                @{userName} {content}
+                @{userName} <br/>
+                {content}
             </div>
         </div>
     </>
 }
 
-export default SmallSuccessCard;
+export default SmallProfileCard;

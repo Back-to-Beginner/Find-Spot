@@ -34,7 +34,6 @@ const RegisterBox = () => {
         }).catch((err) => {
             alert("로그인 정보가 일치하지 않습니다." + err);
         }).then((res) => {
-            console.log(res.data.data)
             res.data.data.id && axios({
                 method: "post",
                 url: '/posts',
@@ -47,7 +46,18 @@ const RegisterBox = () => {
             }).catch(err => {
                 alert(err);
             }).then(res => {
-                navigate('/login');
+                res.data.data.id && axios({
+                    method: "post",
+                    url: '/images',
+                    data: {
+                        "path": "",
+                        "postId": `${res.data.data.id}`
+                    }
+                }).catch(err => {
+                    alert(err);
+                }).then(res => {
+                    navigate('/login');
+                });
             });
         });
     });
@@ -111,6 +121,6 @@ const RegisterBox = () => {
             </form>
         </div>
     </>
-}
 
+}
 export default RegisterBox;

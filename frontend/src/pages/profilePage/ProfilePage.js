@@ -54,7 +54,6 @@ const ProfilePage = () => {
 
     const updateProfileImage = () => {
         const form = new FormData();
-        console.log(imageSrc);
         form.append('images', imageSrc);
 
         axios({
