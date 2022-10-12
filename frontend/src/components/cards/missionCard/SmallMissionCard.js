@@ -14,24 +14,19 @@ const SmallMissionCard = (props) => {
 
     return <>
         <div className={'smallMissionView'}>
-
             <div className={'smallMissionCardTitle'}>
                 {content}
             </div>
-            <ul>
-                <li>
-                    <a href="#">
-                        <figure>
-                            <div className={'smallMissionImageMask'}>
-                                <img className={'smallMissionImage'}
-                                    src={imagePath}
-                                    alt={null} />
-                            </div>
-                            <figcaption>자세히보기</figcaption>
-                        </figure>
-                    </a>
-                </li>
-            </ul>
+            <div className={'smallMissionImageMask'}>
+                <a href="#">
+                    <figure>
+                        <img className={'smallMissionImage'}
+                             src={imagePath}
+                             alt={null}/>
+                        <figcaption>자세히 보기</figcaption>
+                    </figure>
+                </a>
+            </div>
         </div>
     </>
 }

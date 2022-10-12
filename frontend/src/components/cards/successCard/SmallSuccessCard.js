@@ -14,20 +14,16 @@ const SmallSuccessCard = (props) => {
 
     return <>
         <div className={'smallSuccessView'}>
-            <ul>
-                <li>
-                    <a href="#">
-                        <figure>
-                            <div className={'smallSuccessImageMask'}>
-                                <img className={'smallSuccessImage'}
-                                     src={imagePath}
-                                     alt={null}/>
-                            </div>
-                            <figcaption>자세히보기</figcaption>
-                        </figure>
-                    </a>
-                </li>
-            </ul>
+            <div className={'smallSuccessImageMask'}>
+                <a>
+                    <figure>
+                        <img className={'smallSuccessImage'}
+                             src={imagePath}
+                             alt={null}/>
+                        <figcaption>자세히 보기</figcaption>
+                    </figure>
+                </a>
+            </div>
             <div className={'smallSuccessCardContent'}>
                 {content}
             </div>
