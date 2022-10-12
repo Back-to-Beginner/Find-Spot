@@ -22,7 +22,7 @@ const ProfilePage = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (param.id === 'null'){
+        if (param.id === 'null') {
             navigate('/login');
             return;
         }
@@ -80,48 +80,50 @@ const ProfilePage = () => {
         return edit ? {visibility: 'visible'} : {visibility: 'hidden'};
     }
 
-    return (
-        <>
-            <div className={'profileUploadLocation'} style={getProfileUploadStyle()}>
-                <ProfileUploadCard
-                    content={profile.content}
-                    imageSrc={imageSrc}
-                    setImageSrc={setImageSrc}/>
-                <div style={{marginTop: '15px'}} onClick={updateProfileImage}>
-                    <YellowButton buttonName={'Save'}/>
-                </div>
-                <div style={{marginTop: '15px'}} onClick={clickProfileEdit}>
-                    <span className={'profileUploadClose'}>close</span>
-                </div>
+    const getBodyStyle = () => {
+        return edit ? {visibility: 'hidden'} : {visibility: 'visible'};
+    }
 
+    return (<>
+        <div className={'profileUploadLocation'} style={getProfileUploadStyle()}>
+            <ProfileUploadCard
+                content={profile.content}
+                imageSrc={imageSrc}
+                setImageSrc={setImageSrc}/>
+            <div style={{marginTop: '15px'}} onClick={updateProfileImage}>
+                <YellowButton buttonName={'Save'}/>
             </div>
-            <Header/>
-            <div className={'profilePage'}>
-                <div className={'profilePageHeader'}>
-                    <div className={'profile'} onClick={clickProfileEdit}>
-                        <img className={'profileImage'} src={getProfileImage()}/>
-                        <span className={'description'}>
+            <div style={{marginTop: '15px'}} onClick={clickProfileEdit}>
+                <span className={'profileUploadClose'}>close</span>
+            </div>
+
+        </div>
+        <Header/>
+        <div className={'profilePage'} style={getBodyStyle()}>
+            <div className={'profilePageHeader'}>
+                <div className={'profile'} onClick={clickProfileEdit}>
+                    <img className={'profileImage'} src={getProfileImage()}/>
+                    <span className={'description'}>
                             @{username} <br/>
-                            {profile.content}
+                        {profile.content}
                         </span>
-                    </div>
-                    <div className={'profileSub'}>
-                        <span>{success.length} Success</span>
-                        <span>{following} Following</span>
-                        <span>{follower} Follower</span>
-                    </div>
                 </div>
-
-                <div className={'cardGrid'}>
-                    {success.map(card =>
-                        <div style={{padding: '5px'}}>
-                            <SmallSuccessCard data={card}/>
-                        </div>
-                    )}
+                <div className={'profileSub'}>
+                    <span>{success.length} Success</span>
+                    <span>{following} Following</span>
+                    <span>{follower} Follower</span>
                 </div>
             </div>
-        </>
-    )
+
+            <div className={'cardGrid'}>
+                {success.map(card =>
+                    <div style={{padding: '5px'}}>
+                        <SmallSuccessCard data={card}/>
+                    </div>
+                )}
+            </div>
+        </div>
+    </>)
 };
 
 export default ProfilePage;
