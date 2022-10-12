@@ -1,6 +1,5 @@
 package com.backend.domain.post.controller;
 
-import com.backend.domain.post.domain.entity.PostType;
 import com.backend.domain.post.dto.PostRequest;
 import com.backend.domain.post.service.PostService;
 import com.backend.global.domain.CrudControllerAble;
@@ -80,12 +79,23 @@ public class PostController implements
         return ok(service.findByTypeAndUser(type.charAt(0), userId));
     }
 
-    @GetMapping("/missions/{postId}/successes")
+    @GetMapping("/parent/{parentPostId}/child/{type}")
     @ResponseStatus(OK)
-    public ApiResponse findAllSuccessByMission(
-            @PathVariable Long postId
+    public ApiResponse findAllChildByParentPostId(
+            @PathVariable Long parentPostId,
+            @PathVariable String type
     ) {
-        return ok(service.findByTypeAndParentPost(PostType.SUCCESS.getType(), postId));
+        return ok(service.findTypeAndParentPost(type.charAt(0), parentPostId));
     }
+
+    @GetMapping("/search/{type}")
+    @ResponseStatus(OK)
+    public ApiResponse searchTypeAndWord(
+            @PathVariable("type") String type,
+            @RequestParam("word") String word
+    ) {
+        return ok(service.search(type.charAt(0), word));
+    }
+
 
 }

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useLayoutEffect, useState} from "react";
 import Header from "../../components/header/Header";
 import SmallMissionCard from "../../components/cards/missionCard/SmallMissionCard";
 import SmallSuccessCard from "../../components/cards/successCard/SmallSuccessCard";
@@ -16,7 +16,7 @@ const MainPage = () => {
         return detailView ? {visibility: 'visible'} : {visibility: 'hidden'}
     }
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         axios({
             method: 'get',
             url: '/posts/types/m'
@@ -31,16 +31,15 @@ const MainPage = () => {
                 getSuccess();
             }
         })
-    }, [])
+    }, []);
 
     const getSuccess = () => {
         axios({
             method: 'get',
-            url: `/posts/missions/${sessionStorage.getItem("missionId")}/successes`
+            url: `/posts/parent/${sessionStorage.getItem("missionId")}/child/s`
         }).then(res => {
+            console.log(res.data.data[0])
             res.data.data && setSuccess(res.data.data[0]);
-            console.log(res.data.data[0].id)
-            console.log(success.id)
         })
     }
 
@@ -51,7 +50,7 @@ const MainPage = () => {
         getSuccess()
     }
 
-    return <>
+    return (<>
         <Header/>
         <div className={'detailViewLayout'} style={setDetailViewStyle()}>
             <DetailView/>
@@ -75,7 +74,7 @@ const MainPage = () => {
                     &#5176;
                 </div>
                 <div style={{padding: '10px'}} onClick={() => setDetailView(true)}>
-                    <SmallMissionCard/>
+                    <SmallMissionCard data={mission[0]}/>
                 </div>
                 <div style={{padding: '10px'}}>
                     <SmallSuccessCard data={success}/>
@@ -102,7 +101,7 @@ const MainPage = () => {
             </div>
 
         </div>
-    </>
+    </>)
 };
 
 export default MainPage;
