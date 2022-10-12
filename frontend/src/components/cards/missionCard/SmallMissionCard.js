@@ -1,16 +1,22 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import '../../../css/common.css'
-import missionImageExample from '../../../images/missionExample.jpeg';
 
 const SmallMissionCard = (props) => {
-    const [missionName, setMissionName] = useState("mission Title");
-    // const [missionImage, setMissionImage] = useState(props.image);
+    const [content, setContent] = useState("");
+    const [imagePath, setImagePath] = useState("");
+
+    useEffect(() => {
+        if (props.data) {
+            setContent(props.data.content);
+            setImagePath(props.data.imagePath);
+        }
+    },)
 
     return <>
         <div className={'smallMissionView'}>
 
             <div className={'smallMissionCardTitle'}>
-                {missionName}
+                {content}
             </div>
             <ul>
                 <li>
@@ -18,7 +24,7 @@ const SmallMissionCard = (props) => {
                         <figure>
                             <div className={'smallMissionImageMask'}>
                                 <img className={'smallMissionImage'}
-                                    src={missionImageExample}
+                                    src={imagePath}
                                     alt={null} />
                             </div>
                             <figcaption>자세히보기</figcaption>

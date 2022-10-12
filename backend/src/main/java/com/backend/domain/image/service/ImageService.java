@@ -1,17 +1,18 @@
 package com.backend.domain.image.service;
 
 import com.backend.domain.image.domain.entity.Image;
+import com.backend.domain.image.domain.entity.QImage;
 import com.backend.domain.image.domain.repository.ImageRepository;
 import com.backend.domain.image.dto.ImageMapper;
 import com.backend.domain.image.dto.ImageRequest;
 import com.backend.domain.image.dto.ImageResponse;
-import com.backend.domain.post.domain.entity.Post;
-import com.backend.domain.post.service.PostService;
 import com.backend.global.domain.CrudAble;
 import com.backend.global.domain.FindEntityAble;
 import com.backend.global.domain.GetEntityAble;
 import com.backend.global.error.ErrorCode;
 import com.backend.global.error.NotFoundException;
+import com.querydsl.core.BooleanBuilder;
+import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -31,16 +32,23 @@ public class ImageService implements
     private final ImageRepository repository;
     private final ImageUploader uploader;
     private final ImageMapper mapper;
-    private final PostService postService;
     private final ImageAnalysis imageAnalysis;
-
+    private final JPAQueryFactory queryFactory;
+    private static final QImage qImage = QImage.image;
 
     @Transactional
-    public ImageResponse uploadImage(Long postId, MultipartFile multipartFile) throws IOException {
+    public ImageResponse uploadProfile(Long postId, MultipartFile multipartFile) throws IOException {
         String path = uploader.upload(multipartFile);
+        findEntityByPost(postId).forEach(Image::delete);
+
         Image image = mapper.PathToEntity(postId, path);
 
         return mapper.fromEntity(repository.save(image));
+    }
+
+    @Transactional
+    public String uploadImage(MultipartFile multipartFile) throws IOException {
+        return uploader.upload(multipartFile);
     }
 
     @Override
@@ -107,7 +115,13 @@ public class ImageService implements
     }
 
     public List<Image> findEntityByPost(Long postId) {
-        Post post = postService.findEntity(postId);
-        return repository.findAllByPostOrderByUpdatedAtDesc(post);
+        BooleanBuilder booleanBuilder = new BooleanBuilder();
+        booleanBuilder.and(qImage.post.id.eq(postId));
+        booleanBuilder.and(qImage.isDeleted.eq(false));
+
+        return queryFactory.selectFrom(qImage)
+                .where(booleanBuilder)
+                .orderBy(qImage.updatedAt.desc())
+                .fetch();
     }
 }

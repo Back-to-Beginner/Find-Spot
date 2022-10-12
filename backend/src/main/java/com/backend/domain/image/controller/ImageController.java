@@ -24,11 +24,22 @@ public class ImageController {
 
     @PostMapping("/upload/{postId}")
     @ResponseStatus(CREATED)
-    public ApiResponse uploadImage(
+    public ApiResponse uploadProfile(
             @RequestParam("images") MultipartFile multipartFile,
-            @PathVariable Long postId) throws IOException {
+            @PathVariable Long postId
+    ) throws IOException {
         return created(
-                imageService.uploadImage(postId, multipartFile)
+                imageService.uploadProfile(postId, multipartFile)
+        );
+    }
+
+    @PostMapping("/upload")
+    @ResponseStatus(CREATED)
+    public ApiResponse uploadImage(
+            @RequestParam("images") MultipartFile multipartFile
+    ) throws IOException {
+        return created(
+                imageService.uploadImage(multipartFile)
         );
     }
 
@@ -37,7 +48,7 @@ public class ImageController {
     public ApiResponse compareImage(
             @RequestParam("challengeId") Long challengeId,
             @RequestParam("missionId") Long missionId
-    ) throws IOException {
+    ) {
         return ok(
                 imageService.compareImage(challengeId, missionId)
         );

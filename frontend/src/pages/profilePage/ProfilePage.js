@@ -13,7 +13,6 @@ const ProfilePage = () => {
     const [success, setSuccess] = useState([]);
     const [profile, setProfile] = useState({});
     const [imageSrc, setImageSrc] = useState();
-    const [profileImage, setProfileImage] = useState({});
     const [follower, setFollower] = useState(0);
     const [following, setFollowing] = useState(0);
     const [edit, setEdit] = useState(false);
@@ -38,22 +37,15 @@ const ProfilePage = () => {
 
             axios({
                 method: 'get',
-                url: `/images/post/${sessionStorage.getItem('profileId')}`,
+                url: `/posts/types/s/users/${sessionStorage.getItem('id')}`
             }).then(res => {
-                res.data.data[0] && setProfileImage(res.data.data[0])
-            });
+                res.data.data && setSuccess(res.data.data);
+            })
         });
-
-        axios({
-            method: 'get',
-            url: `/posts/types/s/users/${sessionStorage.getItem('id')}`
-        }).then(res => {
-            res.data.data && setSuccess(res.data.data);
-        })
     }, [])
 
     const getProfileImage = () => {
-        return profileImage.path ? profileImage.path : profileIcon;
+        return profile.imagePath ? profile.imagePath : profileIcon;
     }
 
     const clickProfileEdit = () => {
@@ -71,7 +63,6 @@ const ProfilePage = () => {
             url: `/images/upload/${sessionStorage.getItem('profileId')}`,
             data: form
         }).then(res => {
-            console.log(res.data.data)
             window.location.reload();
         })
     }
@@ -85,7 +76,7 @@ const ProfilePage = () => {
             <div className={'profileUploadLocation'} style={getProfileUploadStyle()}>
                 <ProfileUploadCard
                     content={profile.content}
-                    imageSrc={imageSrc}
+                    imageSrc={profile.imagePath}
                     setImageSrc={setImageSrc}/>
                 <div style={{marginTop: '15px'}} onClick={updateProfileImage}>
                     <YellowButton buttonName={'Save'}/>
