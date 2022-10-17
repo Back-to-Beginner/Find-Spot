@@ -1,7 +1,7 @@
-from flask import Flask, request
-from werkzeug.utils import secure_filename
+from flask import Flask, request, jsonify
 import cv2 as cv2
 import numpy as np
+import urllib
 from skimage.metrics import structural_similarity as ssim
 
 app = Flask(__name__)
@@ -25,13 +25,9 @@ def hello():
 @app.route('/api-python/v1/compare', methods=['POST'])
 def check_simular():
     if request.method == 'POST':
-        image1 = request.files['file1']
-        image2 = request.files['file2']
-        image1.save(secure_filename(image1.filename))
-        image2.save(secure_filename(image2.filename))
-
+        data = request.get_json()
         # 이미지 읽어오기
-        imgs = [cv2.imread(image1.filename), cv2.imread(image2.filename)]
+        imgs = [url_to_image(data.get("mission")), url_to_image(data.get("trial"))]
 
         hists = []
         grays = []
@@ -80,12 +76,20 @@ def check_simular():
     return 'False'
 
 
+def url_to_image(url):
+    resp = urllib.request.urlopen(url)
+    image = np.asarray(bytearray(resp.read()), dtype="uint8")
+    image = cv2.imdecode(image, cv2.IMREAD_COLOR)
+    image = image[135:330, 130:245].copy()  # 세로, 가로
+    return image
+
+
 def image_to_hsv(img):
     # BGR 이미지를 HSV 이미지로 변환
     hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
-    hsv = cv2.resize(hsv, dsize=(1080, 1080))
+    hsv = cv2.resize(hsv, dsize=(360, 360))
     # 히스토그램 연산(파라미터 순서 : 이미지, 채널, Mask, 크기, 범위)
-    hist = cv2.calcHist([hsv], [0, 1], None, [1080, 1080], [0, 1080, 0, 1080])
+    hist = cv2.calcHist([hsv], [0, 1], None, [360, 360], [0, 360, 0, 360])
     # 정규화(파라미터 순서 : 정규화 전 데이터, 정규화 후 데이터, 시작 범위, 끝 범위, 정규화 알고리즘)
     cv2.normalize(hist, hist, 0, 1, cv2.NORM_MINMAX)
     # hists 리스트에 저장
@@ -94,7 +98,7 @@ def image_to_hsv(img):
 
 def image_to_gray(img):
     # // BGR 이미지를 GRAY 이미지로 변환
-    img = cv2.resize(img, [1080, 1080])
+    img = cv2.resize(img, [360, 360])
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     return gray
 
