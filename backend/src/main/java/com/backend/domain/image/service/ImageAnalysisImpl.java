@@ -1,13 +1,15 @@
 package com.backend.domain.image.service;
 
-import com.backend.global.error.ErrorCode;
-import com.backend.global.error.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
 
-import java.util.Optional;
+import java.net.URI;
+import java.util.Map;
+import java.util.Objects;
 
 @Component
 @RequiredArgsConstructor
@@ -22,10 +24,22 @@ public class ImageAnalysisImpl implements
     private String url;
 
     @Override
-    public Boolean analyseImage(String challengeImageUrl, String missionImageUrl) {
-        //TODO 이미지 url 전송 기능 구현, 플라스크 서버 s3 이미지로 분석 가능하도록 변경
-        Optional<String> result = restTemplate.getForObject(imageAnalysisServer + url, Optional.class);
-        return result.orElseThrow(() -> new NotFoundException(ErrorCode.BAD_REQUEST, "analyse result is not available"))
-                .equals("True");
+    public Boolean analyseImage(
+            String challengeImageUrl,
+            String missionImageUrl
+    ) {
+        URI uri = UriComponentsBuilder
+                .fromUriString(imageAnalysisServer)
+                .path(url)
+                .encode()
+                .build()
+                .toUri();
+
+        ResponseEntity<String> result = restTemplate.postForEntity(
+                uri,
+                Map.of("mission", missionImageUrl, "trial", challengeImageUrl),
+                String.class);
+
+        return Objects.requireNonNull(result.getBody()).equals("True");
     }
 }
