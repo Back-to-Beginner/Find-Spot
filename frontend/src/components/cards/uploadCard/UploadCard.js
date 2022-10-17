@@ -53,35 +53,44 @@ const UploadCard = (props) => {
 
     return <>
         <div className={'uploadView'}>
-            <div className={'uploadImageMask'} onClick={handleClick}>
-                <div className={'information'}>
-                    <img className={'informationImage'} src={information}/>
-                    <span className={'informationTooltipText'}>미션 사진과&nbsp;
-                        <span style={{fontWeight: 'bold', textDecoration: 'underline'}}>같은 장소</span>
+            <div className={'information'}>
+                <img className={'informationImage'} src={information}/>
+                <span className={'informationTooltipText'}>미션 사진과&nbsp;
+                    <span style={{fontWeight: 'bold', textDecoration: 'underline'}}>같은 장소</span>
                         에서&nbsp;
-                        <span style={{fontWeight: 'bold', textDecoration: 'underline'}}>같은 구도</span>
-                        로 촬영한 <br/> 사진만 업로드 할 수 있습니다.</span>
-                </div>
+                    <span style={{fontWeight: 'bold', textDecoration: 'underline'}}>같은 구도</span>
+                        로 촬영한 <br/> 사진만 업로드 할 수 있습니다.
+                    </span>
+            </div>
 
-                <div className={'approved'}>
-                    <img className={'approvedImage'} src={getApproveImage()}/>
-                    <span className={'approveTooltipText'} style={getApproveTextColor()}>{getApproveText()}</span>
-                </div>
-
-                <input className={'uploadInput'} type={"file"} accept={"image/png, image/jpg, image/jpeg"}
+            <div className={'approved'}>
+                <img className={'approvedImage'} src={getApproveImage()}/>
+                <span className={'approveTooltipText'} style={getApproveTextColor()}>
+                        {getApproveText()}
+                    </span>
+            </div>
+            <div className={'uploadImageMask'} onClick={handleClick}>
+                <input className={'uploadInput'}
+                       type={"file"}
+                       accept={"image/png, image/jpg, image/jpeg"}
                        onChange={(event) => {
                            encodeFileToBase64(event.target.files[0]);
                        }}
                        ref={imageInput}/>
 
-                {imageSrc ? <img className={'successImage'}
+                {imageSrc ?
+                    <img className={'successImage'}
                                  src={imageSrc}
-                                 alt={null}/> : getUploadImage()}
+                                 alt={null}/>
+                    : getUploadImage()}
             </div>
 
             <div className={'uploadContent'}>
                 <textarea readOnly={!approve} className={'uploadContentTextarea'} />
-                <span className={'approveContentTooltipText'} style={getApproveTextColor()}>{getApproveContentText()}</span>
+                <span className={'approveContentTooltipText'}
+                      style={getApproveTextColor()}>
+                    {getApproveContentText()}
+                </span>
             </div>
         </div>
     </>

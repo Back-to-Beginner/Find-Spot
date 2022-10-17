@@ -88,13 +88,15 @@ const MainPage = () => {
 
             <div className="mainBoxPosition">
                 <div style={{paddingTop: '50px'}}>
-                    <YellowButton buttonName={'Challenge this Mission'}/>
+                    <Link to={`/upload/${sessionStorage.getItem('missionId')}`}>
+                        <YellowButton buttonName={'Challenge this Mission'}/>
+                    </Link>
                 </div>
-                <div style={{ padding: '10px' }}>
+                <div style={{padding: '10px'}}>
                     <Link to={'/result'}>
-                    <div className='findOtherSpot'>
-                        Find other Spot
-                    </div>
+                        <div className='findOtherSpot'>
+                            Find other Spot
+                        </div>
                     </Link>
                 </div>
             </div>

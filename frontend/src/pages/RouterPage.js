@@ -5,6 +5,7 @@ import MainPage from './mainPage/MainPage';
 import ProfilePage from './profilePage/ProfilePage';
 import RegisterPage from './registerPage/RegisterPage';
 import ResultPage from './resultPage/ResultPage';
+import UploadPage from "./uploadPage/UploadPage";
 import CollectionPage from './collectionPage/CollectionPage';
 
 const RouterPage = () => {
@@ -14,16 +15,17 @@ const RouterPage = () => {
             <BrowserRouter>
                 <Routes>
                     <Route path={'/login'}
-                           element={sessionStorage.getItem('id') ? <Navigate replace to='/'/> : <LoginPage/>}/>
+                           element={sessionStorage.getItem('id') ?
+                               <Navigate replace to='/'/> : <LoginPage/>}/>
                     <Route path={'/register'}
-                           element={sessionStorage.getItem('id') ? <Navigate replace to='/'/> : <RegisterPage/>}/>
-                    <Route path={'/user/:id'}
-                           element={<ProfilePage/>}/>
+                           element={sessionStorage.getItem('id') ?
+                               <Navigate replace to='/'/> : <RegisterPage/>}/>
+                    <Route path={'/upload/:missionId'} element={<UploadPage/>}/>
+                    <Route path={'/user/:id'} element={<ProfilePage/>}/>
+                    <Route path={'/result/:searchWord'} element={<ResultPage />}/>
                     <Route path={'/'} element={<MainPage/>}/>
-                    {/*<Route path={'/result'} element={<ResultPage/>}/>*/}
                     <Route path={'/collection'} element={<CollectionPage/>}/>
                     <Route path={'*'} element={<Navigate replace to={'/'}/>}/>
-                    <Route path={'/result/:searchWord'} element={<ResultPage />}/>
                 </Routes>
             </BrowserRouter>
         </div>
