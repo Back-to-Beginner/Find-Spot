@@ -7,3 +7,5 @@ numpy
 scikit-image
 opencv-python
 opencv-contrib-python
+joblib
+sklearn

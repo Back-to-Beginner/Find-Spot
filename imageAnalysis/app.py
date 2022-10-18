@@ -1,8 +1,9 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request
 import cv2 as cv2
 import numpy as np
 import urllib
 from skimage.metrics import structural_similarity as ssim
+import joblib
 
 app = Flask(__name__)
 
@@ -12,6 +13,8 @@ methods = ['CORREL',  # cv2.HISTCMP_CORREL: 상관관계 (1: 완전 일치, -1: 
            'INTERSECT',  # cv2.HISTCMP_INTERSECT: 교차 (1: 완전 일치, 0: 완전 불일치 - 1로 정규화한 경우)
            'BHATTACHARYYA',  # cv2.HISTCMP_BHATTACHARYYA 값이 작을수록 유사한 것으로 판단
            'EMD']
+
+model = joblib.load('./model/model.joblib')
 
 
 @app.route('/api-python/v1/test', methods=['GET'])
@@ -26,62 +29,51 @@ def hello():
 def check_simular():
     if request.method == 'POST':
         data = request.get_json()
-        # 이미지 읽어오기
-        imgs = [url_to_image(data.get("mission")), url_to_image(data.get("trial"))]
-
-        hists = []
-        grays = []
-        for img in imgs:
-            hists.append(image_to_hsv(img))
-            grays.append(image_to_gray(img))
-
-        result = []
-
-        # // 5회 반복(5개 비교 알고리즘을 모두 사용)
-        for index, name in enumerate(methods):
-            # // 비교 알고리즘 이름 출력(문자열 포맷팅 및 탭 적용)
-            print('%-10s' % name)
-
-            # // 2회 반복(2장의 이미지에 대해 비교 연산 적용)
-            ret = cv2.compareHist(hists[0], hists[1], index)
-
-            if index == cv2.HISTCMP_INTERSECT:  # // 교차 분석인 경우
-                ret = ret / np.sum(hists[0])  # // 원본으로 나누어 1로 정규화
-
-            result.append(ret)
-            print("img%d :%7.2f" % (index + 1, ret))  # // 비교 결과 출력
-
-        (score, diff) = ssim(grays[0], grays[1], full=True)
-        result.append(score)
-        print(f"Similarity: {score:.5f}")
-
-        score = 0
-        if result[0] > 0.8:
-            score += 1
-        if result[1] < 100:
-            score += 1
-        if result[2] > 0.7:
-            score += 1
-        if result[3] < 0.4:
-            score += 1
-        if result[4] < 100:
-            score += 1
-        if result[5] > 0.4:
-            score += 1
-
-        print(score)
-        if score > 3:
-            return 'True'
-
-    return 'False'
+        res = check_simular(data.get("mission"), data.get("trial"), data.get("slice"))
+        pred = model.predict([res])
+        if pred[0] == 0:
+            return True
+        return False
 
 
-def url_to_image(url):
+def url_to_image(url, slice):
     resp = urllib.request.urlopen(url)
     image = np.asarray(bytearray(resp.read()), dtype="uint8")
     image = cv2.imdecode(image, cv2.IMREAD_COLOR)
-    image = image[135:330, 130:245].copy()  # 세로, 가로
+    image = image[slice[0]:slice[1], slice[2]:slice[3]].copy()  # 세로, 가로
     return image
+
+
+def slice_image(img, slice):
+    img = cv2.resize(img, [360, 360])
+    return img[slice[0]:slice[1], slice[2]:slice[3]]
+
+
+def check_simular(mission, trial, slice):
+    # 이미지 읽어오기
+    imgs = [url_to_image(mission, slice), url_to_image(trial, slice)]
+    # imgs = [slice_image(mission, slice), slice_image(trial, slice)]
+
+    hists = []
+    grays = []
+    for img in imgs:
+        hists.append(image_to_hsv(img))
+        grays.append(image_to_gray(img))
+
+    result = [
+        cv2.compareHist(hists[0], hists[1], 0),
+        cv2.compareHist(hists[0], hists[1], 2) / np.sum(hists[0]),
+        cv2.compareHist(hists[0], hists[1], 3),
+        ssim(grays[0], grays[1], full=True)
+    ]
+    # cv2.HISTCMP_CORREL: 상관관계 (1: 완전 일치, -1: 완전 불일치, 0: 무관계)
+    # cv2.HISTCMP_INTERSECT: 교차 (1: 완전 일치, 0: 완전 불일치 - 1로 정규화한 경우)
+    # cv2.HISTCMP_BHATTACHARYYA 값이 작을수록 유사한 것으로 판단
+    # ssim 1에 근접할 수록 유사한 이미지
+
+    # print(result[0], result[1], result[2], result[3][0])
+
+    return result[0] + result[1] - result[2], result[3][0]
 
 
 def image_to_hsv(img):
