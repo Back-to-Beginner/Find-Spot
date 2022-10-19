@@ -26,14 +26,15 @@ def hello():
 
 
 @app.route('/api-python/v1/compare', methods=['POST'])
-def check_simular():
+def compare_s3():
     if request.method == 'POST':
         data = request.get_json()
-        res = check_simular(data.get("mission"), data.get("trial"), data.get("slice"))
+        res = check_similar_s3(data.get("mission"), data.get("trial"), data.get("slice"))
         pred = model.predict([res])
+        print(pred)
         if pred[0] == 0:
-            return True
-        return False
+            return 'True'
+        return 'False'
 
 
 def url_to_image(url, slice):
@@ -44,15 +45,9 @@ def url_to_image(url, slice):
     return image
 
 
-def slice_image(img, slice):
-    img = cv2.resize(img, [360, 360])
-    return img[slice[0]:slice[1], slice[2]:slice[3]]
-
-
-def check_simular(mission, trial, slice):
+def check_similar_s3(mission, trial, slice):
     # 이미지 읽어오기
     imgs = [url_to_image(mission, slice), url_to_image(trial, slice)]
-    # imgs = [slice_image(mission, slice), slice_image(trial, slice)]
 
     hists = []
     grays = []
@@ -71,7 +66,7 @@ def check_simular(mission, trial, slice):
     # cv2.HISTCMP_BHATTACHARYYA 값이 작을수록 유사한 것으로 판단
     # ssim 1에 근접할 수록 유사한 이미지
 
-    # print(result[0], result[1], result[2], result[3][0])
+    print(result[0] + result[1] - result[2], result[3][0])
 
     return result[0] + result[1] - result[2], result[3][0]
 
