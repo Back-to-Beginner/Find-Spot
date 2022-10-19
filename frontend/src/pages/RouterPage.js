@@ -20,9 +20,11 @@ const RouterPage = () => {
                     <Route path={'/register'}
                            element={sessionStorage.getItem('id') ?
                                <Navigate replace to='/'/> : <RegisterPage/>}/>
-                    <Route path={'/upload/:missionId'} element={<UploadPage/>}/>
+                    <Route path={'/upload/:missionId'}
+                           element={sessionStorage.getItem('id') ?
+                               <Navigate replace to='/'/> : <UploadPage/>}/>
                     <Route path={'/user/:id'} element={<ProfilePage/>}/>
-                    <Route path={'/result/:searchWord'} element={<ResultPage />}/>
+                    <Route path={'/result/:searchWord'} element={<ResultPage/>}/>
                     <Route path={'/'} element={<MainPage/>}/>
                     <Route path={'/collection'} element={<CollectionPage/>}/>
                     <Route path={'*'} element={<Navigate replace to={'/'}/>}/>

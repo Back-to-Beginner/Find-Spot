@@ -4,34 +4,48 @@ import YellowButton from "../../components/button/YelloButton";
 import axios from "axios";
 import MissionCard from "../../components/cards/missionCard/MissionCard";
 import UploadCard from "../../components/cards/uploadCard/UploadCard";
-import {Link, Navigate} from "react-router-dom";
+import {Link, Navigate, useNavigate, useParams} from "react-router-dom";
 
-const UploadPage = () => {
-    const [mission, setMission] = useState([]);
-    const [success, setSuccess] = useState([]);
+const UploadPage = (props) => {
+    const [mission, setMission] = useState({});
+    const [approve, setApprove] = useState(false);
+    const [imageSrc, setImageSrc] = useState('');
+    const [content, setContent] = useState('');
 
-    useLayoutEffect(() => {
-        axios({
-            method: 'get',
-            url: '/posts/types/m'
-        }).then(res => {
-            if (res.data.data[0]) {
-                sessionStorage.setItem("missionId", res.data.data[0].id);
-                setMission(res.data.data);
-                getSuccess();
-            }
-        })
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (sessionStorage.getItem('id') === null) {
+            navigate('/login');
+            return;
+        }
+        setMission(props.mission);
     }, []);
 
-    const getSuccess = () => {
-        axios({
-            method: 'get',
-            url: `/posts/parent/${sessionStorage.getItem("missionId")}/child/s`
-        }).then(res => {
-            console.log(res.data.data[0])
-            res.data.data && setSuccess(res.data.data[0]);
-        })
-    }
+    const uploadPost = () => {
+        approve && axios({
+            method: 'post',
+            url: `/posts`,
+            data: {
+                'type': 's',
+                'userId': sessionStorage.getItem('id'),
+                'parentPostId': sessionStorage.getItem('missionId'),
+                'content': content
+            }
+        }).then(res => res && axios({
+                header: {'content-type': 'multipart/form-data'},
+                method: 'post',
+                url: `/images`,
+                data: {
+                    'postId': res.data.data.id,
+                    'path': imageSrc
+                }
+            }).then(res => {
+                alert('게시글 작성에 성공하였습니다!!');
+                res && window.location.back();
+            })
+        );
+    };
 
     return (<>
         <Header/>
@@ -41,12 +55,15 @@ const UploadPage = () => {
             </div>
 
             <div className={'detailViewLocation'}>
-                <MissionCard data={mission[0]}/>
-                <UploadCard data={success}/>
+                <MissionCard data={mission}/>
+                <UploadCard upload={setImageSrc}
+                            approve={setApprove}
+                            imageSrc={setImageSrc}
+                            content={setContent}/>
             </div>
 
             <div className="mainBoxPosition">
-                <div style={{paddingTop: '50px'}}>
+                <div style={{paddingTop: '50px'}} onClick={uploadPost}>
                     <YellowButton buttonName={'Upload !!'}/>
                 </div>
                 <div style={{padding: '10px'}}>
