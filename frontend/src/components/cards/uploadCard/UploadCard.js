@@ -4,6 +4,7 @@ import fileupload from '../../../images/fileupload.png';
 import information from '../../../images/information.png';
 import approved from '../../../images/approved.png';
 import cancel from '../../../images/cancel.png';
+import axios from "axios";
 
 const UploadCard = (props) => {
     const [imageSrc, setImageSrc] = useState('');
@@ -43,6 +44,27 @@ const UploadCard = (props) => {
     const encodeFileToBase64 = (fileBlob) => {
         const reader = new FileReader();
         reader.readAsDataURL(fileBlob);
+
+        const form = new FormData();
+        form.append('images', fileBlob);
+        axios({
+            header: {'content-type': 'multipart/form-data'},
+            method: 'post',
+            url: "/images/upload",
+            data: form
+        }).then(res => {
+            props.imageSrc(res.data.data);
+            axios({
+                method: 'get',
+                url: '/images/compare',
+                params: {'challengeUrl': res.data.data, "missionId": sessionStorage.getItem('missionId')}
+            }).then(res => {
+                res.data.data && props.approve(true);
+                res.data.data && setApprove(true);
+                console.log(res.data.data);
+            })
+        })
+
         return new Promise((resolve) => {
             reader.onload = () => {
                 setImageSrc(reader.result);
@@ -53,35 +75,47 @@ const UploadCard = (props) => {
 
     return <>
         <div className={'uploadView'}>
-            <div className={'uploadImageMask'} onClick={handleClick}>
-                <div className={'information'}>
-                    <img className={'informationImage'} src={information}/>
-                    <span className={'informationTooltipText'}>미션 사진과&nbsp;
-                        <span style={{fontWeight: 'bold', textDecoration: 'underline'}}>같은 장소</span>
+            <div className={'information'}>
+                <img className={'informationImage'} src={information}/>
+                <span className={'informationTooltipText'}>미션 사진과&nbsp;
+                    <span style={{fontWeight: 'bold', textDecoration: 'underline'}}>같은 장소</span>
                         에서&nbsp;
-                        <span style={{fontWeight: 'bold', textDecoration: 'underline'}}>같은 구도</span>
-                        로 촬영한 <br/> 사진만 업로드 할 수 있습니다.</span>
-                </div>
+                    <span style={{fontWeight: 'bold', textDecoration: 'underline'}}>같은 구도</span>
+                        로 촬영한 <br/> 사진만 업로드 할 수 있습니다.
+                </span>
+            </div>
 
-                <div className={'approved'}>
-                    <img className={'approvedImage'} src={getApproveImage()}/>
-                    <span className={'approveTooltipText'} style={getApproveTextColor()}>{getApproveText()}</span>
-                </div>
+            <div className={'approved'}>
+                <img className={'approvedImage'} src={getApproveImage()}/>
+                <span className={'approveTooltipText'} style={getApproveTextColor()}>
+                        {getApproveText()}
+                    </span>
+            </div>
 
-                <input className={'uploadInput'} type={"file"} accept={"image/png, image/jpg, image/jpeg"}
+            <div className={'uploadImageMask'} onClick={handleClick}>
+                <input className={'uploadInput'}
+                       type={"file"}
+                       accept={"image/png, image/jpg, image/jpeg"}
                        onChange={(event) => {
                            encodeFileToBase64(event.target.files[0]);
                        }}
                        ref={imageInput}/>
 
-                {imageSrc ? <img className={'successImage'}
-                                 src={imageSrc}
-                                 alt={null}/> : getUploadImage()}
+                {imageSrc ?
+                    <img className={'successImage'}
+                         src={imageSrc}
+                         alt={null}/>
+                    : getUploadImage()}
             </div>
 
             <div className={'uploadContent'}>
-                <textarea readOnly={!approve} className={'uploadContentTextarea'} />
-                <span className={'approveContentTooltipText'} style={getApproveTextColor()}>{getApproveContentText()}</span>
+                <textarea readOnly={!approve}
+                          className={'uploadContentTextarea'}
+                          onChange={event => props.content(event.target.value)}/>
+                <span className={'approveContentTooltipText'}
+                      style={getApproveTextColor()}>
+                    {getApproveContentText()}
+                </span>
             </div>
         </div>
     </>

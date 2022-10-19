@@ -46,11 +46,11 @@ public class ImageController {
     @GetMapping("/compare")
     @ResponseStatus(CREATED)
     public ApiResponse compareImage(
-            @RequestParam("challengeId") Long challengeId,
-            @RequestParam("missionId") Long missionId
+            @RequestParam("challengeUrl") String challengeUrl,
+            @RequestParam("missionId") Long missionPostId
     ) {
         return ok(
-                imageService.compareImage(challengeId, missionId)
+                imageService.compareImage(challengeUrl, missionPostId)
         );
     }
 

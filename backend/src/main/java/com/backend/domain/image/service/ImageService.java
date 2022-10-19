@@ -85,15 +85,10 @@ public class ImageService implements
     }
 
     @Transactional
-    public boolean compareImage(Long challengeId, Long missionId) {
-        String challengeImagePath = repository.findById(challengeId)
-                .orElseThrow(() -> new RuntimeException("challenge image not found"))
-                .getPath();
-        String missionImagePath = repository.findById(missionId)
-                .orElseThrow(() -> new RuntimeException("mission image not found"))
-                .getPath();
+    public boolean compareImage(String challengeUrl, Long missionId) {
+        String missionImagePath = findEntityByPost(missionId).get(0).getPath();
 
-        return (boolean) imageAnalysis.analyseImage(challengeImagePath, missionImagePath);
+        return (boolean) imageAnalysis.analyseImage(challengeUrl, missionImagePath);
     }
 
     @Override

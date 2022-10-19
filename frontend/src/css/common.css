@@ -46,37 +46,51 @@ html {
 }
 
 /* 호버 여기부터 */
-*{ padding: 0; margin: 0; }
-li{ list-style: none; }
+* {
+    padding: 0;
+    margin: 0;
+}
 
-  .smallMissionView li{
+li {
+    list-style: none;
+}
+
+.smallMissionView li {
     float: left;
-    width: 146px; height: 146px;
+    width: 146px;
+    height: 146px;
     /* margin-right: 20px; */
-  }
-  .smallMissionView li:last-child{ margin-right: 0; }
-  
-  .smallMissionView a{
+}
+
+.smallMissionView li:last-child {
+    margin-right: 0;
+}
+
+.smallMissionView a {
     display: block; /* 영역적용위해 사용 */
-    width: 100%; height: 100%;
+    width: 100%;
+    height: 100%;
     overflow: hidden; /* 넘어가는 자손을 안보이게 처리 */
     position: relative; /* figcaption의 앱솔루트 기준을 현재 요소로 변경 */
-  }
-  
-  .smallMissionView figcaption{
-    width: 100%; height: 100%;
-    background-color: rgba(0,0,0,0.2);
-    color: #fff; text-align: center;
+}
+
+.smallMissionView figcaption {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: #fff;
+    text-align: center;
     line-height: 150px;
-    font-size:10px;
+    font-size: 10px;
     position: absolute; /* 기본기준 : body */
-    top: 0; left: 0;
+    top: 0;
+    left: 0;
     opacity: 0; /* 처음에 안보이게 처리 */
     transition: 0.3s; /* 변화되는 CSS에 시간차를 줌 */
-  }
-  
-  /* 테두리 */
-  .smallMissionView figcaption:after{
+}
+
+/* 테두리 */
+.smallMissionView figcaption:after {
     content: ''; /* 비워둠 */
     display: block;
     width: calc(100% - 15px);
@@ -84,17 +98,20 @@ li{ list-style: none; }
     border: 1px solid #fff;
     box-sizing: border-box;
     position: absolute;
-    left: 0; right: 0; top: 0; bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
     margin: auto; /* 기준에서 정가운데 오도록 처리 */
-  }
-  
-  .smallMissionView a:hover figcaption{
-    opacity: 1;
-  }
+}
 
-  .smallMissionView a:focus figcaption {
+.smallMissionView a:hover figcaption {
+    opacity: 1;
+}
+
+.smallMissionView a:focus figcaption {
     opacity: 0;
-  }
+}
 
 /* 여기까지 */
 
@@ -154,37 +171,51 @@ li{ list-style: none; }
 }
 
 /* 호버 여기부터 */
-*{ padding: 0; margin: 0; }
-li{ list-style: none; }
+* {
+    padding: 0;
+    margin: 0;
+}
 
-  .smallSuccessView li{
+li {
+    list-style: none;
+}
+
+.smallSuccessView li {
     float: left;
-    width: 146px; height: 146px;
+    width: 146px;
+    height: 146px;
     /* margin-right: 20px; */
-  }
-  .smallSuccessView li:last-child{ margin-right: 0; }
-  
-  .smallSuccessView a{
+}
+
+.smallSuccessView li:last-child {
+    margin-right: 0;
+}
+
+.smallSuccessView a {
     display: block; /* 영역적용위해 사용 */
-    width: 100%; height: 100%;
+    width: 100%;
+    height: 100%;
     overflow: hidden; /* 넘어가는 자손을 안보이게 처리 */
     position: relative; /* figcaption의 앱솔루트 기준을 현재 요소로 변경 */
-  }
-  
-  .smallSuccessView figcaption{
-    width: 100%; height: 100%;
-    background-color: rgba(0,0,0,0.2);
-    color: #fff; text-align: center;
+}
+
+.smallSuccessView figcaption {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: #fff;
+    text-align: center;
     line-height: 150px;
-    font-size:10px;
+    font-size: 10px;
     position: absolute; /* 기본기준 : body */
-    top: 0; left: 0;
+    top: 0;
+    left: 0;
     opacity: 0; /* 처음에 안보이게 처리 */
     transition: 0.3s; /* 변화되는 CSS에 시간차를 줌 */
-  }
-  
-  /* 테두리 */
-  .smallSuccessView figcaption:after{
+}
+
+/* 테두리 */
+.smallSuccessView figcaption:after {
     content: ''; /* 비워둠 */
     display: block;
     width: calc(100% - 15px);
@@ -192,17 +223,20 @@ li{ list-style: none; }
     border: 1px solid #fff;
     box-sizing: border-box;
     position: absolute;
-    left: 0; right: 0; top: 0; bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
     margin: auto; /* 기준에서 정가운데 오도록 처리 */
-  }
-  
-  .smallSuccessView a:hover figcaption{
-    opacity: 1;
-  }
+}
 
-  .smallSuccessView a:focus figcaption{
+.smallSuccessView a:hover figcaption {
+    opacity: 1;
+}
+
+.smallSuccessView a:focus figcaption {
     opacity: 0;
-  }
+}
 
 /* 여기까지 */
 
@@ -234,7 +268,8 @@ li{ list-style: none; }
     font-weight: bold;
 }
 
-.commentContent {}
+.commentContent {
+}
 
 .commentView {
     width: 378px;
@@ -281,6 +316,7 @@ li{ list-style: none; }
 }
 
 .uploadView {
+    position: relative;
     width: 316px;
     height: 421px;
     padding: 42px 42px 25px 42px;
@@ -332,15 +368,15 @@ li{ list-style: none; }
 }
 
 .informationTooltipText {
-    visibility: hidden;       /* 이벤트가 없으면 툴팁 영역을 숨김 */
-    width: 320px;             /* 툴팁 영역의 넓이를 설정 */
+    visibility: hidden; /* 이벤트가 없으면 툴팁 영역을 숨김 */
+    width: 320px; /* 툴팁 영역의 넓이를 설정 */
     left: 40px;
     background-color: white;
     text-align: center;
     border-radius: 6px;
     box-shadow: 0 4px 8px 0 rgba(92, 92, 92, 0.25);
     padding: 5px 0;
-    position: absolute;       /* 절대 위치를 사용 */
+    position: absolute; /* 절대 위치를 사용 */
     z-index: 1;
 }
 
@@ -360,20 +396,20 @@ li{ list-style: none; }
 }
 
 .approveTooltipText {
-    visibility: hidden;       /* 이벤트가 없으면 툴팁 영역을 숨김 */
-    width: 300px;             /* 툴팁 영역의 넓이를 설정 */
+    visibility: hidden; /* 이벤트가 없으면 툴팁 영역을 숨김 */
+    width: 300px; /* 툴팁 영역의 넓이를 설정 */
     left: 40px;
     color: white;
     text-align: center;
     border-radius: 6px;
     box-shadow: 0 4px 8px 0 rgba(92, 92, 92, 0.25);
     padding: 5px 0;
-    position: absolute;       /* 절대 위치를 사용 */
+    position: absolute; /* 절대 위치를 사용 */
     z-index: 1;
 }
 
 .approved:hover .approveTooltipText {
-    visibility: visible;      /* hover 이벤트 발생시 영역을 보여줌 */
+    visibility: visible; /* hover 이벤트 발생시 영역을 보여줌 */
 }
 
 .uploadContent {
@@ -388,20 +424,20 @@ li{ list-style: none; }
 }
 
 .approveContentTooltipText {
-    visibility: hidden;       /* 이벤트가 없으면 툴팁 영역을 숨김 */
-    width: 300px;             /* 툴팁 영역의 넓이를 설정 */
+    visibility: hidden; /* 이벤트가 없으면 툴팁 영역을 숨김 */
+    width: 300px; /* 툴팁 영역의 넓이를 설정 */
     left: 330px;
     color: white;
     text-align: center;
     border-radius: 6px;
     box-shadow: 0 4px 8px 0 rgba(92, 92, 92, 0.25);
     padding: 5px 0;
-    position: absolute;       /* 절대 위치를 사용 */
+    position: absolute; /* 절대 위치를 사용 */
     z-index: 1;
 }
 
 .uploadContent:hover .approveContentTooltipText {
-    visibility: visible;      /* hover 이벤트 발생시 영역을 보여줌 */
+    visibility: visible; /* hover 이벤트 발생시 영역을 보여줌 */
 }
 
 .emailBox {
@@ -425,7 +461,6 @@ li{ list-style: none; }
     margin-top: 15px;
     color: #878787;
 }
-
 
 
 .passwordBox {
@@ -667,7 +702,7 @@ button {
 }
 
 .profilePage {
-    width: 100%-200px;
+    width: 100% -200px;
     height: 100%;
     padding: 0 100px;
 }
@@ -730,7 +765,7 @@ button {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%-100px;
+    width: 100% -100px;
     height: 60px;
     flex-grow: 0;
     padding: 0 100px;
@@ -903,7 +938,7 @@ button {
 
 }
 
-.detailViewLocation{
+.detailViewLocation {
     display: flex;
     flex-direction: row;
     /* flex-wrap: wrap; */
@@ -924,7 +959,7 @@ button {
     font-family: Arial;
     font-size: 28px;
     font-weight: 500;
-    margin-top : 40px;
+    margin-top: 40px;
     text-align: center;
     color: #525252;
     padding-bottom: 15px;
@@ -940,7 +975,7 @@ button {
     padding-bottom: 30px;
 }
 
-.detailViewLayout{
+.detailViewLayout {
     position: fixed;
     width: 100%;
     height: 100%;
@@ -951,7 +986,7 @@ button {
     align-items: center;
 }
 
-.uploadPage{
+.uploadPage {
     display: flex;
     width: 100%;
     height: 100%;
@@ -1001,7 +1036,7 @@ button {
 
 .schoolTitle {
     font-family: Arial;
-    margin-left : 20px;
+    margin-left: 20px;
     font-size: 20px;
     font-weight: 500;
     text-align: left;
@@ -1011,7 +1046,7 @@ button {
 
 .schoolServeTitle {
     font-family: Arial;
-    margin-left : 20px;
+    margin-left: 20px;
     font-size: 18px;
     font-weight: 500;
     text-align: left;
@@ -1022,7 +1057,7 @@ button {
 
 .colloectionSuccess {
     font-family: Arial;
-    margin-right : 50px;
+    margin-right: 50px;
     font-size: 18px;
     font-weight: 500;
     text-align: right;
