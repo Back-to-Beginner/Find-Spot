@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import '../../../css/common.css'
 import { Link } from 'react-router-dom';
 import DetailView from '../detailView/DetailView';
@@ -22,18 +22,18 @@ const SmallMissionCard = (props) => {
             <div className={'smallMissionCardTitle'}>
                 {content}
             </div>
-                       
+
             <div className={'smallMissionImageMask'}>
                 <a>
-                 <Link to={'/detailview'}>
-                    <figure>
-                        <img className={'smallMissionImage'}
-                             src={imagePath}
-                             alt={null}/>
-                        <figcaption>자세히 보기</figcaption>
-                    </figure>
+                    <Link to={'/detailview'}>
+                        <figure>
+                            <img className={'smallMissionImage'}
+                                src={imagePath}
+                                alt={null} />
+                            <figcaption>자세히 보기</figcaption>
+                        </figure>
+                    </Link>
                 </a>
-                </Link>
             </div>
         </div>
     </>

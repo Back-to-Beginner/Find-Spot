@@ -25,9 +25,11 @@ const DetailView = (props) => {
                     <CommentCard />
                 </div>
             </div>
+            <Link to={'/upload/:missionId'}>
             <div style={{ paddingTop: '50px' }} onClick={() => setDetailView(false)}>
                 <YellowButton buttonName={'Challenge!'} />
             </div>
+            </Link>
             <Link to={'/'}>
             <div style={{ padding: '10px' }} onClick={() => setDetailView(false)}>
                 <div className='findSuccess'>
