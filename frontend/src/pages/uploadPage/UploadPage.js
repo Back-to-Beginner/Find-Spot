@@ -1,10 +1,11 @@
-import React, {useEffect, useLayoutEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
+import axios from "axios";
+import {Link, useNavigate} from "react-router-dom";
 import Header from "../../components/header/Header";
 import YellowButton from "../../components/button/YelloButton";
-import axios from "axios";
 import MissionCard from "../../components/cards/missionCard/MissionCard";
 import UploadCard from "../../components/cards/uploadCard/UploadCard";
-import {Link, Navigate, useNavigate, useParams} from "react-router-dom";
+
 
 const UploadPage = (props) => {
     const [mission, setMission] = useState({});
@@ -51,7 +52,7 @@ const UploadPage = (props) => {
         <Header/>
         <div className="mainPageWave">
             <div className='mainPageTitle'>
-                Upload You're New Success
+                📤 Upload You're New Success
             </div>
 
             <div className={'detailViewLocation'}>

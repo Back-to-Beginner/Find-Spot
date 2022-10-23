@@ -349,7 +349,7 @@ li {
 }
 
 .fileuploadText {
-    font-family: Arial;
+    font-family: Arial, serif;
     font-size: 20px;
     color: #525252;
     width: 316px;
@@ -418,9 +418,14 @@ li {
 }
 
 .uploadContentTextarea {
-    width: 308px;
-    height: 72px;
+    width: 314px;
+    height: 73px;
     resize: none;
+    font-size: 12px;
+}
+
+.uploadContentTextarea::placeholder {
+    color: green;
 }
 
 .approveContentTooltipText {
@@ -949,7 +954,7 @@ button {
 .detailViewLocation {
     display: flex;
     flex-direction: row;
-    /* flex-wrap: wrap; */
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
 }

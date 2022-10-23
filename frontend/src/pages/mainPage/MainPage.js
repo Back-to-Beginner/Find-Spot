@@ -50,7 +50,7 @@ const MainPage = () => {
         <Header/>
         <div className="mainPageWave">
             <div className='mainPageTitle'>
-                New Success
+                ✅ New Success
             </div>
             <div className="cardViewLocation">
                 <div className="previousArrow">

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {BrowserRouter, Routes, Route, Navigate} from 'react-router-dom';
 import LoginPage from './loginPage/LoginPage';
 import MainPage from './mainPage/MainPage';
@@ -11,24 +11,28 @@ import DetailView from '../components/cards/detailView/DetailView';
 import SuccessDetailView from  '../components/cards/detailView/SuccessDetailView';
 
 const RouterPage = () => {
+    const [isLogin, setIsLogin] = useState(false);
+
+    useEffect(() => {
+        sessionStorage.getItem('id') && setIsLogin(true);
+    })
 
     return (
         <div>
             <BrowserRouter>
                 <Routes>
-                    <Route path={'/login'}
-                           element={sessionStorage.getItem('id') ?
-                               <Navigate replace to='/'/> : <LoginPage/>}/>
-                    <Route path={'/register'}
-                           element={sessionStorage.getItem('id') ?
-                               <Navigate replace to='/'/> : <RegisterPage/>}/>
-                    <Route path={'/upload/:missionId'}
-                           element={sessionStorage.getItem('id') ?
-                               <Navigate replace to='/'/> : <UploadPage/>}/>
-                    <Route path={'/user/:id'} element={<ProfilePage/>}/>
+                    {
+                        isLogin ? (<>
+                            <Route path={'/upload/:id'} element={<UploadPage/>}/>
+                            <Route path={'/user/:id'} element={<ProfilePage/>}/>
+                        </>) : (<>
+                            <Route path={'/login'} element={<LoginPage/>}/>
+                            <Route path={'/register'} element={<RegisterPage/>}/>
+                        </>)
+                    }
                     <Route path={'/result/:searchWord'} element={<ResultPage/>}/>
-                    <Route path={'/'} element={<MainPage/>}/>
                     <Route path={'/collection'} element={<CollectionPage/>}/>
+                    <Route path={'/'} element={<MainPage/>}/>
                     <Route path={'*'} element={<Navigate replace to={'/'}/>}/>
                     <Route path={'/result'} element={<ResultPage/>}/>
                     <Route path={'/collection'} element={<CollectionPage/>}/>
