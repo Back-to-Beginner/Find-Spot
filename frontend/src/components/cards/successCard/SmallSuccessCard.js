@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import '../../../css/common.css'
+import { Link } from 'react-router-dom';
+import DetailView from '../detailView/DetailView';
 
 const SmallSuccessCard = (props) => {
     const [content, setContent] = useState("");
@@ -17,14 +19,14 @@ const SmallSuccessCard = (props) => {
     return <>
         <div className={'smallSuccessView'}>
             <div className={'smallSuccessImageMask'}>
-                <a>
+                <a><Link to={'/successdetailview'}>
                     <figure>
                         <img className={'smallSuccessImage'}
                              src={imagePath}
                              alt={null}/>
                         <figcaption>자세히 보기</figcaption>
                     </figure>
-                </a>
+                </Link></a>
             </div>
             <div className={'smallSuccessCardContent'}>
                 @{userName} {content}

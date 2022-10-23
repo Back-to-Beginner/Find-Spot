@@ -5,7 +5,7 @@ import CommentCard from "../commentCard/CommentCard";
 import YellowButton from "../../button/YelloButton";
 import { Link } from 'react-router-dom';
 
-const DetailView = (props) => {
+const SuccessDetailView = (props) => {
     const [detailView, setDetailView] = useState(false);
 
 
@@ -14,7 +14,7 @@ const DetailView = (props) => {
         <Header />
         <div className='background' >
             <div className='detailViewTitle'>
-                DetailView Page
+                SuccessDetailView Page
             </div>
             <div className='detailViewLocation'>
 
@@ -41,4 +41,4 @@ const DetailView = (props) => {
     </>
 }
 
-export default DetailView;
+export default SuccessDetailView;

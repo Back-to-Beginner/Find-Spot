@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import '../../../css/common.css'
 import missionImageExample from '../../../images/missionExample.jpeg';
 
@@ -7,13 +7,14 @@ const SuccessCard = (props) => {
     // const [missionImage, setMissionImage] = useState(props.image);
 
     return <>
+
         <div className={'successView'}>
+
             <div className={'successImageMask'}>
                 <img className={'successImage'}
-                     src={missionImageExample}
-                     alt={null}/>
+                    src={missionImageExample}
+                    alt={null} />
             </div>
-
             <div className={'successCardContent'}>
                 {successContent}
             </div>

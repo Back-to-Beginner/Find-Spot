@@ -8,13 +8,9 @@ import axios from "axios";
 import {Link} from 'react-router-dom';
 
 const MainPage = () => {
-    const [detailView, setDetailView] = useState(false);
     const [mission, setMission] = useState([]);
     const [success, setSuccess] = useState([]);
     const missionList = [];
-    const setDetailViewStyle = () => {
-        return detailView ? {visibility: 'visible'} : {visibility: 'hidden'}
-    }
 
     useLayoutEffect(() => {
         axios({
@@ -52,19 +48,6 @@ const MainPage = () => {
 
     return (<>
         <Header/>
-        <div className={'detailViewLayout'} style={setDetailViewStyle()}>
-            <DetailView/>
-            <div className="mainBoxPosition">
-                <div style={{paddingTop: '50px'}} onClick={() => setDetailView(false)}>
-                    <YellowButton buttonName={'Challenge!'}/>
-                </div>
-                <div style={{padding: '10px'}} onClick={() => setDetailView(false)}>
-                    <div className='findSuccess'>
-                        Close
-                    </div>
-                </div>
-            </div>
-        </div>
         <div className="mainPageWave">
             <div className='mainPageTitle'>
                 New Success
@@ -73,7 +56,7 @@ const MainPage = () => {
                 <div className="previousArrow">
                     &#5176;
                 </div>
-                <div style={{padding: '10px'}} onClick={() => setDetailView(true)}>
+                <div style={{padding: '10px'}}>
                     <SmallMissionCard data={mission[0]}/>
                 </div>
                 <div style={{padding: '10px'}}>

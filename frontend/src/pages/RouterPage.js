@@ -7,6 +7,8 @@ import RegisterPage from './registerPage/RegisterPage';
 import ResultPage from './resultPage/ResultPage';
 import UploadPage from "./uploadPage/UploadPage";
 import CollectionPage from './collectionPage/CollectionPage';
+import DetailView from '../components/cards/detailView/DetailView';
+import SuccessDetailView from  '../components/cards/detailView/SuccessDetailView';
 
 const RouterPage = () => {
 
@@ -28,6 +30,10 @@ const RouterPage = () => {
                     <Route path={'/'} element={<MainPage/>}/>
                     <Route path={'/collection'} element={<CollectionPage/>}/>
                     <Route path={'*'} element={<Navigate replace to={'/'}/>}/>
+                    <Route path={'/result'} element={<ResultPage/>}/>
+                    <Route path={'/collection'} element={<CollectionPage/>}/>
+                    <Route path={'/detailview'} element={<DetailView/>}/>
+                    <Route path={'/successdetailview'} element={<SuccessDetailView/>}/>
                 </Routes>
             </BrowserRouter>
         </div>
