@@ -19,7 +19,7 @@ const SmallSuccessCard = (props) => {
     return <>
         <div className={'smallSuccessView'}>
             <div className={'smallSuccessImageMask'}>
-                <a><Link to={'/detailview'}>
+                <a><Link to={'/successdetailview'}>
                     <figure>
                         <img className={'smallSuccessImage'}
                              src={imagePath}
