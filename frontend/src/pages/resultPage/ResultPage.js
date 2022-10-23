@@ -6,14 +6,17 @@ import axios from "axios";
 import {useParams} from "react-router-dom";
 import SmallMissionCard from "../../components/cards/missionCard/SmallMissionCard";
 import SmallProfileCard from "../../components/cards/profileCard/SmallProfileCard";
+import loading from "../../images/loading.gif";
 
 const ResultPage = (props) => {
     const [searchWord, setSearchWord] = useState("");
     const [searchType, setSearchType] = useState("s");
     const [result, setResult] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
     const parm = useParams()
 
     useEffect(() => {
+        setIsLoading(true)
         setSearchWord(parm.searchWord);
         axios({
             url: `/posts/search/s`,
@@ -22,9 +25,11 @@ const ResultPage = (props) => {
         }).then(res => {
             res.data.data && setResult(res.data.data);
         })
+        setIsLoading(false)
     }, []);
 
     const search = (e) => {
+        setIsLoading(true)
         setSearchType(e.target.value);
 
         axios({
@@ -34,6 +39,7 @@ const ResultPage = (props) => {
         }).then(res => {
             res.data.data && setResult(res.data.data);
         })
+        setIsLoading(false)
     }
 
     return (<>
@@ -55,35 +61,44 @@ const ResultPage = (props) => {
                 {result.length} results
             </div>
             {
-                searchType === 's' &&
-                <div className={'cardGrid'}>
-                    {result.map(card =>
-                        <div style={{padding: '5px'}}>
-                            <SmallSuccessCard data={card}/>
-                        </div>
-                    )}
-                </div>
+                isLoading ? (
+                    <img src={loading} alt={"로딩 중 입니다."}/>
+                ) : (
+                    <>
+                        {
+                            searchType === 's' &&
+                            <div className={'cardGrid'}>
+                                {result.map(card =>
+                                    <div style={{padding: '5px'}}>
+                                        <SmallSuccessCard data={card}/>
+                                    </div>
+                                )}
+                            </div>
+                        }
+                        {
+                            searchType === 'm' &&
+                            <div className={'cardGrid'}>
+                                {result.map(card =>
+                                    <div style={{padding: '5px'}}>
+                                        <SmallMissionCard data={card}/>
+                                    </div>
+                                )}
+                            </div>
+                        }
+                        {
+                            searchType === 'u' &&
+                            <div className={'cardGrid'}>
+                                {result.map(card =>
+                                    <div style={{padding: '5px'}}>
+                                        <SmallProfileCard data={card}/>
+                                    </div>
+                                )}
+                            </div>
+                        }
+                    </>
+                )
             }
-            {
-                searchType === 'm' &&
-                <div className={'cardGrid'}>
-                    {result.map(card =>
-                        <div style={{padding: '5px'}}>
-                            <SmallMissionCard data={card}/>
-                        </div>
-                    )}
-                </div>
-            }
-            {
-                searchType === 'u' &&
-                <div className={'cardGrid'}>
-                    {result.map(card =>
-                        <div style={{padding: '5px'}}>
-                            <SmallProfileCard data={card}/>
-                        </div>
-                    )}
-                </div>
-            }
+
         </div>
     </>)
 }

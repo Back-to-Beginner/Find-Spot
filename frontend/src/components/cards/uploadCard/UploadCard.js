@@ -2,13 +2,13 @@ import React, {useRef, useState} from 'react';
 import '../../../css/common.css'
 import fileupload from '../../../images/fileupload.png';
 import information from '../../../images/information.png';
-import approved from '../../../images/approved.png';
-import cancel from '../../../images/cancel.png';
+import loading from "../../../images/loading.gif";
 import axios from "axios";
 
 const UploadCard = (props) => {
     const [imageSrc, setImageSrc] = useState('');
     const [approve, setApprove] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const getUploadImage = () => {
         return (<>
@@ -19,9 +19,9 @@ const UploadCard = (props) => {
         </>);
     }
 
-    const getApproveImage = () => {
-        return approve ? approved : cancel;
-    }
+    // const getApproveImage = () => {
+    //     return approve ? approved : cancel;
+    // }
 
     const getApproveText = () => {
         return approve ? '성공하였습니다! 게시글을 작성해 주세요!' : '조금 더 비슷한 사진으로 시도해 주세요';
@@ -42,16 +42,14 @@ const UploadCard = (props) => {
     }
 
     const encodeFileToBase64 = (fileBlob) => {
+        setIsLoading(true)
         const reader = new FileReader();
         reader.readAsDataURL(fileBlob);
 
         const form = new FormData();
         form.append('images', fileBlob);
         axios({
-            header: {'content-type': 'multipart/form-data'},
-            method: 'post',
-            url: "/images/upload",
-            data: form
+            header: {'content-type': 'multipart/form-data'}, method: 'post', url: "/images/upload", data: form
         }).then(res => {
             props.imageSrc(res.data.data);
             axios({
@@ -59,9 +57,15 @@ const UploadCard = (props) => {
                 url: '/images/compare',
                 params: {'challengeUrl': res.data.data, "missionId": sessionStorage.getItem('missionId')}
             }).then(res => {
-                res.data.data && props.approve(true);
-                res.data.data && setApprove(true);
+                if (res.data.data === true) {
+                    props.approve(true);
+                    setApprove(true);
+                } else {
+                    props.approve(false);
+                    setApprove(false)
+                }
                 console.log(res.data.data);
+                setIsLoading(false)
             })
         })
 
@@ -77,19 +81,12 @@ const UploadCard = (props) => {
         <div className={'uploadView'}>
             <div className={'information'}>
                 <img className={'informationImage'} src={information}/>
-                <span className={'informationTooltipText'}>미션 사진과&nbsp;
+                <span className={'informationTooltipText'}>⚠️ 미션 사진과&nbsp;
                     <span style={{fontWeight: 'bold', textDecoration: 'underline'}}>같은 장소</span>
                         에서&nbsp;
                     <span style={{fontWeight: 'bold', textDecoration: 'underline'}}>같은 구도</span>
                         로 촬영한 <br/> 사진만 업로드 할 수 있습니다.
                 </span>
-            </div>
-
-            <div className={'approved'}>
-                <img className={'approvedImage'} src={getApproveImage()}/>
-                <span className={'approveTooltipText'} style={getApproveTextColor()}>
-                        {getApproveText()}
-                    </span>
             </div>
 
             <div className={'uploadImageMask'} onClick={handleClick}>
@@ -101,22 +98,36 @@ const UploadCard = (props) => {
                        }}
                        ref={imageInput}/>
 
-                {imageSrc ?
-                    <img className={'successImage'}
-                         src={imageSrc}
-                         alt={null}/>
-                    : getUploadImage()}
+                {imageSrc ? <img className={'successImage'}
+                                 src={imageSrc}
+                                 alt={null}/> : getUploadImage()}
             </div>
-
-            <div className={'uploadContent'}>
-                <textarea readOnly={!approve}
-                          className={'uploadContentTextarea'}
-                          onChange={event => props.content(event.target.value)}/>
-                <span className={'approveContentTooltipText'}
-                      style={getApproveTextColor()}>
+            {isLoading ? (
+                <div className={"background"} style={{alignItems: 'center', padding: '20px'}}>
+                    <img src={loading} alt="로딩 중" style={{width: "80px"}}/>
+                </div>
+            ) : (
+                approve ? (
+                    <div className={'uploadContent'}>
+                    <textarea
+                        className={'uploadContentTextarea'}
+                        onChange={event => props.content(event.target.value)}
+                        placeholder={"✅ 미션에 성공 하였습니다! 여기에 게시글을 작성 해주세요"}
+                    />
+                    <span className={'approveContentTooltipText'} style={getApproveTextColor()}>
                     {getApproveContentText()}
                 </span>
-            </div>
+                    </div>
+                ) : (
+                    imageSrc && <div className={"detailViewLocation"}>
+                        <div style={{padding: '20px'}}>
+                            <div>구도 : ❌️</div>
+                        </div>
+                        <div style={{padding: '20px'}}>
+                            <div>색상 : ❌</div>
+                        </div>
+                        <div>{getApproveText()}</div>
+                    </div>))}
         </div>
     </>
 }
