@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import '../../../css/common.css'
+import { Link } from 'react-router-dom';
+import DetailView from '../detailView/DetailView';
 
 const SmallMissionCard = (props) => {
     const [content, setContent] = useState("");
@@ -15,12 +17,15 @@ const SmallMissionCard = (props) => {
     },)
 
     return <>
+
         <div className={'smallMissionView'}>
             <div className={'smallMissionCardTitle'}>
                 {content}
             </div>
+                       
             <div className={'smallMissionImageMask'}>
-                <a href="#">
+                <a>
+                 <Link to={'/detailview'}>
                     <figure>
                         <img className={'smallMissionImage'}
                              src={imagePath}
@@ -28,6 +33,7 @@ const SmallMissionCard = (props) => {
                         <figcaption>자세히 보기</figcaption>
                     </figure>
                 </a>
+                </Link>
             </div>
         </div>
     </>
