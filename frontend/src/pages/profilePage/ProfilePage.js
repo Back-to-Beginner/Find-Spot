@@ -21,7 +21,7 @@ const ProfilePage = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (param.id === 'null') {
+        if (param.id === 'null' || !sessionStorage.getItem('id')) {
             navigate('/login');
             return;
         }
