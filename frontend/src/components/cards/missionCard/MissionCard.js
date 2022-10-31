@@ -1,19 +1,18 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import '../../../css/common.css'
-import missionImageExample from '../../../images/missionExample.jpeg';
 
 const MissionCard = (props) => {
-    const [missionName, setMissionName] = useState("mission Title");
-    // const [missionImage, setMissionImage] = useState(props.image);
+    const [imageSrc, setImageSrc] = useState(sessionStorage.getItem("imageSrc"));
+    const [content, setContent] = useState(sessionStorage.getItem("content"));
 
     return <>
         <div className={'missionView'}>
             <div className={'missionCardTitle'}>
-                {missionName}
+                {content}
             </div>
             <div className={'missionImageMask'}>
                 <img className={'missionImage'}
-                     src={missionImageExample}
+                     src={imageSrc}
                      alt={null}/>
             </div>
         </div>

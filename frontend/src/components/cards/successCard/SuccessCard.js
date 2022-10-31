@@ -3,8 +3,9 @@ import '../../../css/common.css'
 import missionImageExample from '../../../images/missionExample.jpeg';
 
 const SuccessCard = (props) => {
-    const [successContent, setSuccessContent] = useState("success Content");
-    // const [missionImage, setMissionImage] = useState(props.image);
+    const [imageSrc, setImageSrc] = useState(sessionStorage.getItem("imageSrc"));
+    const [content, setContent] = useState(sessionStorage.getItem("content"));
+    const [uploader, serUploader] = useState(sessionStorage.getItem("uploader"));
 
     return <>
 
@@ -12,11 +13,11 @@ const SuccessCard = (props) => {
 
             <div className={'successImageMask'}>
                 <img className={'successImage'}
-                    src={missionImageExample}
+                    src={imageSrc}
                     alt={null} />
             </div>
             <div className={'successCardContent'}>
-                {successContent}
+                @{uploader} {content}
             </div>
         </div>
     </>
