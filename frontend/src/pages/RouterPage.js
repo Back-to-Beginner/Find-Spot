@@ -8,36 +8,42 @@ import ResultPage from './resultPage/ResultPage';
 import UploadPage from "./uploadPage/UploadPage";
 import CollectionPage from './collectionPage/CollectionPage';
 import DetailView from '../components/cards/detailView/DetailView';
-import SuccessDetailView from  '../components/cards/detailView/SuccessDetailView';
+import SuccessDetailView from '../components/cards/detailView/SuccessDetailView';
+import GroupPage from "./ groupPage/GroupPage";
 
 const RouterPage = () => {
-    const [isLogin, setIsLogin] = useState(false);
+    // const [isLogin, setIsLogin] = useState(false);
 
-    useEffect(() => {
-        sessionStorage.getItem('id') && setIsLogin(true);
-    })
+    // useEffect(() => {
+    //     sessionStorage.getItem('id') && setIsLogin(true);
+    // })
 
     return (
         <div>
             <BrowserRouter>
                 <Routes>
                     {
-                        isLogin ? (<>
+                        sessionStorage.getItem('id') ? (<>
                             <Route path={'/upload/:id'} element={<UploadPage/>}/>
                             <Route path={'/user/:id'} element={<ProfilePage/>}/>
+                            <Route path={'/result/:searchWord'} element={<ResultPage/>}/>
+                            <Route path={'/collection'} element={<CollectionPage/>}/>
+                            <Route path={'/detail/m'} element={<DetailView/>}/>
+                            <Route path={'/detail/s'} element={<SuccessDetailView/>}/>
+                            <Route path={'/'} element={<MainPage/>}/>
+                            <Route path={'*'} element={<Navigate replace to={'/'}/>}/>
                         </>) : (<>
                             <Route path={'/login'} element={<LoginPage/>}/>
                             <Route path={'/register'} element={<RegisterPage/>}/>
+                            <Route path={'/result/:searchWord'} element={<ResultPage/>}/>
+                            <Route path={'/collection'} element={<CollectionPage/>}/>
+                            <Route path={'/detail/m'} element={<DetailView/>}/>
+                            <Route path={'/detail/s'} element={<SuccessDetailView/>}/>
+                            <Route path={'/group'} element={<GroupPage/>}/>
+                            <Route path={'/'} element={<MainPage/>}/>
+                            <Route path={'*'} element={<Navigate replace to={'/login'}/>}/>
                         </>)
                     }
-                    <Route path={'/result/:searchWord'} element={<ResultPage/>}/>
-                    <Route path={'/collection'} element={<CollectionPage/>}/>
-                    <Route path={'/'} element={<MainPage/>}/>
-                    <Route path={'*'} element={<Navigate replace to={'/'}/>}/>
-                    <Route path={'/result'} element={<ResultPage/>}/>
-                    <Route path={'/collection'} element={<CollectionPage/>}/>
-                    <Route path={'/detailview'} element={<DetailView/>}/>
-                    <Route path={'/successdetailview'} element={<SuccessDetailView/>}/>
                 </Routes>
             </BrowserRouter>
         </div>
