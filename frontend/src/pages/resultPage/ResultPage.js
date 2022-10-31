@@ -52,7 +52,8 @@ const ResultPage = (props) => {
             <form onChange={search}>
                 <input type={"radio"} name={'searchWord'} value={'s'} defaultChecked={true}/> 성공&nbsp;&nbsp;
                 <input type={"radio"} name={'searchWord'} value={'m'}/> 미션&nbsp;&nbsp;
-                <input type={"radio"} name={'searchWord'} value={'u'}/> 사용자
+                <input type={"radio"} name={'searchWord'} value={'u'}/> 사용자&nbsp;&nbsp;
+                <input type={"radio"} name={'searchWord'} value={'g'}/> 그룹
             </form>
             <div className="resultPageTitle">
                 "{searchWord}" Search Result
@@ -95,10 +96,19 @@ const ResultPage = (props) => {
                                 )}
                             </div>
                         }
+                        {
+                            searchType === 'g' &&
+                            <div className={'cardGrid'}>
+                                {/*{result.map(card =>*/}
+                                    <div style={{padding: '5px'}}>
+                                        <SmallProfileCard/>
+                                    </div>
+                                {/*)}*/}
+                            </div>
+                        }
                     </>
                 )
             }
-
         </div>
     </>)
 }
