@@ -1,39 +1,34 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import '../../../css/common.css'
-import { Link } from 'react-router-dom';
-import DetailView from '../detailView/DetailView';
+import {Link} from 'react-router-dom';
 
 const SmallMissionCard = (props) => {
-    const [content, setContent] = useState("");
-    const [userName, setUserName] = useState("");
-    const [imagePath, setImagePath] = useState("");
+    const [data, setData] = useState({});
 
     useEffect(() => {
-        if (props.data) {
-            setContent(props.data.content);
-            setUserName(props.data.userName);
-            setImagePath(props.data.imagePath);
-        }
+        props.data && setData(props.data);
     },)
 
-    return <>
+    const setStorage = () => {
+        sessionStorage.setItem("imageSrc", data.imagePath);
+        sessionStorage.setItem("content", data.content);
+        sessionStorage.setItem("missionId", data.id);
+    }
 
+    return <>
         <div className={'smallMissionView'}>
             <div className={'smallMissionCardTitle'}>
-                {content}
+                {data.content}
             </div>
-
             <div className={'smallMissionImageMask'}>
-                <a>
-                    <Link to={'/detailview'}>
-                        <figure>
-                            <img className={'smallMissionImage'}
-                                src={imagePath}
-                                alt={null} />
-                            <figcaption>자세히 보기</figcaption>
-                        </figure>
-                    </Link>
-                </a>
+                <Link to={`/detail/m`} onClick={setStorage}>
+                    <figure>
+                        <img className={'smallMissionImage'}
+                             src={data.imagePath}
+                             alt={null}/>
+                        <figcaption>자세히 보기</figcaption>
+                    </figure>
+                </Link>
             </div>
         </div>
     </>
