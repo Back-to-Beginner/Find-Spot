@@ -3,7 +3,6 @@ import Header from "../../components/header/Header";
 import SmallMissionCard from "../../components/cards/missionCard/SmallMissionCard";
 import SmallSuccessCard from "../../components/cards/successCard/SmallSuccessCard";
 import YellowButton from "../../components/button/YelloButton";
-import DetailView from "../../components/cards/detailView/DetailView";
 import axios from "axios";
 import {Link} from 'react-router-dom';
 
@@ -16,14 +15,14 @@ const MainPage = () => {
         axios({
             method: 'get',
             url: '/posts/types/m'
-        }).then(res => {
-            if (res.data.data[0]) {
+        }).then(misRes => {
+            if (misRes.data.data[0] && misRes.data.data[0].type === 'm') {
                 // res.data.data.map(m => {
                 //     missionList.push(m)
                 // });
                 // setMission(missionList.pop);
-                sessionStorage.setItem("missionId", res.data.data[0].id);
-                setMission(res.data.data);
+                sessionStorage.setItem("missionId", misRes.data.data[0].id);
+                setMission(misRes.data.data);
                 getSuccess();
             }
         })
@@ -33,18 +32,22 @@ const MainPage = () => {
         axios({
             method: 'get',
             url: `/posts/parent/${sessionStorage.getItem("missionId")}/child/s`
-        }).then(res => {
-            console.log(res.data.data[0])
-            res.data.data && setSuccess(res.data.data[0]);
+        }).then(sucRes => {
+            sucRes.data.data && setSuccess(sucRes.data.data[0]);
         })
     }
 
-    const getNextMission = () => {
-        const tempMission = missionList.pop;
-        setMission(tempMission);
-        missionList.push(tempMission);
-        getSuccess()
+    const setStorage = () => {
+        sessionStorage.setItem("imageSrc", mission[0].imagePath);
+        sessionStorage.setItem("content", mission[0].content);
+        sessionStorage.setItem("missionId", mission[0].id);
     }
+    // const getNextMission = () => {
+    //     const tempMission = missionList.pop;
+    //     setMission(tempMission);
+    //     missionList.push(tempMission);
+    //     getSuccess()
+    // }
 
     return (<>
         <Header/>
@@ -76,14 +79,13 @@ const MainPage = () => {
                     </Link>
                 </div>
                 <div style={{padding: '10px'}}>
-                    <Link to={'/result'}>
+                    <Link to={'/result/*'} onClick={setStorage}>
                         <div className='findOtherSpot'>
                             Find other Spot
                         </div>
                     </Link>
                 </div>
             </div>
-
         </div>
     </>)
 };

@@ -29,7 +29,8 @@ const LoginBox = (props) => {
             sessionStorage.setItem('name', res.data.data.name);
             sessionStorage.setItem('email', res.data.data.email);
             if (sessionStorage.getItem('id')){
-                navigate('/');
+                // navigate('/');
+                window.location.replace('/');
             }
         });
     });
@@ -70,7 +71,7 @@ const LoginBox = (props) => {
 
                     <Link to={'/register'}>
                         <div className='register'>
-                            Resigter
+                            Resister
                         </div>
                     </Link>
                 </div>
