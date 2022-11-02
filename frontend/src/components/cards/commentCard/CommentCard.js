@@ -1,23 +1,56 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import '../../../css/common.css'
 import sendIcon from '../../../images/paper-plane.png';
 import Comment from "./Comment";
+import axios from "axios";
 
 const CommentCard = (props) => {
+    const [chatInput, setChatInput] = useState('');
+    const [chatList, setChatList] = useState([]);
+    useEffect(() => {
+        axios({
+            method: 'get',
+            url: `/posts/parent/${sessionStorage.getItem("missionId")}/child/c`
+        }).then(r => {
+            console.log(r.data.data);
+            setChatList(r.data.data);
+        })
+    }, [])
+
+    const send = () => {
+        console.log(chatInput);
+        axios({
+            method: 'post',
+            url: '/posts',
+            data: {
+                'type': 'c',
+                'userId': sessionStorage.getItem('id'),
+                'parentPostId': sessionStorage.getItem('missionId'),
+                'content': chatInput
+            },
+        }).then(r => {
+            window.location.reload();
+        })
+    }
 
     return (
         <div className={'commentView'}>
             <div className={'commentList'}>
-                <Comment username={'bob'} content={'sooooo wired'}></Comment>
-                <Comment username={'bob'} content={'sooooo wired'}></Comment>
+                {
+                    chatList.map(chat =>
+                        <Comment username={chat.userName} content={chat.content}/>
+                    )
+                }
             </div>
             <div className={'sendBox'}>
-                <div className={'commentInputLocation'}>
-                    <input className={'commentInput'}/>
-                </div>
-                    <button className={'sendIconButton'}>
-                        <img className={'sendIcon'} src={sendIcon} alt=""/>
-                    </button>
+                <input
+                    type={"text"}
+                    className={'commentInput'}
+                    onChange={(event) => setChatInput(event.target.value)}
+                    value={chatInput}/>
+                <button className={'sendIconButton'} onClick={send}>
+                    <img className={'sendIcon'} src={sendIcon} alt=""/>
+                </button>
             </div>
         </div>
     )
