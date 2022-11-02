@@ -55,7 +55,11 @@ const UploadCard = (props) => {
             axios({
                 method: 'get',
                 url: '/images/compare',
-                params: {'challengeUrl': res.data.data, "missionId": sessionStorage.getItem('missionId')}
+                params: {
+                    'challengeUrl': res.data.data,
+                    "missionId": sessionStorage.getItem('missionId'),
+                    "slice": 'PHA'
+                }
             }).then(res => {
                 if (res.data.data === true) {
                     props.approve(true);
@@ -114,7 +118,7 @@ const UploadCard = (props) => {
                         onChange={event => props.content(event.target.value)}
                         placeholder={"✅ 미션에 성공 하였습니다! 여기에 게시글을 작성 해주세요"}
                     />
-                    <span className={'approveContentTooltipText'} style={getApproveTextColor()}>
+                        <span className={'approveContentTooltipText'} style={getApproveTextColor()}>
                     {getApproveContentText()}
                 </span>
                     </div>

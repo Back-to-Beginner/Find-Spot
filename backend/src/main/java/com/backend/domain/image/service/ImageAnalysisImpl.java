@@ -1,5 +1,6 @@
 package com.backend.domain.image.service;
 
+import com.backend.domain.image.domain.ImageSlice;
 import com.backend.domain.image.dto.AnalysisRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -10,7 +11,6 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
-import java.util.List;
 import java.util.Objects;
 
 @Component
@@ -26,13 +26,11 @@ public class ImageAnalysisImpl implements
     @Value("${pythonServer.url}")
     private String url;
 
-    private final List<Integer> appleSlice = List.of(130, 300, 130, 245);
-    private final List<Integer> phaSlice = List.of(130, 230, 120, 300);
-
     @Override
     public Boolean analyseImage(
             String challengeImageUrl,
-            String missionImageUrl
+            String missionImageUrl,
+            ImageSlice slice
     ) {
 
         URI uri = UriComponentsBuilder
@@ -47,7 +45,7 @@ public class ImageAnalysisImpl implements
                 AnalysisRequest.builder()
                         .mission(missionImageUrl)
                         .trial(challengeImageUrl)
-                        .slice(appleSlice)
+                        .slice(slice.getSlice())
                         .build(),
                 String.class);
 

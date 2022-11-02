@@ -1,5 +1,6 @@
 package com.backend.domain.image.service;
 
+import com.backend.domain.image.domain.ImageSlice;
 import com.backend.domain.image.domain.entity.Image;
 import com.backend.domain.image.domain.entity.QImage;
 import com.backend.domain.image.domain.repository.ImageRepository;
@@ -85,10 +86,10 @@ public class ImageService implements
     }
 
     @Transactional
-    public boolean compareImage(String challengeUrl, Long missionId) {
+    public boolean compareImage(String challengeUrl, Long missionId, String slice) {
         String missionImagePath = findEntityByPost(missionId).get(0).getPath();
 
-        return (boolean) imageAnalysis.analyseImage(challengeUrl, missionImagePath);
+        return (boolean) imageAnalysis.analyseImage(challengeUrl, missionImagePath, ImageSlice.valueOf(slice));
     }
 
     @Override
