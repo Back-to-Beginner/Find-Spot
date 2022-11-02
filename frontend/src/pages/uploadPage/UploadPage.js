@@ -43,7 +43,7 @@ const UploadPage = (props) => {
                 }
             }).then(res => {
                 alert('게시글 작성에 성공하였습니다!!');
-                res && window.location.back();
+                res && navigate("/");
             })
         );
     };
