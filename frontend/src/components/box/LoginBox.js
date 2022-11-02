@@ -11,8 +11,6 @@ const LoginBox = (props) => {
         pw: "",
     });
 
-    const navigate = useNavigate();
-
     const login = useCallback((e) => {
         e.preventDefault();
         axios({
@@ -29,7 +27,6 @@ const LoginBox = (props) => {
             sessionStorage.setItem('name', res.data.data.name);
             sessionStorage.setItem('email', res.data.data.email);
             if (sessionStorage.getItem('id')){
-                // navigate('/');
                 window.location.replace('/');
             }
         });
