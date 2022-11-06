@@ -21,7 +21,7 @@ const MainPage = () => {
                 //     missionList.push(m)
                 // });
                 // setMission(missionList.pop);
-                sessionStorage.setItem("missionId", misRes.data.data[0].id);
+                sessionStorage.setItem("postId", misRes.data.data[0].id);
                 setMission(misRes.data.data);
                 getSuccess();
             }
@@ -31,7 +31,7 @@ const MainPage = () => {
     const getSuccess = () => {
         axios({
             method: 'get',
-            url: `/posts/parent/${sessionStorage.getItem("missionId")}/child/s`
+            url: `/posts/parent/${sessionStorage.getItem("postId")}/child/s`
         }).then(sucRes => {
             sucRes.data.data && setSuccess(sucRes.data.data[0]);
         })
@@ -40,7 +40,7 @@ const MainPage = () => {
     const setStorage = () => {
         sessionStorage.setItem("imageSrc", mission[0].imagePath);
         sessionStorage.setItem("content", mission[0].content);
-        sessionStorage.setItem("missionId", mission[0].id);
+        sessionStorage.setItem("postId", mission[0].id);
     }
     // const getNextMission = () => {
     //     const tempMission = missionList.pop;
@@ -74,7 +74,7 @@ const MainPage = () => {
 
             <div className="mainBoxPosition">
                 <div style={{paddingTop: '50px'}}>
-                    <Link to={`/upload/${sessionStorage.getItem('missionId')}`}>
+                    <Link to={`/upload/${sessionStorage.getItem('postId')}`}>
                         <YellowButton buttonName={'Challenge this Mission'}/>
                     </Link>
                 </div>

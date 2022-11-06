@@ -30,7 +30,7 @@ const UploadPage = (props) => {
             data: {
                 'type': 's',
                 'userId': sessionStorage.getItem('id'),
-                'parentPostId': sessionStorage.getItem('missionId'),
+                'parentPostId': sessionStorage.getItem('postId'),
                 'content': content
             }
         }).then(res => res && axios({

@@ -10,7 +10,7 @@ const CommentCard = (props) => {
     useEffect(() => {
         axios({
             method: 'get',
-            url: `/posts/parent/${sessionStorage.getItem("missionId")}/child/c`
+            url: `/posts/parent/${sessionStorage.getItem("postId")}/child/c`
         }).then(r => {
             console.log(r.data.data);
             setChatList(r.data.data);
@@ -18,19 +18,19 @@ const CommentCard = (props) => {
     }, [])
 
     const send = () => {
-        console.log(chatInput);
+        sessionStorage.getItem('id') ?
         axios({
             method: 'post',
             url: '/posts',
             data: {
                 'type': 'c',
                 'userId': sessionStorage.getItem('id'),
-                'parentPostId': sessionStorage.getItem('missionId'),
+                'parentPostId': sessionStorage.getItem('postId'),
                 'content': chatInput
             },
         }).then(r => {
             window.location.reload();
-        })
+        }) : alert('로그인을 먼저 해주세요. [우측 상단 원형 아이콘]');
     }
 
     return (
