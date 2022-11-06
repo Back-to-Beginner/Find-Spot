@@ -1,11 +1,24 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Header from "../../header/Header";
 import CommentCard from "../commentCard/CommentCard";
 import YellowButton from "../../button/YelloButton";
 import {Link} from 'react-router-dom';
 import MissionCard from "../missionCard/MissionCard";
+import axios from "axios";
+import SmallSuccessCard from "../successCard/SmallSuccessCard";
 
 const DetailView = (props) => {
+    const [postList, setPostList] = useState([]);
+
+    useEffect(() => {
+        axios({
+            url: `/posts/parent/${sessionStorage.getItem('postId')}/child/s`,
+            method: 'get',
+        }).then(res => {
+            res.data.data && setPostList(res.data.data);
+        })
+    }, [])
+
     return <>
         <Header/>
         <div className='background'>
@@ -32,7 +45,18 @@ const DetailView = (props) => {
                     </div>
                 </div>
             </Link>
+            <div style={{paddingTop: '30px'}}>
+                Success of this Mission
+            </div>
+            <div className={'cardGrid'}>
+                {postList.map(card =>
+                    <div style={{padding: '5px'}}>
+                        <SmallSuccessCard data={card}/>
+                    </div>
+                )}
+            </div>
         </div>
+
     </>
 }
 

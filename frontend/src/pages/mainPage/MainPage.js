@@ -79,7 +79,7 @@ const MainPage = () => {
                     </Link>
                 </div>
                 <div style={{padding: '10px'}}>
-                    <Link to={'/result/*'} onClick={setStorage}>
+                    <Link to={'/collection'} onClick={setStorage}>
                         <div className='findOtherSpot'>
                             Find other Spot
                         </div>

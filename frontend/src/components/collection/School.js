@@ -14,13 +14,13 @@ const School = () => {
     ]
 
     return <>
-    <div className={'schoolCardGrid'}>
-                    {schoolMission.map(card =>
-                        <div style={{padding: '10px'}}>
-                            <SmallSuccessCard image={card.image} content={card.content}/>
-                        </div>
-                    )}
+        <div className={'schoolCardGrid'}>
+            {schoolMission.map(card =>
+                <div style={{padding: '10px'}}>
+                    <SmallSuccessCard image={card.image} content={card.content}/>
                 </div>
+            )}
+        </div>
     </>
 
 }

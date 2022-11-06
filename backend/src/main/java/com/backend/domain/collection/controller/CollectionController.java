@@ -1,7 +1,7 @@
-package com.backend.domain.follow.controller;
+package com.backend.domain.collection.controller;
 
-import com.backend.domain.follow.dto.FollowRequest;
-import com.backend.domain.follow.service.FollowService;
+import com.backend.domain.collection.dto.CollectionRequest;
+import com.backend.domain.collection.service.CollectionService;
 import com.backend.global.domain.CrudControllerAble;
 import com.backend.global.dto.ApiResponse;
 import lombok.RequiredArgsConstructor;
@@ -13,18 +13,18 @@ import static org.springframework.http.HttpStatus.*;
 
 @RequiredArgsConstructor
 @RestController // This means that this class is a Controller
-@RequestMapping(path = "/api/v1/follows") // This means URL's start with /demo (after Application path)
-public class FollowControllerImpl implements
-        CrudControllerAble<FollowRequest>
+@RequestMapping(path = "/api/v1/collections") // This means URL's start with /demo (after Application path)
+public class CollectionController implements
+        CrudControllerAble<CollectionRequest>
 {
 
-    private final FollowService service;
+    private final CollectionService service;
 
     @Override
     @PostMapping
     @ResponseStatus(CREATED)
     public ApiResponse save(
-            @Validated @RequestBody FollowRequest followRequest
+            @Validated @RequestBody CollectionRequest followRequest
     ) {
         return created(service.save(followRequest));
     }
@@ -60,17 +60,8 @@ public class FollowControllerImpl implements
     @ResponseStatus(CREATED)
     public ApiResponse update(
             @PathVariable Long id,
-            @Validated @RequestBody FollowRequest followRequest
+            @Validated @RequestBody CollectionRequest followRequest
     ) {
         return created(service.update(id, followRequest));
-    }
-
-
-    public ApiResponse findUserByFollowingId(Long followingId) {
-        return null;
-    }
-
-    public ApiResponse findFollowingByUserId(Long userID) {
-        return null;
     }
 }

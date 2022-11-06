@@ -93,6 +93,30 @@ public class PostService implements
                 .orElseThrow(() -> new NotFoundException(ErrorCode.NOT_FOUND, "모먼트를 찾을 수 없습니다."));
     }
 
+    public CardResponse findCard(Long id) {
+        booleanBuilder = new BooleanBuilder();
+        booleanBuilder.and(qPost.id.eq(id));
+        return queryFactory
+                .select(
+                        Projections.constructor(
+                                CardResponse.class,
+                                qPost.id,
+                                qPost.type,
+                                qPost.content,
+                                qPost.parentPost.id,
+                                qPost.user.id,
+                                qPost.user.name.as("userName"),
+                                qImage.path,
+                                qPost.createdAt,
+                                qPost.updatedAt
+                        )
+                )
+                .from(qImage)
+                .innerJoin(qImage.post, qPost)
+                .where(booleanBuilder)
+                .fetchFirst();
+    }
+
     public List<CardResponse> findByType(Character character) {
         return findEntityByType(character);
 

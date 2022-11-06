@@ -43,6 +43,14 @@ public class PostController implements
         return ok(service.findById(id));
     }
 
+    @GetMapping("/card/{id}")
+    @ResponseStatus(OK)
+    public ApiResponse findCardById(
+            @PathVariable Long id
+    ) {
+        return ok(service.findCard(id));
+    }
+
     @Override
     @PutMapping("/{id}")
     @ResponseStatus(CREATED)

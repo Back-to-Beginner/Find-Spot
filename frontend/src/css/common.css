@@ -761,6 +761,7 @@ button {
     padding-top: 50px;
     display: flex;
     flex-wrap: wrap;
+    flex-direction: row;
     justify-content: space-around;
 }
 
@@ -918,14 +919,15 @@ button {
 }
 
 .background {
+    margin-top: 50px;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    position: fixed;
+    /*position: fixed;*/
     width: 100%;
-    height: 100%;
+    /*height: 100%;*/
     /*background-color: rgba(255, 247, 217, 0.5);*/
 }
 
@@ -1069,7 +1071,7 @@ button {
     padding-bottom: 30px;
 }
 
-.schoolTitle {
+.collectionTitle {
     font-family: Arial;
     margin-left: 20px;
     font-size: 20px;
@@ -1079,7 +1081,7 @@ button {
     padding-bottom: 30px;
 }
 
-.schoolServeTitle {
+.collectionDescribe {
     font-family: Arial;
     margin-left: 20px;
     font-size: 18px;
@@ -1090,7 +1092,7 @@ button {
     padding-bottom: 30px;
 }
 
-.colloectionSuccess {
+.collectionSuccess {
     font-family: Arial;
     margin-right: 50px;
     font-size: 18px;
