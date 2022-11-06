@@ -57,7 +57,7 @@ const UploadCard = (props) => {
                 url: '/images/compare',
                 params: {
                     'challengeUrl': res.data.data,
-                    "postId": sessionStorage.getItem('postId'),
+                    "missionId": sessionStorage.getItem('postId'),
                     "slice": 'PHA'
                 }
             }).then(res => {

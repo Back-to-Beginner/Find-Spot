@@ -20,7 +20,7 @@ const UploadPage = (props) => {
             navigate('/login');
             return;
         }
-        setMission(props.mission);
+        setMission(props.postId);
     }, []);
 
     const uploadPost = () => {
