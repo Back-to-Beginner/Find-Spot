@@ -12,7 +12,7 @@ const SmallMissionCard = (props) => {
     const setStorage = () => {
         sessionStorage.setItem("imageSrc", data.imagePath);
         sessionStorage.setItem("content", data.content);
-        sessionStorage.setItem("missionId", data.id);
+        sessionStorage.setItem("postId", data.id);
     }
 
     return <>

@@ -6,7 +6,6 @@ import YellowButton from "../../button/YelloButton";
 import {Link} from 'react-router-dom';
 
 const SuccessDetailView = (props) => {
-
     return <>
         <Header/>
         <div className='background'>

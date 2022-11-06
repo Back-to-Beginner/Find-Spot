@@ -13,6 +13,7 @@ const SmallSuccessCard = (props) => {
         sessionStorage.setItem("imageSrc", data.imagePath);
         sessionStorage.setItem("content", data.content);
         sessionStorage.setItem("uploader", data.userName);
+        sessionStorage.setItem("postId", data.id);
     }
 
     return <>

@@ -6,7 +6,6 @@ import {Link} from 'react-router-dom';
 import MissionCard from "../missionCard/MissionCard";
 
 const DetailView = (props) => {
-
     return <>
         <Header/>
         <div className='background'>
@@ -21,7 +20,7 @@ const DetailView = (props) => {
                     <CommentCard/>
                 </div>
             </div>
-            <Link to={'/upload/:missionId'}>
+            <Link to={'/upload/:postId'}>
                 <div style={{paddingTop: '50px'}}>
                     <YellowButton buttonName={'Challenge!'}/>
                 </div>

@@ -157,6 +157,7 @@ public class PostService implements
     }
 
     public List<CardResponse> findTypeAndParentPost(Character type, Long parentPostId) {
+        if (type == 'c') return findEntityByTypeAndParentPost(parentPostId);
         return findEntityByTypeAndParentPost(type, parentPostId);
     }
 
@@ -181,6 +182,31 @@ public class PostService implements
                         qPost.updatedAt
                 ))
                 .from(qImage)
+                .where(booleanBuilder)
+                .orderBy(qPost.createdAt.desc())
+                .fetch();
+    }
+
+    public List<CardResponse> findEntityByTypeAndParentPost(Long parentPostId) {
+        booleanBuilder = new BooleanBuilder();
+        booleanBuilder.and(qPost.type.eq('c'));
+        booleanBuilder.and(qPost.isDeleted.eq(false));
+        booleanBuilder.and(qPost.parentPost.id.eq(parentPostId));
+        booleanBuilder.and(qPost.parentPost.isDeleted.eq(false));
+
+        return queryFactory.select(Projections.constructor(
+                        CardResponse.class,
+                        qPost.id,
+                        qPost.type,
+                        qPost.content,
+                        qPost.parentPost.id,
+                        qPost.user.id,
+                        qPost.user.name.as("userName"),
+                        qPost.content.as("imagePath"),
+                        qPost.createdAt,
+                        qPost.updatedAt
+                ))
+                .from(qPost)
                 .where(booleanBuilder)
                 .orderBy(qPost.createdAt.desc())
                 .fetch();
