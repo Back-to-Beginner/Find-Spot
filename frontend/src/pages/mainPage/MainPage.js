@@ -42,14 +42,14 @@ const MainPage = () => {
         sessionStorage.setItem("postId", mission.id);
     }
     const getNextMission = () => {
-        let i = missionList.length > index + 1 ? index + 1 : 0;
+        const i = missionList.length > index + 1? index + 1 : 0;
         setIndex(i);
         setMission(missionList.at(i));
         getSuccess(missionList.at(i).id);
     }
 
     const getPrevMission = () => {
-        let i = 0 > index - 1 ? index - 1 : missionList.length;
+        const i = 0 > index - 1 ? index - 1 : missionList.length - 1;
         setIndex(i);
         setMission(missionList.at(i));
         getSuccess(missionList.at(i).id);

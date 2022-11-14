@@ -1,6 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import School from "../../components/collection/School";
-import Anyang from "../../components/collection/Anyang";
 import Header from "../../components/header/Header";
 import axios from "axios";
 import Collection from "../../components/collection/Collection";

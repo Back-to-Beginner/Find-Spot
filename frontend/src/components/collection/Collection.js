@@ -19,7 +19,7 @@ const Collection = (props) => {
     return <>
         <div className="collectionTitle">{props.data.name}</div>
         <div className="collectionDescribe">{props.data.description}</div>
-        <div className={'schoolCardGrid'}>
+        <div className={'collectionCardGrid'}>
             {props.data.postList.map(card =>
                 <div style={{padding: '10px'}}>
                     {console.log(getImage(card.id))}

@@ -1,7 +1,7 @@
 package com.backend.domain.image.service;
 
-import com.backend.domain.image.domain.ImageSlice;
+import java.util.List;
 
 public interface ImageAnalysis <T> {
-    T analyseImage(String challengeImageUrl, String missionImageUrl, ImageSlice slice);
+    T analyseImage(String challengeImageUrl, String missionImageUrl, List<Integer> slice);
 }

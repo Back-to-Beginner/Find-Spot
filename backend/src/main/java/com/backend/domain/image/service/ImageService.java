@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,7 +34,7 @@ public class ImageService implements
     private final ImageRepository repository;
     private final ImageUploader uploader;
     private final ImageMapper mapper;
-    private final ImageAnalysis imageAnalysis;
+    private final ImageAnalysis<Boolean> imageAnalysis;
     private final JPAQueryFactory queryFactory;
     private static final QImage qImage = QImage.image;
 
@@ -67,7 +68,6 @@ public class ImageService implements
                 .collect(Collectors.toList());
     }
 
-
     @Override
     public ImageResponse findById(long id) {
         return mapper.fromEntity(findEntity(id));
@@ -86,10 +86,15 @@ public class ImageService implements
     }
 
     @Transactional
-    public boolean compareImage(String challengeUrl, Long missionId, String slice) {
+    public boolean compareImage(String challengeUrl, Long missionId) {
         String missionImagePath = findEntityByPost(missionId).get(0).getPath();
+        List<Integer> slice = Arrays.stream(ImageSlice.values())
+                .filter(slice1 -> slice1.getId() == missionId)
+                .findAny()
+                .orElse(ImageSlice.NON)
+                .getSlice();
 
-        return (boolean) imageAnalysis.analyseImage(challengeUrl, missionImagePath, ImageSlice.valueOf(slice));
+        return imageAnalysis.analyseImage(challengeUrl, missionImagePath, slice);
     }
 
     @Override

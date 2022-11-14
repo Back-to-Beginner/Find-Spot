@@ -534,7 +534,6 @@ li {
     width: 375px;
     height: 470px;
     flex-grow: 0;
-    /* padding: 80px 46px 22px 50px; */
     border-radius: 24px;
     -webkit-backdrop-filter: blur(4px);
     backdrop-filter: blur(4px);
@@ -547,8 +546,6 @@ li {
     width: 375px;
     height: 550px;
     flex-grow: 0;
-    /* margin: 68px 0 0 435px; */
-    /* padding: 80px 46px 22px 50px; */
     border-radius: 24px;
     -webkit-backdrop-filter: blur(4px);
     backdrop-filter: blur(4px);
@@ -621,9 +618,6 @@ button {
 }
 
 .findText {
-    /* position: absolute;
-    top: 291px;
-    left: 10%; */
     font-family: Arial;
     font-size: 64px;
     font-weight: bold;
@@ -636,9 +630,6 @@ button {
 }
 
 .spotText {
-    /* position: absolute;
-    top: 427px;
-    left: 10%; */
     font-family: Arial;
     font-size: 64px;
     font-weight: bold;
@@ -647,9 +638,6 @@ button {
 }
 
 .logo {
-    /* position: absolute;
-    top: 179px;
-    left: 10%; */
     width: 123px;
     height: 123px;
 }
@@ -657,7 +645,6 @@ button {
 .loginformLocation {
     display: flex;
     flex-direction: column;
-    /* flex-wrap: wrap; */
     align-items: center;
     justify-content: center;
 
@@ -666,21 +653,8 @@ button {
 .registerformLocation {
     display: flex;
     flex-direction: column;
-    /* flex-wrap: wrap; */
     align-items: center;
     justify-content: center;
-}
-
-.loginBoxPosition {
-    /* position: absolute;
-    right: 10%;
-    top: 247px; */
-}
-
-.RegisterBoxPosition {
-    /* position: absolute;
-    right: 10%;
-    top: 247px; */
 }
 
 .topWave {
@@ -762,7 +736,7 @@ button {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: flex-start;
 }
 
 .searchcloseForm {
@@ -827,10 +801,8 @@ button {
     margin-right: 40px;
 }
 
-.user-2 {
+.profileIcon {
     width: 20px;
-    /*height: 19.9px;  안보임*/
-    /*flex-grow: 0; 반으로 잘림*/
 }
 
 .searchIcon {
@@ -925,10 +897,7 @@ button {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /*position: fixed;*/
     width: 100%;
-    /*height: 100%;*/
-    /*background-color: rgba(255, 247, 217, 0.5);*/
 }
 
 .loadingBackground {
@@ -1049,19 +1018,12 @@ button {
     align-items: center;
 }
 
-.schoolCardGrid {
+.collectionCardGrid {
     padding-top: 30px;
     padding-bottom: 30px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
-}
-
-.AnyangCardGrid {
-    padding-top: 30px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: flex-start;
 }
 
 .collectionPageWave {
@@ -1110,8 +1072,4 @@ button {
     text-align: right;
     color: #525252;
     padding-bottom: 30px;
-}
-
-.collectionLocation {
-
 }

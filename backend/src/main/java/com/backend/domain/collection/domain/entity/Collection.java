@@ -28,7 +28,7 @@ public class Collection
     private String name;
     private String description;
 
-    @OneToMany
+    @ManyToMany
     @JoinColumn(name = "post_id")
     private List<Post> postList = new ArrayList<>();
 

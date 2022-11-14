@@ -8,7 +8,7 @@ import axios from "axios";
 const UploadCard = (props) => {
     const [imageSrc, setImageSrc] = useState('');
     const [approve, setApprove] = useState(false);
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
 
     const getUploadImage = () => {
         return (<>
@@ -58,7 +58,6 @@ const UploadCard = (props) => {
                 params: {
                     'challengeUrl': res.data.data,
                     "missionId": sessionStorage.getItem('postId'),
-                    "slice": 'PHA'
                 }
             }).then(res => {
                 if (res.data.data === true) {
