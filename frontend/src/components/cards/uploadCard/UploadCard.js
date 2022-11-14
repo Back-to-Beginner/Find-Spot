@@ -8,7 +8,7 @@ import axios from "axios";
 const UploadCard = (props) => {
     const [imageSrc, setImageSrc] = useState('');
     const [approve, setApprove] = useState(false);
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     const getUploadImage = () => {
         return (<>
@@ -107,7 +107,7 @@ const UploadCard = (props) => {
                                  alt={null}/> : getUploadImage()}
             </div>
             {isLoading ? (
-                <div className={"background"} style={{alignItems: 'center', padding: '20px'}}>
+                <div className={"loadingBackground"} style={{alignItems: 'center', padding: '10px'}}>
                     <img src={loading} alt="로딩 중" style={{width: "80px"}}/>
                 </div>
             ) : (

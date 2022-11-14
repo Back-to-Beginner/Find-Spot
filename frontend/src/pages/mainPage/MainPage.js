@@ -7,9 +7,10 @@ import axios from "axios";
 import {Link} from 'react-router-dom';
 
 const MainPage = () => {
-    const [mission, setMission] = useState([]);
+    const [mission, setMission] = useState({});
     const [success, setSuccess] = useState([]);
-    const missionList = [];
+    const [index, setIndex] = useState(0);
+    const [missionList, setMissionList] = useState([]);
 
     useLayoutEffect(() => {
         axios({
@@ -17,37 +18,42 @@ const MainPage = () => {
             url: '/posts/types/m'
         }).then(misRes => {
             if (misRes.data.data[0] && misRes.data.data[0].type === 'm') {
-                // res.data.data.map(m => {
-                //     missionList.push(m)
-                // });
-                // setMission(missionList.pop);
+                setMissionList(misRes.data.data);
+                setMission(misRes.data.data[0]);
+                getSuccess(misRes.data.data[0].id);
                 sessionStorage.setItem("postId", misRes.data.data[0].id);
-                setMission(misRes.data.data);
-                getSuccess();
             }
         })
     }, []);
 
-    const getSuccess = () => {
+    const getSuccess = (index) => {
+        console.log(11111);
         axios({
             method: 'get',
-            url: `/posts/parent/${sessionStorage.getItem("postId")}/child/s`
+            url: `/posts/parent/${index}/child/s`
         }).then(sucRes => {
             sucRes.data.data && setSuccess(sucRes.data.data[0]);
         })
     }
 
     const setStorage = () => {
-        sessionStorage.setItem("imageSrc", mission[0].imagePath);
-        sessionStorage.setItem("content", mission[0].content);
-        sessionStorage.setItem("postId", mission[0].id);
+        sessionStorage.setItem("imageSrc", mission.imagePath);
+        sessionStorage.setItem("content", mission.content);
+        sessionStorage.setItem("postId", mission.id);
     }
-    // const getNextMission = () => {
-    //     const tempMission = missionList.pop;
-    //     setMission(tempMission);
-    //     missionList.push(tempMission);
-    //     getSuccess()
-    // }
+    const getNextMission = () => {
+        let i = missionList.length > index + 1 ? index + 1 : 0;
+        setIndex(i);
+        setMission(missionList.at(i));
+        getSuccess(missionList.at(i).id);
+    }
+
+    const getPrevMission = () => {
+        let i = 0 > index - 1 ? index - 1 : missionList.length;
+        setIndex(i);
+        setMission(missionList.at(i));
+        getSuccess(missionList.at(i).id);
+    }
 
     return (<>
         <Header/>
@@ -56,24 +62,22 @@ const MainPage = () => {
                 ✅ New Success
             </div>
             <div className="cardViewLocation">
-                <div className="previousArrow">
+                <div className="previousArrow" onClick={getPrevMission}>
                     &#5176;
                 </div>
                 <div style={{padding: '10px'}}>
-                    <SmallMissionCard data={mission[0]}/>
+                    <SmallMissionCard data={mission}/>
                 </div>
                 <div style={{padding: '10px'}}>
                     <SmallSuccessCard data={success}/>
                 </div>
-                <div className="postArrow"
-                    // onClick={() => getNextMission()}
-                >
+                <div className="postArrow" onClick={getNextMission}>
                     &#5171;
                 </div>
             </div>
 
             <div className="mainBoxPosition">
-                <div style={{paddingTop: '50px'}}>
+                <div style={{paddingTop: '50px'}} onClick={setStorage}>
                     <Link to={`/upload/${sessionStorage.getItem('postId')}`}>
                         <YellowButton buttonName={'Challenge this Mission'}/>
                     </Link>

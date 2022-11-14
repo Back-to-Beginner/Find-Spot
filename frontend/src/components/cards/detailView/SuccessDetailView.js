@@ -10,6 +10,7 @@ import SmallMissionCard from "../missionCard/SmallMissionCard";
 
 const SuccessDetailView = (props) => {
     const [post, setPost] = useState({});
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         axios({
@@ -18,10 +19,10 @@ const SuccessDetailView = (props) => {
         }).then(res => {
             // console.log(res.data.data)
             res.data.data && setPost(res.data.data);
-        })
+        }).then(() => setIsLoading(false));
     }, [])
 
-    return <>
+    return !isLoading && <>
         <Header/>
         <div className='background'>
             {/*<div className='detailViewTitle'>*/}

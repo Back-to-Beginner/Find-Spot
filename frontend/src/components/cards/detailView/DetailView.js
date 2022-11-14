@@ -7,19 +7,19 @@ import MissionCard from "../missionCard/MissionCard";
 import axios from "axios";
 import SmallSuccessCard from "../successCard/SmallSuccessCard";
 
-const DetailView = (props) => {
+const DetailView = () => {
     const [postList, setPostList] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         axios({
             url: `/posts/parent/${sessionStorage.getItem('postId')}/child/s`,
             method: 'get',
-        }).then(res => {
-            res.data.data && setPostList(res.data.data);
-        })
-    }, [])
+        }).then(res => res.data.data && setPostList(res.data.data))
+            .then(() => setIsLoading(false));
+    }, []);
 
-    return <>
+    return !isLoading && <>
         <Header/>
         <div className='background'>
             {/*<div className='detailViewTitle'>*/}
@@ -49,14 +49,11 @@ const DetailView = (props) => {
                 Success of this Mission
             </div>
             <div className={'cardGrid'}>
-                {postList.map(card =>
-                    <div style={{padding: '5px'}}>
-                        <SmallSuccessCard data={card}/>
-                    </div>
-                )}
+                {postList.map(card => <div style={{padding: '5px'}}>
+                    <SmallSuccessCard data={card}/>
+                </div>)}
             </div>
         </div>
-
     </>
 }
 

@@ -4,9 +4,11 @@ import sendIcon from '../../../images/paper-plane.png';
 import Comment from "./Comment";
 import axios from "axios";
 
-const CommentCard = (props) => {
+const CommentCard = () => {
     const [chatInput, setChatInput] = useState('');
     const [chatList, setChatList] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+
     useEffect(() => {
         axios({
             method: 'get',
@@ -14,7 +16,8 @@ const CommentCard = (props) => {
         }).then(r => {
             console.log(r.data.data);
             setChatList(r.data.data);
-        })
+        });
+        setIsLoading(false);
     }, [])
 
     const send = () => {
@@ -33,7 +36,7 @@ const CommentCard = (props) => {
         }) : alert('로그인을 먼저 해주세요. [우측 상단 원형 아이콘]');
     }
 
-    return (
+    return !isLoading && (
         <div className={'commentView'}>
             <div className={'commentList'}>
                 {
