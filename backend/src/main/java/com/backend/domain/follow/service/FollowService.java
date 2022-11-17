@@ -46,7 +46,7 @@ public class FollowService implements
     @Override
     public FollowResponse findById(long id) {
         Follow follow = repository.findById(id).orElseThrow(
-                () -> new NotFoundException(ErrorCode.NOT_FOUND, "User Not Found")
+                () -> new NotFoundException(ErrorCode.NOT_FOUND, "Follow Not Found")
         );
         return FollowResponse.of(follow);
     }
@@ -67,7 +67,7 @@ public class FollowService implements
     @Override
     public Follow findEntity(Long id) {
         return repository.findById(id).orElseThrow(
-                () -> new NotFoundException(ErrorCode.NOT_FOUND, "User Not Found")
+                () -> new NotFoundException(ErrorCode.NOT_FOUND, "Follow Not Found")
         );
     }
 

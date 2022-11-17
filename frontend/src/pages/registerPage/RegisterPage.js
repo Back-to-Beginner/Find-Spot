@@ -25,7 +25,7 @@ const RegisterPage = () => {
             T
           </div>
         </div>
-        <div className="RegisterBoxPosition">
+        <div>
           <RegisterBox />
         </div>
       </div>

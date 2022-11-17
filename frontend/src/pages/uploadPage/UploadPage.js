@@ -7,23 +7,23 @@ import MissionCard from "../../components/cards/missionCard/MissionCard";
 import UploadCard from "../../components/cards/uploadCard/UploadCard";
 
 
-const UploadPage = (props) => {
-    const [mission, setMission] = useState({});
+const UploadPage = () => {
     const [approve, setApprove] = useState(false);
     const [imageSrc, setImageSrc] = useState('');
     const [content, setContent] = useState('');
+    const [isLoading, setIsLoading] = useState(true);
 
     const navigate = useNavigate();
 
     useEffect(() => {
         if (sessionStorage.getItem('id') === null) {
             navigate('/login');
-            return;
         }
-        setMission(props.postId);
+        setIsLoading(false);
     }, []);
 
     const uploadPost = () => {
+        setIsLoading(true);
         approve && axios({
             method: 'post',
             url: `/posts`,
@@ -45,10 +45,10 @@ const UploadPage = (props) => {
                 alert('게시글 작성에 성공하였습니다!!');
                 res && navigate("/");
             })
-        );
+        ).then(() => setIsLoading(false));
     };
 
-    return (<>
+    return !isLoading && (<>
         <Header/>
         <div className="mainPageWave">
             <div className='mainPageTitle'>
@@ -56,7 +56,7 @@ const UploadPage = (props) => {
             </div>
 
             <div className={'detailViewLocation'}>
-                <MissionCard data={mission}/>
+                <MissionCard/>
                 <UploadCard upload={setImageSrc}
                             approve={setApprove}
                             imageSrc={setImageSrc}

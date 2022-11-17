@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import '../../../css/common.css'
 
-const MissionCard = (props) => {
+const MissionCard = () => {
     const [imageSrc, setImageSrc] = useState(sessionStorage.getItem("imageSrc"));
     const [content, setContent] = useState(sessionStorage.getItem("content"));
 

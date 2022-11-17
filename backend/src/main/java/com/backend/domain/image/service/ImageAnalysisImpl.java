@@ -1,6 +1,5 @@
 package com.backend.domain.image.service;
 
-import com.backend.domain.image.domain.ImageSlice;
 import com.backend.domain.image.dto.AnalysisRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -11,6 +10,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 import java.util.Objects;
 
 @Component
@@ -30,7 +30,7 @@ public class ImageAnalysisImpl implements
     public Boolean analyseImage(
             String challengeImageUrl,
             String missionImageUrl,
-            ImageSlice slice
+            List<Integer> slice
     ) {
 
         URI uri = UriComponentsBuilder
@@ -45,7 +45,7 @@ public class ImageAnalysisImpl implements
                 AnalysisRequest.builder()
                         .mission(missionImageUrl)
                         .trial(challengeImageUrl)
-                        .slice(slice.getSlice())
+                        .slice(slice)
                         .build(),
                 String.class);
 

@@ -58,7 +58,6 @@ const UploadCard = (props) => {
                 params: {
                     'challengeUrl': res.data.data,
                     "missionId": sessionStorage.getItem('postId'),
-                    "slice": 'PHA'
                 }
             }).then(res => {
                 if (res.data.data === true) {
@@ -107,7 +106,7 @@ const UploadCard = (props) => {
                                  alt={null}/> : getUploadImage()}
             </div>
             {isLoading ? (
-                <div className={"background"} style={{alignItems: 'center', padding: '20px'}}>
+                <div className={"loadingBackground"} style={{alignItems: 'center', padding: '10px'}}>
                     <img src={loading} alt="로딩 중" style={{width: "80px"}}/>
                 </div>
             ) : (

@@ -14,6 +14,7 @@ const SmallSuccessCard = (props) => {
         sessionStorage.setItem("content", data.content);
         sessionStorage.setItem("uploader", data.userName);
         sessionStorage.setItem("postId", data.id);
+        sessionStorage.setItem("parentPostId", data.parentPostId);
     }
 
     return <>
@@ -23,7 +24,7 @@ const SmallSuccessCard = (props) => {
                     <figure>
                         <img className={'smallSuccessImage'}
                              src={data.imagePath}
-                             alt={null}/>
+                             alt={'아직 성공하지 못한 미션입니다.'}/>
                         <figcaption>자세히 보기</figcaption>
                     </figure>
                 </Link>
