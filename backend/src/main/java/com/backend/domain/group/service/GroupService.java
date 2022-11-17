@@ -4,6 +4,7 @@ import com.backend.domain.group.domain.entity.Group;
 import com.backend.domain.group.domain.repository.GroupRepository;
 import com.backend.domain.group.dto.GroupRequest;
 import com.backend.domain.group.dto.GroupResponse;
+import com.backend.domain.user.domain.entity.User;
 import com.backend.domain.user.service.UserService;
 import com.backend.global.domain.CrudAble;
 import com.backend.global.domain.FindEntityAble;
@@ -53,7 +54,10 @@ public class GroupService implements
     }
 
     @Override
-    public GroupResponse update(long id, GroupRequest groupRequest) {
+    public GroupResponse update(
+            long id,
+            GroupRequest groupRequest
+    ) {
         Group newGroup = groupRequest.toEntity();
         return GroupResponse.of(findEntity(id).update(newGroup));
     }
@@ -68,5 +72,20 @@ public class GroupService implements
     @Override
     public Group getEntity(Long id) {
         return repository.getById(id);
+    }
+
+    public GroupResponse addUser(
+            Long id, Long userId
+    ) {
+        User user = userService.findEntity(userId);
+        Group group = findEntity(id).addUser(user);
+        return GroupResponse.of(group);
+    }
+    public GroupResponse deleteUser(
+            Long id, Long userId
+    ) {
+        User user = userService.findEntity(userId);
+        Group group = findEntity(id).deleteUser(user);
+        return GroupResponse.of(group);
     }
 }

@@ -15,8 +15,7 @@ import static org.springframework.http.HttpStatus.*;
 @RestController // This means that this class is a Controller
 @RequestMapping(path = "/api/v1/collections") // This means URL's start with /demo (after Application path)
 public class CollectionController implements
-        CrudControllerAble<CollectionRequest>
-{
+        CrudControllerAble<CollectionRequest> {
 
     private final CollectionService service;
 
