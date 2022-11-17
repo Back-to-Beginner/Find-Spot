@@ -65,4 +65,21 @@ public class GroupController implements
         return created(service.update(id, groupRequest));
     }
 
+    @PatchMapping("/{id}/in")
+    @ResponseStatus(CREATED)
+    public ApiResponse addUser(
+            @PathVariable Long id,
+            @RequestParam Long userId
+    ) {
+        return created(service.addUser(id, userId));
+    }
+
+    @PatchMapping("/{id}/out")
+    @ResponseStatus(CREATED)
+    public ApiResponse deleteUser(
+            @PathVariable Long id,
+            @RequestParam Long userId
+    ) {
+        return created(service.deleteUser(id, userId));
+    }
 }
