@@ -10,6 +10,7 @@ import CollectionPage from './collectionPage/CollectionPage';
 import DetailView from '../components/cards/detailView/DetailView';
 import SuccessDetailView from '../components/cards/detailView/SuccessDetailView';
 import GroupPage from "./ groupPage/GroupPage";
+import GroupJoinPage from "./ groupPage/GroupJoinPage";
 
 const RouterPage = () => {
     // const [isLogin, setIsLogin] = useState(false);
@@ -30,6 +31,8 @@ const RouterPage = () => {
                             <Route path={'/collection'} element={<CollectionPage/>}/>
                             <Route path={'/detail/m'} element={<DetailView/>}/>
                             <Route path={'/detail/s'} element={<SuccessDetailView/>}/>
+                            <Route path={'/group/:id'} element={<GroupPage/>}/>
+                            <Route path={'/group'} element={<GroupJoinPage/>}/>
                             <Route path={'/'} element={<MainPage/>}/>
                             <Route path={'*'} element={<Navigate replace to={'/'}/>}/>
                         </>) : (<>
@@ -39,7 +42,6 @@ const RouterPage = () => {
                             <Route path={'/collection'} element={<CollectionPage/>}/>
                             <Route path={'/detail/m'} element={<DetailView/>}/>
                             <Route path={'/detail/s'} element={<SuccessDetailView/>}/>
-                            <Route path={'/group'} element={<GroupPage/>}/>
                             <Route path={'/'} element={<MainPage/>}/>
                             <Route path={'*'} element={<Navigate replace to={'/login'}/>}/>
                         </>)

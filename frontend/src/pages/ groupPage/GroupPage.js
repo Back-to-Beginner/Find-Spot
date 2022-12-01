@@ -1,75 +1,67 @@
 import React, {useEffect, useState} from "react";
 import Header from '../../components/header/Header'
 import axios from "axios";
-import {useParams} from "react-router-dom";
-import SmallProfileCard from "../../components/cards/profileCard/SmallProfileCard";
-import YellowButton from "../../components/button/YelloButton";
+import {useNavigate, useParams} from "react-router-dom";
 import CommentCard from "../../components/cards/commentCard/CommentCard";
 
 const GroupPage = (props) => {
-    const parm = useParams()
+    const parm = useParams();
+    const navigate = useNavigate();
 
-    let username = 'my group';
-    let profile = 'group info';
-    let success = [1, 2, 3, 4, 5];
-    let user = 0;
-    let groupCode = 10123;
 
-    const [group, setGroup] = useState(false);
+    const [group, setGroup] = useState({});
+    const [groupList, setGroupList] = useState([]);
+    const [name, setName] = useState("");
+    const [info, setInfo] = useState("");
+
+    useEffect(() => {
+
+        axios({
+            method: "get",
+            url: `/groups/${parm.id}`,
+        }).then(r => {
+            r.data.data && setGroup(r.data.data);
+        }).catch(r => {
+            navigate('/group');
+        });
+    }, []);
 
     return (<>
         <Header/>
         <div className={'profilePage'}>
             <div className={'registerformLocation'}>
                 <span className={'mainPageTitle'} style={{paddingTop: '50px'}}>Group</span>
-                {
-                    group ? (<>
-                        <input value={'Leave'} type={'button'}
-                               style={{width: '50px', marginTop: '10px', fontSize: '24px'}}/>
-                        <div className={'profilePageHeader'}>
-                            <div className={'profile'}>
+                {group && (<>
+                    <input value={'Leave'} type={'button'}
+                           style={{width: '50px', marginTop: '10px', fontSize: '24px'}}
+                           onClick={() => {
+                               window.location.href = '/group'
+                           }}
+                    />
+                    <div className={'profilePageHeader'}>
+                        <div className={'profile'}>
                                 <span className={'description'}>
-                                    @{username}<br/>
-                                    {profile}
+                                    @{group.name} : {group.info}
                                 </span>
-                            </div>
-                            <div className={'profileSub'}>
-                                <span>{success.length} Success</span>
-                                <span>{user} User</span>
-                                <span>{user} Group Code</span>
-                            </div>
                         </div>
-                        Group Success
-                        <div className={'cardGrid'}>
-                            {success.map(card =>
-                                <div style={{padding: '5px'}}>
-                                    <SmallProfileCard data={card}/>
-                                </div>
-                            )}
+                        <div className={'profileSub'}>
+                            {/*<span>{success.length} Success</span>*/}
+                            {/*<span>{group.users.length} User</span>*/}
                         </div>
-                        <div style={{padding: '5px'}}>
-                            <CommentCard/>
-                        </div>
-                    </>) : (<>
-                        <form>
-                            Group Name<br/>
-                            <input style={{width: '300px', margin: '20px', fontSize: '18px'}}/><br/>
-                            Info<br/>
-                            <input style={{width: '300px', margin: '20px', fontSize: '18px'}}/><br/>
-                            <div onClick={() => setGroup(!group)}>
-                                <YellowButton buttonName={'Create Group'}/>
-                            </div>
-                        </form>
-                        <span style={{paddingTop: '100px'}}>Recommend</span>
-                        <div className={'cardGrid'}>
-                            {success.map(card =>
-                                <div style={{padding: '5px'}}>
-                                    <SmallProfileCard data={card}/>
-                                </div>
-                            )}
-                        </div>
-                    </>)
-                }
+                    </div>
+                    {/*Group Success*/}
+                    {/*<div className={'cardGrid'}>*/}
+                    {/*    {success.map(card =>*/}
+                    {/*        <div style={{padding: '5px'}}>*/}
+                    {/*            <SmallProfileCard data={card}/>*/}
+                    {/*        </div>*/}
+                    {/*    )}*/}
+                    {/*</div>*/}
+                    <h1>Chat</h1>
+                    <div style={{padding: '5px'}}>
+                        <CommentCard/>
+                    </div>
+                </>)}
             </div>
         </div>
     </>)

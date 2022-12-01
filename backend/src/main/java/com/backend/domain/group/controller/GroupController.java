@@ -82,4 +82,12 @@ public class GroupController implements
     ) {
         return created(service.deleteUser(id, userId));
     }
+
+    @GetMapping("/users/{userId}")
+    @ResponseStatus(OK)
+    public ApiResponse findUserGroup(
+            @PathVariable Long userId
+    ) {
+        return ok(service.findGroupByUserId(userId));
+    }
 }

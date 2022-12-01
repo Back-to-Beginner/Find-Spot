@@ -1,9 +1,11 @@
 package com.backend.domain.group.service;
 
 import com.backend.domain.group.domain.entity.Group;
+import com.backend.domain.group.domain.entity.QGroup;
 import com.backend.domain.group.domain.repository.GroupRepository;
 import com.backend.domain.group.dto.GroupRequest;
 import com.backend.domain.group.dto.GroupResponse;
+import com.backend.domain.user.domain.entity.QUser;
 import com.backend.domain.user.domain.entity.User;
 import com.backend.domain.user.service.UserService;
 import com.backend.global.domain.CrudAble;
@@ -11,6 +13,9 @@ import com.backend.global.domain.FindEntityAble;
 import com.backend.global.domain.GetEntityAble;
 import com.backend.global.error.ErrorCode;
 import com.backend.global.error.NotFoundException;
+import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.types.Projections;
+import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +28,11 @@ public class GroupService implements
         CrudAble<GroupRequest, GroupResponse>,
         GetEntityAble<Group>,
         FindEntityAble<Group> {
+
+    private final JPAQueryFactory queryFactory;
+    private final QGroup qGroup = QGroup.group;
+    private final QUser qUser = QUser.user;
+    private BooleanBuilder booleanBuilder;
 
     private final GroupRepository repository;
     private final UserService userService;
@@ -87,5 +97,28 @@ public class GroupService implements
         User user = userService.findEntity(userId);
         Group group = findEntity(id).deleteUser(user);
         return GroupResponse.of(group);
+    }
+
+    public GroupResponse findGroupByUserId(
+            Long userId
+    ) {
+        booleanBuilder = new BooleanBuilder();
+        booleanBuilder.and(qUser.id.eq(userId));
+        return queryFactory
+                .select(
+                        Projections.constructor(
+                                GroupResponse.class,
+                                qGroup.id,
+                                qGroup.users,
+                                qGroup.name,
+                                qGroup.info,
+                                qGroup.createdAt,
+                                qGroup.updatedAt
+                        )
+                )
+                .from(qGroup)
+                .innerJoin(qGroup.users, qUser)
+                .where(booleanBuilder)
+                .fetchFirst();
     }
 }

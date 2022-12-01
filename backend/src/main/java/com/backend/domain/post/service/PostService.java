@@ -8,10 +8,12 @@ import com.backend.domain.post.domain.repository.PostRepository;
 import com.backend.domain.post.dto.CardResponse;
 import com.backend.domain.post.dto.PostRequest;
 import com.backend.domain.post.dto.PostResponse;
-import com.backend.domain.user.domain.entity.QUser;
 import com.backend.domain.user.domain.entity.User;
 import com.backend.domain.user.service.UserService;
-import com.backend.global.domain.*;
+import com.backend.global.domain.CrudAble;
+import com.backend.global.domain.ExistEntityAble;
+import com.backend.global.domain.FindEntityAble;
+import com.backend.global.domain.GetEntityAble;
 import com.backend.global.error.ErrorCode;
 import com.backend.global.error.NotFoundException;
 import com.querydsl.core.BooleanBuilder;
@@ -35,7 +37,6 @@ public class PostService implements
     private final UserService userService;
     private final JPAQueryFactory queryFactory;
     private static final QPost qPost = QPost.post;
-    private static final QUser qUser = QUser.user;
     private static final QImage qImage = QImage.image;
     private BooleanBuilder booleanBuilder;
 
