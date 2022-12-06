@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {BrowserRouter, Routes, Route, Navigate} from 'react-router-dom';
 import LoginPage from './loginPage/LoginPage';
 import MainPage from './mainPage/MainPage';
@@ -13,11 +13,6 @@ import GroupPage from "./ groupPage/GroupPage";
 import GroupJoinPage from "./ groupPage/GroupJoinPage";
 
 const RouterPage = () => {
-    // const [isLogin, setIsLogin] = useState(false);
-
-    // useEffect(() => {
-    //     sessionStorage.getItem('id') && setIsLogin(true);
-    // })
 
     return (
         <div>

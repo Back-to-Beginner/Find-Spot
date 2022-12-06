@@ -46,14 +46,14 @@ const GroupJoinPage = () => {
         }).then(r => {
             r.data.data[0] && setGroupList(r.data.data);
         });
-        // axios({
-        //     method: "get",
-        //     url: `/groups/users/${sessionStorage.getItem('id')}`,
-        // }).then(r => {
-        //     if (r.data.data) {
-        //         window.location.href = `/group/${r.data.data.id}`;
-        //     }
-        // });
+        axios({
+            method: "get",
+            url: `/groups/users/${sessionStorage.getItem('id')}`,
+        }).then(r => {
+            if (r.data.data) {
+                window.location.href = `/group/${r.data.data.id}`;
+            }
+        });
     }, []);
 
     return (<>

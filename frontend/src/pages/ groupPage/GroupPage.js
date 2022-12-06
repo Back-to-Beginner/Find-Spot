@@ -7,15 +7,9 @@ import CommentCard from "../../components/cards/commentCard/CommentCard";
 const GroupPage = (props) => {
     const parm = useParams();
     const navigate = useNavigate();
-
-
     const [group, setGroup] = useState({});
-    const [groupList, setGroupList] = useState([]);
-    const [name, setName] = useState("");
-    const [info, setInfo] = useState("");
 
     useEffect(() => {
-
         axios({
             method: "get",
             url: `/groups/${parm.id}`,
