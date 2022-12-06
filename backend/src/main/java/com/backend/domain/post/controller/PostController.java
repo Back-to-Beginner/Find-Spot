@@ -105,5 +105,13 @@ public class PostController implements
         return ok(service.search(type.charAt(0), word));
     }
 
+    @GetMapping("/group/{groupId}")
+    @ResponseStatus(OK)
+    public ApiResponse findGroupSuccess(
+            @PathVariable String groupId) {
+        return ok(service);
+    }
+
+
 
 }
