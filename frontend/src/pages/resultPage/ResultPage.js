@@ -32,13 +32,22 @@ const ResultPage = (props) => {
         setIsLoading(true)
         setSearchType(e.target.value);
 
-        axios({
-            url: `/posts/search/${e.target.value}`,
-            method: 'get',
-            params: {'word': searchWord}
-        }).then(res => {
-            res.data.data && setResult(res.data.data);
-        })
+        if (e.target.value === 'g') {
+            axios({
+                method: "get",
+                url: `/groups`,
+            }).then(r => {
+                r.data.data[0] && setResult(r.data.data);
+            });
+        } else {
+            axios({
+                url: `/posts/search/${e.target.value}`,
+                method: 'get',
+                params: {'word': searchWord}
+            }).then(res => {
+                res.data.data && setResult(res.data.data);
+            });
+        }
         setIsLoading(false)
     }
 
@@ -98,13 +107,13 @@ const ResultPage = (props) => {
                         }
                         {
                             searchType === 'g' &&
-                            <div className={'cardGrid'}>
-                                {/*{result.map(card =>*/}
-                                    <div style={{padding: '5px'}}>
-                                        <SmallProfileCard/>
-                                    </div>
-                                {/*)}*/}
-                            </div>
+                            <ul>
+                                {result.map((group, index) =>
+                                    <li>
+                                        [@{group.name}] : {group.info}
+                                    </li>
+                                )}
+                            </ul>
                         }
                     </>
                 )

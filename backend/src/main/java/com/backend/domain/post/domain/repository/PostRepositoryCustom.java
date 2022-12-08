@@ -10,5 +10,6 @@ public interface PostRepositoryCustom {
     List<CardResponse> findCardByTypeAndUser(Character type, Long userId);
     List<CardResponse> findCardByTypeAndParentPost(Character type, Long parentPostId);
     List<CardResponse> searchCard(Character type, String searchWord);
+    List<CardResponse> findCardByUserGroup(Character type, Long groupId);
 
 }

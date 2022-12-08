@@ -11,6 +11,7 @@ import lombok.Getter;
 public class UserResponse {
 
     private Long id;
+    private Long groupId;
     private String name;
     private String email;
     private String pw;
@@ -19,6 +20,7 @@ public class UserResponse {
         return UserResponse.builder()
                 .id(user.getId())
                 .name(user.getName())
+                .groupId(user.getId() != null ? user.getId() : 0L)
                 .email(user.getEmail())
                 .pw(user.getPw())
                 .build();

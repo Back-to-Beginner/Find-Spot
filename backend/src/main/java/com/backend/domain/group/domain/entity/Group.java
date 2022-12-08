@@ -3,8 +3,6 @@ package com.backend.domain.group.domain.entity;
 import com.backend.domain.user.domain.entity.User;
 import com.backend.global.domain.BaseTimeEntity;
 import com.backend.global.domain.UpdateEntityAble;
-import com.backend.global.error.ErrorCode;
-import com.backend.global.error.NotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -50,15 +48,4 @@ public class Group
         return this;
     }
 
-    public Group addUser(User user) {
-        this.getUsers().add(user);
-        return this;
-    }
-
-    public Group deleteUser(User user) {
-        if (!this.getUsers().remove(user)) {
-            throw new NotFoundException(ErrorCode.NOT_FOUND, "user not found for delete in group");
-        }
-        return this;
-    }
 }

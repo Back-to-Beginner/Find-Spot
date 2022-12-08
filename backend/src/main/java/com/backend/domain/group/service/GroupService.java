@@ -4,8 +4,6 @@ import com.backend.domain.group.domain.entity.Group;
 import com.backend.domain.group.domain.repository.GroupRepository;
 import com.backend.domain.group.dto.GroupRequest;
 import com.backend.domain.group.dto.GroupResponse;
-import com.backend.domain.user.domain.entity.User;
-import com.backend.domain.user.service.UserService;
 import com.backend.global.domain.CrudAble;
 import com.backend.global.domain.FindEntityAble;
 import com.backend.global.domain.GetEntityAble;
@@ -16,7 +14,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -28,7 +25,6 @@ public class GroupService implements
         FindEntityAble<Group> {
 
     private final GroupRepository repository;
-    private final UserService userService;
 
     @Override
     public GroupResponse save(GroupRequest groupRequest) {
@@ -78,29 +74,4 @@ public class GroupService implements
         return repository.getById(id);
     }
 
-    public GroupResponse addUser(
-            Long id, Long userId
-    ) {
-        User user = userService.getEntity(userId);
-        Group group = findEntity(id).addUser(user);
-        repository.flush();
-        return GroupResponse.of(group);
-    }
-
-    public GroupResponse deleteUser(
-            Long id, Long userId
-    ) {
-        User user = userService.findEntity(userId);
-        Group group = findEntity(id).deleteUser(user);
-        repository.flush();
-        return GroupResponse.of(group);
-    }
-
-    public GroupResponse findGroupByUserId(
-            Long userId
-    ) {
-        Optional<Group> group = repository.findGroupByUserId(userId);
-        return GroupResponse.of(group.orElseThrow(
-                () -> new NotFoundException(ErrorCode.NOT_FOUND, "User Not Include in Group")));
-    }
 }

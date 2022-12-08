@@ -9,8 +9,8 @@ import UploadPage from "./uploadPage/UploadPage";
 import CollectionPage from './collectionPage/CollectionPage';
 import DetailView from '../components/cards/detailView/DetailView';
 import SuccessDetailView from '../components/cards/detailView/SuccessDetailView';
-import GroupPage from "./ groupPage/GroupPage";
-import GroupJoinPage from "./ groupPage/GroupJoinPage";
+import GroupPage from "./groupPage/GroupPage";
+import GroupJoinPage from "./groupPage/GroupJoinPage";
 
 const RouterPage = () => {
 

@@ -24,6 +24,7 @@ const LoginBox = (props) => {
             alert("로그인 정보가 일치하지 않습니다.");
         }).then((res) => {
             sessionStorage.setItem('id', res.data.data.id);
+            sessionStorage.setItem('groupId', res.data.data.groupId);
             sessionStorage.setItem('name', res.data.data.name);
             sessionStorage.setItem('email', res.data.data.email);
             if (sessionStorage.getItem('id')){

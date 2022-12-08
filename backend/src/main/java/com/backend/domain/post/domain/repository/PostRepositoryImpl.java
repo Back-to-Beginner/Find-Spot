@@ -1,9 +1,11 @@
 package com.backend.domain.post.domain.repository;
 
+import com.backend.domain.group.domain.entity.QGroup;
 import com.backend.domain.image.domain.entity.QImage;
 import com.backend.domain.post.domain.entity.Post;
 import com.backend.domain.post.domain.entity.QPost;
 import com.backend.domain.post.dto.CardResponse;
+import com.backend.domain.user.domain.entity.QUser;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -25,6 +27,8 @@ public class PostRepositoryImpl extends QuerydslRepositorySupport implements Pos
     private final JPAQueryFactory queryFactory;
     private static final QPost qPost = QPost.post;
     private static final QImage qImage = QImage.image;
+    private static final QUser qUser = QUser.user;
+    private static final QGroup qGroup = QGroup.group;
     private BooleanBuilder booleanBuilder;
 
     @Override
@@ -85,7 +89,7 @@ public class PostRepositoryImpl extends QuerydslRepositorySupport implements Pos
             return queryCardList(booleanBuilder);
         }
 
-        return queryCardList(booleanBuilder);
+        return queryCardListWithoutImage(booleanBuilder);
     }
 
     @Override
@@ -100,7 +104,21 @@ public class PostRepositoryImpl extends QuerydslRepositorySupport implements Pos
         return queryCardList(booleanBuilder);
     }
 
-    private List<CardResponse> queryCardList(BooleanBuilder booleanBuilder){
+    @Override
+    public List<CardResponse> findCardByUserGroup(Character type, Long groupId) {
+        if (type == 'c') throw new RuntimeException("코멘트 타입은 해당 쿼리로 요청할 수 없습니다.");
+
+        booleanBuilder = new BooleanBuilder();
+        booleanBuilder.and(qPost.type.eq(type));
+        booleanBuilder.and(qPost.isDeleted.eq(false));
+        booleanBuilder.and(qPost.user.group.id.eq(groupId));
+        booleanBuilder.and(qPost.user.group.isDeleted.eq(false));
+        booleanBuilder.and(qImage.isDeleted.eq(false));
+
+        return queryCardList(booleanBuilder);
+    }
+
+    private List<CardResponse> queryCardList(BooleanBuilder booleanBuilder) {
         return queryFactory.select(Projections.constructor(
                         CardResponse.class,
                         qPost.id,
@@ -115,6 +133,26 @@ public class PostRepositoryImpl extends QuerydslRepositorySupport implements Pos
                 ))
                 .from(qImage)
                 .innerJoin(qImage.post, qPost)
+                .where(booleanBuilder)
+                .orderBy(qPost.createdAt.desc())
+                .fetch();
+    }
+
+    //TODO 코멘트 타입 전용 dto 생성 필요
+    private List<CardResponse> queryCardListWithoutImage(BooleanBuilder booleanBuilder) {
+        return queryFactory.select(Projections.constructor(
+                        CardResponse.class,
+                        qPost.id,
+                        qPost.type,
+                        qPost.content,
+                        qPost.parentPost.id,
+                        qPost.user.id,
+                        qPost.user.name.as("userName"),
+                        qPost.content.as("imagePath"),
+                        qPost.createdAt,
+                        qPost.updatedAt
+                ))
+                .from(qPost)
                 .where(booleanBuilder)
                 .orderBy(qPost.createdAt.desc())
                 .fetch();

@@ -134,6 +134,10 @@ public class PostService implements
         return repository.searchCard(type, word);
     }
 
+    public List<CardResponse> findCardByUserGroup(char type, Long groupId) {
+        return repository.findCardByUserGroup(type, groupId);
+    }
+
     @Override
     public boolean isExist(Long id) {
         return repository.existsById(id);

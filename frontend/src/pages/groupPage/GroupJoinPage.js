@@ -8,8 +8,6 @@ import CommentCard from "../../components/cards/commentCard/CommentCard";
 
 const GroupJoinPage = () => {
 
-    const navigate = useNavigate();
-
     const [groupList, setGroupList] = useState([]);
     const [name, setName] = useState("");
     const [info, setInfo] = useState("");
@@ -29,31 +27,27 @@ const GroupJoinPage = () => {
     const joinGroup = (index) => {
         axios({
             method: "patch",
-            url: `/groups/${index}/in`,
-            params: {'userId': `${sessionStorage.getItem('id')}`}
+            url: `/users/${sessionStorage.getItem('id')}/group-join/${index}`,
         }).then(r => {
             if (r.data.data) {
-                console.log(r.data.data)
-                window.location.href = `/group/${r.data.data.id}`;
+                sessionStorage.setItem("groupId", index);
+                window.location.href = `/group/${index}`;
             }
         });
     }
 
     useEffect(() => {
-        axios({
-            method: "get",
-            url: `/groups`,
-        }).then(r => {
-            r.data.data[0] && setGroupList(r.data.data);
-        });
-        axios({
-            method: "get",
-            url: `/groups/users/${sessionStorage.getItem('id')}`,
-        }).then(r => {
-            if (r.data.data) {
-                window.location.href = `/group/${r.data.data.id}`;
-            }
-        });
+        alert(sessionStorage.getItem("groupId"));
+        if (sessionStorage.getItem("groupId") !== "null") {
+            window.location.href = `/group/${sessionStorage.getItem("groupId")}`
+        } else {
+            axios({
+                method: "get",
+                url: `/groups`,
+            }).then(r => {
+                r.data.data[0] && setGroupList(r.data.data);
+            });
+        }
     }, []);
 
     return (<>
@@ -81,15 +75,17 @@ const GroupJoinPage = () => {
                 </form>
                 <h1 style={{paddingTop: '100px'}}>Recommend</h1>
                 <div className={'cardGrid'}>
-                    {groupList.map((group, index) =>
-                        <div style={{padding: '5px'}}>
-                            [{group.name}] : {group.info}
-                            <input type={"button"} value={'join'}
-                                   onClick={() => {
-                                       joinGroup(index + 1)
-                                   }}/>
-                        </div>
-                    )}
+                    <ul>
+                        {groupList.map((group, index) =>
+                            <li>
+                                <input type={"button"} value={'join'}
+                                       onClick={() => {
+                                           joinGroup(index + 1)
+                                       }}/>
+                                [{group.name}] : {group.info}
+                            </li>
+                        )}
+                    </ul>
                 </div>
             </div>
         </div>
