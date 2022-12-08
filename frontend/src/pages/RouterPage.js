@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {BrowserRouter, Routes, Route, Navigate} from 'react-router-dom';
 import LoginPage from './loginPage/LoginPage';
 import MainPage from './mainPage/MainPage';
@@ -9,14 +9,10 @@ import UploadPage from "./uploadPage/UploadPage";
 import CollectionPage from './collectionPage/CollectionPage';
 import DetailView from '../components/cards/detailView/DetailView';
 import SuccessDetailView from '../components/cards/detailView/SuccessDetailView';
-import GroupPage from "./ groupPage/GroupPage";
+import GroupPage from "./groupPage/GroupPage";
+import GroupJoinPage from "./groupPage/GroupJoinPage";
 
 const RouterPage = () => {
-    // const [isLogin, setIsLogin] = useState(false);
-
-    // useEffect(() => {
-    //     sessionStorage.getItem('id') && setIsLogin(true);
-    // })
 
     return (
         <div>
@@ -30,6 +26,8 @@ const RouterPage = () => {
                             <Route path={'/collection'} element={<CollectionPage/>}/>
                             <Route path={'/detail/m'} element={<DetailView/>}/>
                             <Route path={'/detail/s'} element={<SuccessDetailView/>}/>
+                            <Route path={'/group/:id'} element={<GroupPage/>}/>
+                            <Route path={'/group'} element={<GroupJoinPage/>}/>
                             <Route path={'/'} element={<MainPage/>}/>
                             <Route path={'*'} element={<Navigate replace to={'/'}/>}/>
                         </>) : (<>
@@ -39,7 +37,6 @@ const RouterPage = () => {
                             <Route path={'/collection'} element={<CollectionPage/>}/>
                             <Route path={'/detail/m'} element={<DetailView/>}/>
                             <Route path={'/detail/s'} element={<SuccessDetailView/>}/>
-                            <Route path={'/group'} element={<GroupPage/>}/>
                             <Route path={'/'} element={<MainPage/>}/>
                             <Route path={'*'} element={<Navigate replace to={'/login'}/>}/>
                         </>)

@@ -21,12 +21,12 @@ import static org.springframework.http.HttpStatus.OK;
 @RestController // This means that this class is a Controller
 @RequestMapping(path = "/api/v1/users") // This means URL's start with /demo (after Application path)
 public class UserController {
-    private final UserService userService;
+    private final UserService service;
 
     @GetMapping
     @ResponseStatus(OK)
     public ApiResponse findAllUser() {
-        return ok(userService.findAll());
+        return ok(service.findAll());
     }
 
     @PostMapping
@@ -34,7 +34,7 @@ public class UserController {
     public ApiResponse createUser(
             @Validated @RequestBody UserRequest userRequest
     ) {
-        return created(userService.save(userRequest));
+        return created(service.save(userRequest));
     }
 
     @GetMapping("/{id}")
@@ -42,7 +42,7 @@ public class UserController {
     public ApiResponse findOneUserById(
             @PathVariable Long id
     ) {
-        return ok(userService.findById(id));
+        return ok(service.findById(id));
     }
 
     @PostMapping("/login")
@@ -51,10 +51,26 @@ public class UserController {
             @Validated @RequestBody LoginRequest request
     ) {
         return Stream.of(request)
-                .map(userService::login)
+                .map(service::login)
                 .map(ApiResponse::created)
                 .findAny()
                 .orElseThrow(() -> new NotFoundException(ErrorCode.NOT_FOUND, "User Not Found"));
     }
 
+    @PatchMapping("/{id}/group-join/{groupId}")
+    @ResponseStatus(CREATED)
+    public ApiResponse addUser(
+            @PathVariable Long id,
+            @PathVariable Long groupId
+    ) {
+        return created(service.joinGroup(id, groupId));
+    }
+
+    @PatchMapping("/{id}/group-quit")
+    @ResponseStatus(CREATED)
+    public ApiResponse deleteUser(
+            @PathVariable Long id
+    ) {
+        return created(service.quitGroup(id));
+    }
 }

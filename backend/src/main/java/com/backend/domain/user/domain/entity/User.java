@@ -1,15 +1,18 @@
 package com.backend.domain.user.domain.entity;
 
+import com.backend.domain.group.domain.entity.Group;
 import com.backend.global.domain.BaseTimeEntity;
 import com.backend.global.domain.UpdateEntityAble;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
 
 @Getter
 @RequiredArgsConstructor
 @AllArgsConstructor
-@Builder
 @Entity
 public class User
         extends BaseTimeEntity
@@ -18,6 +21,10 @@ public class User
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "group_id")
+    private Group group;
 
     @Column(unique = true, nullable = false)
     private String name;
@@ -28,7 +35,7 @@ public class User
     @Column(nullable = false)
     private String pw;
 
-    private Boolean isDeleted = false;
+    private boolean isDeleted = false;
 
     @Builder
     public User(String name, String email, String pw) {
@@ -43,6 +50,16 @@ public class User
         this.name = newEntity.getName();
         this.pw = newEntity.getPw();
         this.email = newEntity.getEmail();
+        return this;
+    }
+
+    public User joinGroup(Group group) {
+        this.group = group;
+        return this;
+    }
+
+    public User quitGroup() {
+        this.group = null;
         return this;
     }
 }

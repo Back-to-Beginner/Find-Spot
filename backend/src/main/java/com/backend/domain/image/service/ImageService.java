@@ -2,18 +2,17 @@ package com.backend.domain.image.service;
 
 import com.backend.domain.image.domain.ImageSlice;
 import com.backend.domain.image.domain.entity.Image;
-import com.backend.domain.image.domain.entity.QImage;
 import com.backend.domain.image.domain.repository.ImageRepository;
 import com.backend.domain.image.dto.ImageMapper;
 import com.backend.domain.image.dto.ImageRequest;
 import com.backend.domain.image.dto.ImageResponse;
+import com.backend.domain.post.domain.entity.Post;
+import com.backend.domain.post.service.PostService;
 import com.backend.global.domain.CrudAble;
 import com.backend.global.domain.FindEntityAble;
 import com.backend.global.domain.GetEntityAble;
 import com.backend.global.error.ErrorCode;
 import com.backend.global.error.NotFoundException;
-import com.querydsl.core.BooleanBuilder;
-import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -31,21 +30,24 @@ public class ImageService implements
         CrudAble<ImageRequest, ImageResponse>,
         GetEntityAble<Image>,
         FindEntityAble<Image> {
+
     private final ImageRepository repository;
+    private final PostService postService;
     private final ImageUploader uploader;
     private final ImageMapper mapper;
     private final ImageAnalysis<Boolean> imageAnalysis;
-    private final JPAQueryFactory queryFactory;
-    private static final QImage qImage = QImage.image;
 
     @Transactional
     public ImageResponse uploadProfile(Long postId, MultipartFile multipartFile) throws IOException {
         String path = uploader.upload(multipartFile);
+
         findEntityByPost(postId).forEach(Image::delete);
+        repository.flush();
 
-        Image image = mapper.PathToEntity(postId, path);
+        Post post = postService.findEntity(postId);
+        Image image = mapper.PathToEntity(post, path);
 
-        return mapper.fromEntity(repository.save(image));
+        return ImageResponse.of(repository.save(image));
     }
 
     @Transactional
@@ -56,21 +58,22 @@ public class ImageService implements
     @Override
     @Transactional
     public ImageResponse save(ImageRequest imageRequest) {
-        Image image = mapper.toEntity(imageRequest);
-        return mapper.fromEntity(repository.save(image));
+        Post post = postService.getEntity(imageRequest.getPostId());
+        Image image = imageRequest.toEntity(post);
+        return ImageResponse.of(repository.save(image));
     }
 
     @Override
     public List<ImageResponse> findAll() {
         return repository.findAll()
                 .stream()
-                .map(mapper::fromEntity)
+                .map(ImageResponse::of)
                 .collect(Collectors.toList());
     }
 
     @Override
     public ImageResponse findById(long id) {
-        return mapper.fromEntity(findEntity(id));
+        return ImageResponse.of(findEntity(id));
     }
 
     @Override
@@ -81,13 +84,15 @@ public class ImageService implements
     @Override
     @Transactional
     public ImageResponse update(long id, ImageRequest imageRequest) {
-        Image newImage = mapper.toEntity(imageRequest);
-        return mapper.fromEntity(findEntity(id).update(newImage));
+        Post post = postService.findEntity(imageRequest.getPostId());
+        Image newImage = imageRequest.toEntity(post);
+        return ImageResponse.of(findEntity(id).update(newImage));
     }
 
     @Transactional
     public boolean compareImage(String challengeUrl, Long missionId) {
         String missionImagePath = findEntityByPost(missionId).get(0).getPath();
+
         List<Integer> slice = Arrays.stream(ImageSlice.values())
                 .filter(slice1 -> slice1.getId() == missionId)
                 .findAny()
@@ -111,18 +116,12 @@ public class ImageService implements
     public List<ImageResponse> findByPost(Long postId) {
         return findEntityByPost(postId)
                 .stream()
-                .map(mapper::fromEntity)
+                .map(ImageResponse::of)
                 .collect(Collectors.toList());
     }
 
-    public List<Image> findEntityByPost(Long postId) {
-        BooleanBuilder booleanBuilder = new BooleanBuilder();
-        booleanBuilder.and(qImage.post.id.eq(postId));
-        booleanBuilder.and(qImage.isDeleted.eq(false));
-
-        return queryFactory.selectFrom(qImage)
-                .where(booleanBuilder)
-                .orderBy(qImage.updatedAt.desc())
-                .fetch();
+    private List<Image> findEntityByPost(Long postId) {
+        return repository.findEntityByPost(postId);
     }
+
 }

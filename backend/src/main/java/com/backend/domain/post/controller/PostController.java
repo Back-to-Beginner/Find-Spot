@@ -105,5 +105,15 @@ public class PostController implements
         return ok(service.search(type.charAt(0), word));
     }
 
+    @GetMapping("/types/{type}/groups/{groupId}")
+    @ResponseStatus(OK)
+    public ApiResponse findAllByTypeAndGroup(
+            @PathVariable("type") String type,
+            @PathVariable("groupId") Long groupId
+    ) {
+        return ok(service.findCardByUserGroup(type.charAt(0), groupId));
+    }
+
+
 
 }

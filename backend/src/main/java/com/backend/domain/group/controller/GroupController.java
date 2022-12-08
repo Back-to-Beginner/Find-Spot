@@ -1,7 +1,7 @@
-package com.backend.domain.collection.controller;
+package com.backend.domain.group.controller;
 
-import com.backend.domain.collection.dto.CollectionRequest;
-import com.backend.domain.collection.service.CollectionService;
+import com.backend.domain.group.dto.GroupRequest;
+import com.backend.domain.group.service.GroupService;
 import com.backend.global.domain.CrudControllerAble;
 import com.backend.global.dto.ApiResponse;
 import lombok.RequiredArgsConstructor;
@@ -13,19 +13,20 @@ import static org.springframework.http.HttpStatus.*;
 
 @RequiredArgsConstructor
 @RestController // This means that this class is a Controller
-@RequestMapping(path = "/api/v1/collections") // This means URL's start with /demo (after Application path)
-public class CollectionController implements
-        CrudControllerAble<CollectionRequest> {
+@RequestMapping(path = "/api/v1/groups") // This means URL's start with /demo (after Application path)
+public class GroupController implements
+        CrudControllerAble<GroupRequest>
+{
 
-    private final CollectionService service;
+    private final GroupService service;
 
     @Override
     @PostMapping
     @ResponseStatus(CREATED)
     public ApiResponse save(
-            @Validated @RequestBody CollectionRequest followRequest
+            @Validated @RequestBody GroupRequest groupRequest
     ) {
-        return created(service.save(followRequest));
+        return created(service.save(groupRequest));
     }
 
     @Override
@@ -59,8 +60,9 @@ public class CollectionController implements
     @ResponseStatus(CREATED)
     public ApiResponse update(
             @PathVariable Long id,
-            @Validated @RequestBody CollectionRequest followRequest
+            @Validated @RequestBody GroupRequest groupRequest
     ) {
-        return created(service.update(id, followRequest));
+        return created(service.update(id, groupRequest));
     }
+
 }

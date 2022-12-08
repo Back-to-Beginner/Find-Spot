@@ -1,22 +1,19 @@
 package com.backend.domain.post.service;
 
-import com.backend.domain.image.domain.entity.QImage;
 import com.backend.domain.post.domain.entity.Post;
 import com.backend.domain.post.domain.entity.PostType;
-import com.backend.domain.post.domain.entity.QPost;
 import com.backend.domain.post.domain.repository.PostRepository;
 import com.backend.domain.post.dto.CardResponse;
 import com.backend.domain.post.dto.PostRequest;
 import com.backend.domain.post.dto.PostResponse;
-import com.backend.domain.user.domain.entity.QUser;
 import com.backend.domain.user.domain.entity.User;
 import com.backend.domain.user.service.UserService;
-import com.backend.global.domain.*;
+import com.backend.global.domain.CrudAble;
+import com.backend.global.domain.ExistEntityAble;
+import com.backend.global.domain.FindEntityAble;
+import com.backend.global.domain.GetEntityAble;
 import com.backend.global.error.ErrorCode;
 import com.backend.global.error.NotFoundException;
-import com.querydsl.core.BooleanBuilder;
-import com.querydsl.core.types.Projections;
-import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -33,11 +30,6 @@ public class PostService implements
 
     private final PostRepository repository;
     private final UserService userService;
-    private final JPAQueryFactory queryFactory;
-    private static final QPost qPost = QPost.post;
-    private static final QUser qUser = QUser.user;
-    private static final QImage qImage = QImage.image;
-    private BooleanBuilder booleanBuilder;
 
     @Override
     public List<PostResponse> findAll() {
@@ -94,146 +86,20 @@ public class PostService implements
     }
 
     public CardResponse findCard(Long id) {
-        booleanBuilder = new BooleanBuilder();
-        booleanBuilder.and(qPost.id.eq(id));
-        return queryFactory
-                .select(
-                        Projections.constructor(
-                                CardResponse.class,
-                                qPost.id,
-                                qPost.type,
-                                qPost.content,
-                                qPost.parentPost.id,
-                                qPost.user.id,
-                                qPost.user.name.as("userName"),
-                                qImage.path,
-                                qPost.createdAt,
-                                qPost.updatedAt
-                        )
-                )
-                .from(qImage)
-                .innerJoin(qImage.post, qPost)
-                .where(booleanBuilder)
-                .fetchFirst();
+        return repository.findCard(id);
     }
 
     public List<CardResponse> findByType(Character character) {
-        return findEntityByType(character);
+        return repository.findCardByType(character);
 
-    }
-
-    public List<CardResponse> findEntityByType(Character character) {
-        booleanBuilder = new BooleanBuilder();
-        booleanBuilder.and(qPost.type.eq(character));
-        booleanBuilder.and(qPost.isDeleted.eq(false));
-        booleanBuilder.and(qImage.isDeleted.eq(false));
-
-        return queryFactory
-                .select(
-                        Projections.constructor(
-                                CardResponse.class,
-                                qPost.id,
-                                qPost.type,
-                                qPost.content,
-                                qPost.parentPost.id,
-                                qPost.user.id,
-                                qPost.user.name.as("userName"),
-                                qImage.path,
-                                qPost.createdAt,
-                                qPost.updatedAt
-                        )
-                )
-                .from(qImage)
-                .innerJoin(qImage.post, qPost)
-                .where(booleanBuilder)
-                .orderBy(qPost.createdAt.desc())
-                .fetch();
     }
 
     public List<CardResponse> findByTypeAndUser(Character type, Long userId) {
-        return findEntityByTypeAndUser(type, userId);
-    }
-
-    public List<CardResponse> findEntityByTypeAndUser(Character type, Long userId) {
-        booleanBuilder = new BooleanBuilder();
-        booleanBuilder.and(qPost.type.eq(type));
-        booleanBuilder.and(qPost.isDeleted.eq(false));
-        booleanBuilder.and(qPost.user.id.eq(userId));
-        booleanBuilder.and(qImage.isDeleted.eq(false));
-
-        return queryFactory.select(Projections.constructor(
-                        CardResponse.class,
-                        qPost.id,
-                        qPost.type,
-                        qPost.content,
-                        qPost.parentPost.id,
-                        qPost.user.id,
-                        qPost.user.name.as("userName"),
-                        qImage.path,
-                        qPost.createdAt,
-                        qPost.updatedAt
-                ))
-                .from(qImage)
-                .innerJoin(qImage.post, qPost)
-                .where(booleanBuilder)
-                .orderBy(qPost.createdAt.desc())
-                .fetch();
+        return repository.findCardByTypeAndUser(type, userId);
     }
 
     public List<CardResponse> findTypeAndParentPost(Character type, Long parentPostId) {
-        if (type == 'c') return findEntityByTypeAndParentPost(parentPostId);
-        return findEntityByTypeAndParentPost(type, parentPostId);
-    }
-
-    public List<CardResponse> findEntityByTypeAndParentPost(Character type, Long parentPostId) {
-        booleanBuilder = new BooleanBuilder();
-        booleanBuilder.and(qPost.type.eq(type));
-        booleanBuilder.and(qPost.isDeleted.eq(false));
-        booleanBuilder.and(qPost.parentPost.id.eq(parentPostId));
-        booleanBuilder.and(qPost.parentPost.isDeleted.eq(false));
-        booleanBuilder.and(qImage.isDeleted.eq(false));
-
-        return queryFactory.select(Projections.constructor(
-                        CardResponse.class,
-                        qPost.id,
-                        qPost.type,
-                        qPost.content,
-                        qPost.parentPost.id,
-                        qPost.user.id,
-                        qPost.user.name.as("userName"),
-                        qImage.path,
-                        qPost.createdAt,
-                        qPost.updatedAt
-                ))
-                .from(qImage)
-                .where(booleanBuilder)
-                .orderBy(qPost.createdAt.desc())
-                .fetch();
-    }
-
-    public List<CardResponse> findEntityByTypeAndParentPost(Long parentPostId) {
-        booleanBuilder = new BooleanBuilder();
-        booleanBuilder.and(qPost.type.eq('c'));
-        booleanBuilder.and(qPost.isDeleted.eq(false));
-        booleanBuilder.and(qPost.parentPost.id.eq(parentPostId));
-        booleanBuilder.and(qPost.parentPost.isDeleted.eq(false));
-
-        return queryFactory.select(Projections.constructor(
-                        CardResponse.class,
-                        qPost.id,
-                        qPost.type,
-                        qPost.content,
-                        qPost.parentPost.id,
-                        qPost.user.id,
-                        qPost.user.name.as("userName"),
-                        qPost.content.as("imagePath"),
-                        qPost.createdAt,
-                        qPost.updatedAt
-                ))
-                .from(qPost)
-                .where(booleanBuilder)
-                .orderBy(qPost.createdAt.desc())
-                .fetch();
+        return repository.findCardByTypeAndParentPost(type, parentPostId);
     }
 
     private void checkParentTypeAvailable(Character parentType, Character postType) {
@@ -265,34 +131,11 @@ public class PostService implements
     }
 
     public List<CardResponse> search(char type, String word) {
-        return searchEntity(type, word);
+        return repository.searchCard(type, word);
     }
 
-    private List<CardResponse> searchEntity(char type, String word) {
-        booleanBuilder = new BooleanBuilder();
-        if (type == 'u' && !word.equals("*")) booleanBuilder.and(qPost.user.name.contains(word));
-        else if (!word.equals("*")) booleanBuilder.and(qPost.content.contains(word));
-        booleanBuilder.and(qPost.type.eq(type));
-        booleanBuilder.and(qPost.isDeleted.eq(false));
-        booleanBuilder.and(qImage.isDeleted.eq(false));
-
-        return queryFactory.select(Projections.constructor(
-                        CardResponse.class,
-                        qPost.id,
-                        qPost.type,
-                        qPost.content,
-                        qPost.parentPost.id,
-                        qPost.user.id,
-                        qPost.user.name.as("userName"),
-                        qImage.path,
-                        qPost.createdAt,
-                        qPost.updatedAt
-                ))
-                .from(qImage)
-                .innerJoin(qImage.post, qPost)
-                .where(booleanBuilder)
-                .orderBy(qPost.createdAt.desc())
-                .fetch();
+    public List<CardResponse> findCardByUserGroup(char type, Long groupId) {
+        return repository.findCardByUserGroup(type, groupId);
     }
 
     @Override

@@ -99,8 +99,9 @@ const ProfilePage = () => {
                     </div>
                     <div className={'profileSub'}>
                         <span>{success.length} Success</span>
-                        <span>{following} Following</span>
-                        <span>{follower} Follower</span>
+                        {/*<span>{following} Following</span>*/}
+                        {/*<span>{follower} Follower</span>*/}
+                        <span onClick={() => {window.location.href = "/group"}}>Move to my Group</span>
                     </div>
                 </div>
 

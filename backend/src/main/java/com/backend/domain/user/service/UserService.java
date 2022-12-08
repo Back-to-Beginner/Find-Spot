@@ -1,5 +1,7 @@
 package com.backend.domain.user.service;
 
+import com.backend.domain.group.domain.entity.Group;
+import com.backend.domain.group.service.GroupService;
 import com.backend.domain.user.domain.entity.User;
 import com.backend.domain.user.domain.repository.UserRepository;
 import com.backend.domain.user.dto.LoginRequest;
@@ -25,6 +27,7 @@ public class UserService implements
         FindEntityAble<User> {
 
     private final UserRepository repository;
+    private final GroupService groupService;
 
     public UserResponse login(LoginRequest request) {
         User user = repository.findByEmailAndAndPw(request.getEmail(), request.getPw())
@@ -61,7 +64,10 @@ public class UserService implements
     }
 
     @Override
-    public UserResponse update(long id, UserRequest userRequest) {
+    public UserResponse update(
+            long id,
+            UserRequest userRequest
+    ) {
         User newUser = userRequest.toEntity();
         return UserResponse.of(findEntity(id).update(newUser));
     }
@@ -77,4 +83,23 @@ public class UserService implements
     public User getEntity(Long id) {
         return repository.getById(id);
     }
+
+    public UserResponse joinGroup(
+            Long id,
+            Long groupId
+    ) {
+        User user = getEntity(id);
+        Group group = groupService.findEntity(groupId);
+        user.joinGroup(group);
+        repository.flush();
+        return UserResponse.of(user);
+    }
+
+    public UserResponse quitGroup(Long id) {
+        User user = findEntity(id);
+        user.quitGroup();
+        repository.flush();
+        return UserResponse.of(user);
+    }
+
 }
