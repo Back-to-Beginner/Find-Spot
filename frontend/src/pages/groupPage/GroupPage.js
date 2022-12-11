@@ -15,7 +15,7 @@ const GroupPage = (props) => {
     useEffect(() => {
         axios({
             method: "get",
-            url: `/groups/${parm.id}`,
+            url: `/api/v1/groups/${parm.id}`,
         }).then(r => {
             r.data.data && setGroup(r.data.data);
             r.data.data && setUsers(r.data.data.users);
@@ -24,7 +24,7 @@ const GroupPage = (props) => {
             navigate('/group');
         }).then(r => axios({
             method: "get",
-            url: `/posts/types/s/groups/${parm.id}`,
+            url: `/api/v1/posts/types/s/groups/${parm.id}`,
         }).then(r => {
             r.data.data[0] && setSuccess(r.data.data);
         }));
@@ -33,7 +33,7 @@ const GroupPage = (props) => {
     const quitGroup = () => {
         axios({
             method: "patch",
-            url: `/users/${sessionStorage.getItem('id')}/group-quit`
+            url: `/api/v1/users/${sessionStorage.getItem('id')}/group-quit`
         }).then(r => {
             sessionStorage.setItem("groupId", null);
         }).then(r => {

@@ -4,15 +4,20 @@ volumes:
   mysql-volume:
 
 services:
-#  react-btb:
-#    image: node:16-alpine
-#    command: sh -c "npm install && npm start"
-#    ports:
-#      - "3000:3000"
-#    working_dir: /app
-#    volumes:
-#      - ./frontend:/app
-#    container_name: react-btb
+  nginx:
+    build:
+      dockerfile: Dockerfile
+      context: ./frontend
+    image: react-nginx-frontend
+    ports:
+      - "80:80"
+    container_name: nginx
+    restart: on-failure
+    volumes:
+      - /client/node_modules
+      - ./frontend:/client
+    depends_on:
+      - spring-boot
 
   spring-boot:
     build:

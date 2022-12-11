@@ -12,7 +12,7 @@ const CommentCard = () => {
     useEffect(() => {
         axios({
             method: 'get',
-            url: `/posts/parent/${sessionStorage.getItem("postId")}/child/c`
+            url: `/api/v1/posts/parent/${sessionStorage.getItem("postId")}/child/c`
         }).then(r => {
             console.log(r.data.data);
             setChatList(r.data.data);
@@ -24,7 +24,7 @@ const CommentCard = () => {
         sessionStorage.getItem('id') ?
         axios({
             method: 'post',
-            url: '/posts',
+            url: '/api/v1/posts',
             data: {
                 'type': 'c',
                 'userId': sessionStorage.getItem('id'),

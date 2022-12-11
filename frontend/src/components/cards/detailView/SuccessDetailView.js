@@ -14,7 +14,7 @@ const SuccessDetailView = (props) => {
 
     useEffect(() => {
         axios({
-            url: `/posts/card/${sessionStorage.getItem('parentPostId')}`,
+            url: `/api/v1/posts/card/${sessionStorage.getItem('parentPostId')}`,
             method: 'get',
         }).then(res => {
             // console.log(res.data.data)

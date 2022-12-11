@@ -13,7 +13,7 @@ const DetailView = () => {
 
     useEffect(() => {
         axios({
-            url: `/posts/parent/${sessionStorage.getItem('postId')}/child/s`,
+            url: `/api/v1/posts/parent/${sessionStorage.getItem('postId')}/child/s`,
             method: 'get',
         }).then(res => res.data.data && setPostList(res.data.data))
             .then(() => setIsLoading(false));

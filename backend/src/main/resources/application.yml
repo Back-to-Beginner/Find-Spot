@@ -5,12 +5,12 @@ spring:
       - cache
       - aws
       - credentials
-      - imageAnalysis
   servlet:
     multipart:
       max-file-size: 10MB
       max-request-size: 10MB
 
 pythonServer:
+#  address: http://localhost:5001
   address: http://image-analysis:5001
-  url: /api-python/compare
+  url: /api-python/v1/compare

@@ -9,7 +9,7 @@ const CollectionPage = () => {
 
     useEffect(() => {
         axios({
-            url: '/collections',
+            url: '/api/v1/collections',
             method: 'get',
         }).then(res => {
             res.data.data && setCollections(res.data.data);

@@ -8,7 +8,7 @@ const Collection = (props) => {
         // eslint-disable-next-line react-hooks/rules-of-hooks
         const [path, setPath] = useState()
         axios({
-            url: `/images/post/${id}`,
+            url: `/api/v1/images/post/${id}`,
             method: 'get',
         }).then(res => {
             setPath(res.data.data[0].path);

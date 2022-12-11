@@ -28,7 +28,7 @@ const ProfilePage = () => {
 
         axios({
             method: 'get',
-            url: `/posts/types/u/users/${param.id}`
+            url: `/api/v1/posts/types/u/users/${param.id}`
         }).catch(err => {
             alert("유저 정보가 옳바르지 않습니다. 다시 시도해 주세요");
         }).then(res => {
@@ -37,7 +37,7 @@ const ProfilePage = () => {
 
             axios({
                 method: 'get',
-                url: `/posts/types/s/users/${sessionStorage.getItem('id')}`
+                url: `/api/v1/posts/types/s/users/${sessionStorage.getItem('id')}`
             }).then(res => {
                 res.data.data && setSuccess(res.data.data);
             })
@@ -59,7 +59,7 @@ const ProfilePage = () => {
         axios({
             header: {'content-type': 'multipart/form-data'},
             method: 'post',
-            url: `/images/upload/${sessionStorage.getItem('profileId')}`,
+            url: `/api/v1/images/upload/${sessionStorage.getItem('profileId')}`,
             data: form
         }).then(res => {
             window.location.reload();

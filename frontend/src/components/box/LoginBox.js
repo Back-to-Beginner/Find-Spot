@@ -15,7 +15,7 @@ const LoginBox = (props) => {
         e.preventDefault();
         axios({
             method: "post",
-            url: '/users/login',
+            url: '/api/v1/users/login',
             data: {
                 "email": formValue.email,
                 "pw": formValue.pw

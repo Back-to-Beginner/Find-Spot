@@ -49,12 +49,12 @@ const UploadCard = (props) => {
         const form = new FormData();
         form.append('images', fileBlob);
         axios({
-            header: {'content-type': 'multipart/form-data'}, method: 'post', url: "/images/upload", data: form
+            header: {'content-type': 'multipart/form-data'}, method: 'post', url: "/api/v1/images/upload", data: form
         }).then(res => {
             props.imageSrc(res.data.data);
             axios({
                 method: 'get',
-                url: '/images/compare',
+                url: '/api/v1/images/compare',
                 params: {
                     'challengeUrl': res.data.data,
                     "missionId": sessionStorage.getItem('postId'),

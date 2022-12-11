@@ -25,7 +25,7 @@ const RegisterBox = () => {
         }
         axios({
             method: "post",
-            url: '/users/',
+            url: '/api/v1/users/',
             data: {
                 "email": formValue.email,
                 "name": formValue.name,
@@ -36,7 +36,7 @@ const RegisterBox = () => {
         }).then((res) => {
             res.data.data.id && axios({
                 method: "post",
-                url: '/posts',
+                url: '/api/v1/posts',
                 data: {
                     "userId": Number(res.data.data.id),
                     "type": 'u',
@@ -48,7 +48,7 @@ const RegisterBox = () => {
             }).then(res => {
                 res.data.data.id && axios({
                     method: "post",
-                    url: '/images',
+                    url: '/api/v1/images',
                     data: {
                         "path": "",
                         "postId": `${res.data.data.id}`

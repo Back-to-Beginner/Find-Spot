@@ -19,7 +19,7 @@ const ResultPage = (props) => {
         setIsLoading(true)
         setSearchWord(parm.searchWord);
         axios({
-            url: `/posts/search/s`,
+            url: `/api/v1/posts/search/s`,
             method: 'get',
             params: {'word': parm.searchWord}
         }).then(res => {
@@ -35,13 +35,13 @@ const ResultPage = (props) => {
         if (e.target.value === 'g') {
             axios({
                 method: "get",
-                url: `/groups`,
+                url: `/api/v1/groups`,
             }).then(r => {
                 r.data.data[0] && setResult(r.data.data);
             });
         } else {
             axios({
-                url: `/posts/search/${e.target.value}`,
+                url: `/api/v1/posts/search/${e.target.value}`,
                 method: 'get',
                 params: {'word': searchWord}
             }).then(res => {

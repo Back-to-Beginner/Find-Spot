@@ -26,7 +26,7 @@ const UploadPage = () => {
         setIsLoading(true);
         approve && axios({
             method: 'post',
-            url: `/posts`,
+            url: `/api/v1/posts`,
             data: {
                 'type': 's',
                 'userId': sessionStorage.getItem('id'),
@@ -36,7 +36,7 @@ const UploadPage = () => {
         }).then(res => res && axios({
                 header: {'content-type': 'multipart/form-data'},
                 method: 'post',
-                url: `/images`,
+                url: `/api/v1/images`,
                 data: {
                     'postId': res.data.data.id,
                     'path': imageSrc

@@ -15,7 +15,7 @@ const MainPage = () => {
     useLayoutEffect(() => {
         axios({
             method: 'get',
-            url: '/posts/types/m'
+            url: '/api/v1/posts/types/m'
         }).then(misRes => {
             if (misRes.data.data[0] && misRes.data.data[0].type === 'm') {
                 setMissionList(misRes.data.data);
@@ -30,7 +30,7 @@ const MainPage = () => {
         console.log(11111);
         axios({
             method: 'get',
-            url: `/posts/parent/${index}/child/s`
+            url: `/api/v1/posts/parent/${index}/child/s`
         }).then(sucRes => {
             sucRes.data.data && setSuccess(sucRes.data.data[0]);
         })

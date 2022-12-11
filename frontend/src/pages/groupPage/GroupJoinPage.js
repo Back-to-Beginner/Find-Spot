@@ -15,7 +15,7 @@ const GroupJoinPage = () => {
     const createGroup = () => {
         axios({
             method: "post",
-            url: '/groups',
+            url: '/api/v1/groups',
             data: {'name': name, 'info': info}
         }).then(r => {
             if (r.data.data) {
@@ -27,7 +27,7 @@ const GroupJoinPage = () => {
     const joinGroup = (index) => {
         axios({
             method: "patch",
-            url: `/users/${sessionStorage.getItem('id')}/group-join/${index}`,
+            url: `/api/v1/users/${sessionStorage.getItem('id')}/group-join/${index}`,
         }).then(r => {
             if (r.data.data) {
                 sessionStorage.setItem("groupId", index);
@@ -43,7 +43,7 @@ const GroupJoinPage = () => {
         } else {
             axios({
                 method: "get",
-                url: `/groups`,
+                url: `/api/v1/groups`,
             }).then(r => {
                 r.data.data[0] && setGroupList(r.data.data);
             });
