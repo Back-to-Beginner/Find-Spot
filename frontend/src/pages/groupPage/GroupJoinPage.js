@@ -37,7 +37,6 @@ const GroupJoinPage = () => {
     }
 
     useEffect(() => {
-        alert(sessionStorage.getItem("groupId"));
         if (sessionStorage.getItem("groupId") !== "null") {
             window.location.href = `/group/${sessionStorage.getItem("groupId")}`
         } else {
